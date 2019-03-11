@@ -16,7 +16,6 @@ public class GameState extends State {
 
     public GameState(Handler handler){
         super(handler);
-        handler.setMap(MapBuilder.createMap(Images.testMap,handler));
 
     }
 
