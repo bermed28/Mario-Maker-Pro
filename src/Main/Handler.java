@@ -12,9 +12,9 @@ import java.awt.*;
 
 public class Handler {
 
-    GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-    int DEFAULTWIDTH = gd.getDisplayMode().getWidth();
-    int DEFAULTHEIGHT = gd.getDisplayMode().getHeight();
+    private static final GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+    public static final int DEFAULTWIDTH = gd.getDisplayMode().getWidth();
+    public static final int DEFAULTHEIGHT = gd.getDisplayMode().getHeight();
 
     int width,height;
 
@@ -22,8 +22,8 @@ public class Handler {
 
     public Handler(){
 
-        height=(DEFAULTHEIGHT/2) +(DEFAULTHEIGHT/4)  ;
-        width =(DEFAULTWIDTH/3);
+        height=2*(DEFAULTHEIGHT/3)  ;
+        width =height;
 
     }
 

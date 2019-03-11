@@ -47,7 +47,6 @@ public class GameSetUp implements Runnable {
     //Res.music
     private MusicHandler musicHandler;
 
-    private BufferedImage loading;
 
     public GameSetUp(String title,Handler handler){
 
@@ -56,7 +55,7 @@ public class GameSetUp implements Runnable {
         this.title = title;
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
-        musicHandler = new MusicHandler(handler);
+        //musicHandler = new MusicHandler(handler);
 
     }
 
@@ -77,7 +76,6 @@ public class GameSetUp implements Runnable {
         pauseState = new PauseState(handler);
 
         State.setState(menuState);
-        musicHandler.restartBackground();
     }
 
     public void reStart(){
@@ -152,7 +150,6 @@ public class GameSetUp implements Runnable {
 
         //Draw Here!
 
-        g.drawImage(loading ,0,0, handler.width, handler.height,null);
         if(State.getState() != null)
             State.getState().render(g);
 
