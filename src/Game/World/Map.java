@@ -1,0 +1,52 @@
+package Game.World;
+
+import Game.Entities.DynamicEntities.BaseDynamicEntity;
+import Game.Entities.DynamicEntities.Mario;
+import Game.Entities.StaticEntities.BaseStaticEntity;
+import Main.Handler;
+
+import java.awt.*;
+import java.util.ArrayList;
+
+public class Map {
+
+    ArrayList<BaseStaticEntity> blocksOnMap;
+    ArrayList<BaseDynamicEntity> enemiesOnMap;
+    Handler handler;
+
+
+    public Map(Handler handler) {
+        this.blocksOnMap = new ArrayList<>();
+        this.enemiesOnMap = new ArrayList<>();
+        this.handler=handler;
+    }
+
+    public void addBlock(BaseStaticEntity block){
+        blocksOnMap.add(block);
+    }
+    public void addEnemy(BaseDynamicEntity entity){
+        if(entity instanceof Mario){
+            handler.setMario((Mario) entity);
+            handler.getCamera().setX(handler.getMario().x- (MapBuilder.pixelMultiplier*6));
+            handler.getCamera().setY(handler.getMario().y - (MapBuilder.pixelMultiplier*10));
+        }else {
+            enemiesOnMap.add(entity);
+        }
+    }
+
+    public void drawMap(Graphics2D g2) {
+        handler.setIsInMap(true);
+        Point camLocation = new Point((int)handler.getCamera().getX(), (int)handler.getCamera().getY());
+        g2.translate(-camLocation.x, -camLocation.y);
+        for (BaseStaticEntity block:blocksOnMap) {
+            g2.drawImage(block.sprite,block.x,block.y,block.width,block.height,null);
+        }
+        for (BaseDynamicEntity entity:enemiesOnMap) {
+            g2.drawImage(entity.sprite,entity.x,entity.y,entity.width,entity.height,null);
+        }
+        g2.translate(camLocation.x, camLocation.y);
+
+    }
+
+
+}

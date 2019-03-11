@@ -1,5 +1,8 @@
 package Main;
 
+import Game.Entities.DynamicEntities.Mario;
+import Game.World.Map;
+import Input.Camera;
 import Input.KeyManager;
 import Input.MouseManager;
 
@@ -19,6 +22,12 @@ public class Handler {
     int width,height;
 
     private GameSetUp game;
+    private Mario mario;
+    private Map map;
+    private boolean marioInMap =false;
+
+    private Camera camera;
+
 
     public Handler(){
 
@@ -52,4 +61,36 @@ public class Handler {
     }
 
 
+    ///TO CHange
+    public Mario getMario() {
+        return mario;
+    }
+
+    public void setMario(Mario mario) {
+        this.mario = mario;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public boolean isInMap() {
+        return marioInMap;
+    }
+
+    public void setIsInMap(boolean is) {
+        marioInMap = is;
+    }
+
+    public Camera getCamera() {
+        return camera;
+    }
+
+    public void setCamera(Camera camera) {
+        this.camera = camera;
+    }
 }

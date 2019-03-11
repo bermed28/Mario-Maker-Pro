@@ -1,6 +1,11 @@
 package Game.GameStates;
 
+import Game.World.Map;
+import Game.World.MapBuilder;
+import Game.World.WorldManager;
 import Main.Handler;
+import Resources.Images;
+
 import java.awt.*;
 
 /**
@@ -8,8 +13,10 @@ import java.awt.*;
  */
 public class GameState extends State {
 
+
     public GameState(Handler handler){
         super(handler);
+        handler.setMap(MapBuilder.createMap(Images.testMap,handler));
 
     }
 
@@ -17,12 +24,15 @@ public class GameState extends State {
     @Override
     public void tick() {
 
+        handler.getMario().tick();
 
     }
 
     @Override
     public void render(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g.create();
 
+        handler.getMap().drawMap(g2);
 
     }
 

@@ -1,0 +1,7 @@
+Map Legend
+
+Blue - 0,38,255 - Breakable Block
+Yellow - 255,216,0 - Mistery (?) Block
+Red - 255,0,0 - Mario
+Orange - 255,106,0 - Unbreakable Block Surface
+Black - 0,0,0 - Unbreakable Block Map Bounds

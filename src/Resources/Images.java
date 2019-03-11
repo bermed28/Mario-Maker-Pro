@@ -15,8 +15,14 @@ public class Images {
     public static BufferedImage[] backgrounds;
     public static BufferedImage title;
     public static BufferedImage Pause;
+    public static BufferedImage testMap;
+    public static BufferedImage breakBlock;
+    public static BufferedImage misteryBlock;
+    public static BufferedImage surfaceBlock;
+    public static BufferedImage boundBlock;
     private SpriteSheet mainmenuSpriteSheet;
     private SpriteSheet backgroundSpriteSheet;
+    private SpriteSheet interactableSpriteSheet;
 
     public Images() {
 
@@ -31,6 +37,7 @@ public class Images {
             //spriteSheets
             mainmenuSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/mainmenuSheet.png")));
             backgroundSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/backgroundSheet.png")));
+            interactableSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/interactablesSheet.png")));
 
 
             //Images
@@ -51,6 +58,14 @@ public class Images {
             backgrounds[8] = backgroundSpriteSheet.crop(2,1740,512,432);
 
 
+            //maps
+            testMap = ImageIO.read(getClass().getResourceAsStream("/maps/testmap1.png"));
+
+            //blocks
+            boundBlock = interactableSpriteSheet.crop(12,73,16,16);
+            misteryBlock = interactableSpriteSheet.crop(32,93,16,16);
+            surfaceBlock = interactableSpriteSheet.crop(112,93,16,16);
+            breakBlock = interactableSpriteSheet.crop(72,73,16,16);
 
 
         }catch (IOException e) {

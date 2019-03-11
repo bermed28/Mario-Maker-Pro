@@ -1,10 +1,13 @@
 package Main;
 
 import Display.DisplayScreen;
+import Game.Entities.DynamicEntities.Mario;
 import Game.GameStates.GameState;
 import Game.GameStates.MenuState;
 import Game.GameStates.PauseState;
 import Game.GameStates.State;
+import Game.World.MapBuilder;
+import Input.Camera;
 import Input.KeyManager;
 import Input.MouseManager;
 import Resources.Images;
@@ -36,6 +39,7 @@ public class GameSetUp implements Runnable {
     private KeyManager keyManager;
     private MouseManager mouseManager;
 
+
     //Handler
     private Handler handler;
 
@@ -56,6 +60,8 @@ public class GameSetUp implements Runnable {
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
         //musicHandler = new MusicHandler(handler);
+        handler.setCamera(new Camera());
+
 
     }
 
@@ -136,6 +142,21 @@ public class GameSetUp implements Runnable {
         //game states are the menus
         if(State.getState() != null)
             State.getState().tick();
+        if (handler.isInMap()) {
+            updateCamera();
+        }
+    }
+
+    private void updateCamera() {
+        Mario mario = handler.getMario();
+        double marioVelocityX = mario.getVelX();
+        double shiftAmount = 0;
+
+        if (marioVelocityX > 0 && mario.getX() - 600 > handler.getCamera().getX()) {
+            shiftAmount = marioVelocityX;
+        }
+
+        handler.getCamera().moveCam(shiftAmount, 0);
     }
 
     private void render(){
@@ -149,9 +170,14 @@ public class GameSetUp implements Runnable {
         g.clearRect(0, 0,  handler.width, handler.height);
 
         //Draw Here!
+        Graphics2D g2 = (Graphics2D) g.create();
+
 
         if(State.getState() != null)
             State.getState().render(g);
+
+
+
 
 
         //End Drawing!
