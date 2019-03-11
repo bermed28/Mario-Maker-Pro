@@ -3,7 +3,6 @@ package Game.GameStates;
 
 import Main.Handler;
 import Resources.Images;
-import Display.UI.ClickListlener;
 import Display.UI.UIImageButton;
 import Display.UI.UIManager;
 
@@ -25,13 +24,10 @@ public class MenuState extends State {
         background = new Random().nextInt(9);
 
 
-        uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+(handler.getHeight()/8), 128, 64, Images.butstart, new ClickListlener() {
-            @Override
-            public void onClick() {
-                handler.getMouseManager().setUimanager(null);
-                handler.getGame().reStart();
-                State.setState(handler.getGame().gameState);
-            }
+        uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+(handler.getHeight()/8), 128, 64, Images.butstart, () -> {
+            handler.getMouseManager().setUimanager(null);
+            handler.getGame().reStart();
+            State.setState(handler.getGame().gameState);
         }));
     }
 
