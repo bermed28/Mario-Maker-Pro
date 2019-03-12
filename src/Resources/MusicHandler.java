@@ -74,12 +74,12 @@ public class MusicHandler {
         resumeBackground();
     }
 
-    /*Example to play a special effect
+    ///Example to play a special effect
     public void playJump() {
         Clip clip = getClip(loadAudio("jump"));
         clip.start();
     }
-    */
+
 
 
 

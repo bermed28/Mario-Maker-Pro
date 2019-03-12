@@ -13,6 +13,8 @@ public class Images {
 
     public static BufferedImage[] butstart;
     public static BufferedImage[] backgrounds;
+    public static BufferedImage[] marioSmallWalkLeft;
+    public static BufferedImage[] marioSmallWalkRight;
     public static BufferedImage title;
     public static BufferedImage Pause;
     public static BufferedImage testMap;
@@ -24,11 +26,14 @@ public class Images {
     private SpriteSheet mainmenuSpriteSheet;
     private SpriteSheet backgroundSpriteSheet;
     private SpriteSheet interactableSpriteSheet;
+    private SpriteSheet playerSpriteSheet;
 
     public Images() {
 
         butstart = new BufferedImage[3];
         backgrounds = new BufferedImage[9];
+        marioSmallWalkLeft = new BufferedImage[4];
+        marioSmallWalkRight = new BufferedImage[4];
 
 
 
@@ -39,6 +44,7 @@ public class Images {
             mainmenuSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/mainmenuSheet.png")));
             backgroundSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/backgroundSheet.png")));
             interactableSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/interactablesSheet.png")));
+            playerSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/marioSheets.png")));
 
 
             //Images
@@ -58,6 +64,17 @@ public class Images {
             backgrounds[7] = backgroundSpriteSheet.crop(516,1306,512,432);
             backgrounds[8] = backgroundSpriteSheet.crop(2,1740,512,432);
 
+
+            //player sprites
+            marioSmallWalkLeft[0] = playerSpriteSheet.crop(0,48,39,48);
+            marioSmallWalkLeft[1] = playerSpriteSheet.crop(0,96,48,48);
+            marioSmallWalkLeft[2] = playerSpriteSheet.crop(0,144,36,48);
+            marioSmallWalkLeft[3] = playerSpriteSheet.crop(0,195,42,45);
+
+            marioSmallWalkRight[0] = playerSpriteSheet.crop(52,48,39,48);
+            marioSmallWalkRight[1] = playerSpriteSheet.crop(52,96,48,45);
+            marioSmallWalkRight[2] = playerSpriteSheet.crop(52,144,36,48);
+            marioSmallWalkRight[3] = playerSpriteSheet.crop(52,195,42,45);
 
             //maps
             testMap = ImageIO.read(getClass().getResourceAsStream("/maps/testmap1.png"));
