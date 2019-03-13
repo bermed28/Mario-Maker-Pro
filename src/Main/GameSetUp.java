@@ -160,10 +160,16 @@ public class GameSetUp implements Runnable {
         if (marioVelocityX < 0 && mario.getX() +  2*(handler.getWidth()/3) < handler.getCamera().getX()+handler.width) {
             shiftAmount = marioVelocityX;
         }
-        if(!mario.falling){
-            handler.getCamera().setY((handler.getMario().y - (MapBuilder.pixelMultiplier*10)));
+        if (marioVelocityY > 0 && mario.getY() - 2*(handler.getHeight()/3) > handler.getCamera().getY()) {
+            shiftAmountY = marioVelocityY;
         }
-        handler.getCamera().moveCam(shiftAmount,0);
+        if (marioVelocityX < 0 && mario.getY() +  2*(handler.getHeight()/3) < handler.getCamera().getY()+handler.height) {
+            shiftAmountY = -marioVelocityY;
+        }
+//        if(!mario.falling){
+//            handler.getCamera().setY((handler.getMario().y - (MapBuilder.pixelMultiplier*10)));
+//        }
+        handler.getCamera().moveCam(shiftAmount,shiftAmountY);
     }
 
     private void render(){
