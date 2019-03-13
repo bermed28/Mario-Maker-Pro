@@ -59,7 +59,7 @@ public class GameSetUp implements Runnable {
         this.title = title;
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
-        //musicHandler = new MusicHandler(handler);
+        musicHandler = new MusicHandler(handler);
         handler.setCamera(new Camera());
 
 
@@ -75,6 +75,7 @@ public class GameSetUp implements Runnable {
 
         Images img = new Images();
 
+        musicHandler.restartBackground();
 
 
         gameState = new GameState(handler);
@@ -138,6 +139,10 @@ public class GameSetUp implements Runnable {
     private void tick(){
         //checks for key types and manages them
         keyManager.tick();
+
+        if(musicHandler.ended()){
+            musicHandler.restartBackground();
+        }
 
         //game states are the menus
         if(State.getState() != null)

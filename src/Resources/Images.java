@@ -13,18 +13,30 @@ public class Images {
 
     public static BufferedImage[] butstart;
     public static BufferedImage[] backgrounds;
+
     public static BufferedImage[] marioSmallWalkLeft;
     public static BufferedImage[] marioSmallWalkRight;
-    public static BufferedImage[] marioSmallJumpLeft;
+    public static BufferedImage[] marioSmallJumpLeft;//also store ide sprites like looking up or down
     public static BufferedImage[] marioSmallJumpRight;
+
+    public static BufferedImage[] marioBigWalkLeft;
+    public static BufferedImage[] marioBigWalkRight;
+    public static BufferedImage[] marioBigRunLeft;
+    public static BufferedImage[] marioBigRunRight;
+    public static BufferedImage[] marioBigJumpLeft;//also store ide sprites like looking up or down and left<->right transition
+    public static BufferedImage[] marioBigJumpRight;
+
     public static BufferedImage title;
     public static BufferedImage Pause;
+
     public static BufferedImage testMap;
     public static BufferedImage testMaptwo;
+
     public static BufferedImage breakBlock;
     public static BufferedImage misteryBlock;
     public static BufferedImage surfaceBlock;
     public static BufferedImage boundBlock;
+
     private SpriteSheet mainmenuSpriteSheet;
     private SpriteSheet backgroundSpriteSheet;
     private SpriteSheet interactableSpriteSheet;
@@ -33,11 +45,20 @@ public class Images {
     public Images() {
 
         butstart = new BufferedImage[3];
+
         backgrounds = new BufferedImage[9];
+
         marioSmallWalkLeft = new BufferedImage[2];
         marioSmallWalkRight = new BufferedImage[2];
-        marioSmallJumpLeft = new BufferedImage[2];
-        marioSmallJumpRight = new BufferedImage[2];
+        marioSmallJumpLeft = new BufferedImage[4];
+        marioSmallJumpRight = new BufferedImage[4];
+
+        marioBigWalkLeft = new BufferedImage[2];
+        marioBigWalkRight = new BufferedImage[2];
+        marioBigRunLeft = new BufferedImage[2];
+        marioBigRunRight = new BufferedImage[2];
+        marioBigJumpLeft = new BufferedImage[5];
+        marioBigJumpRight = new BufferedImage[5];
 
 
 
@@ -70,6 +91,7 @@ public class Images {
 
 
             //player sprites
+            //Small
             marioSmallWalkLeft[0] = playerSpriteSheet.crop(169,0,14,20);
             marioSmallWalkLeft[1] = playerSpriteSheet.crop(49,0,15,19);
 
@@ -78,9 +100,38 @@ public class Images {
 
             marioSmallJumpLeft[0] = playerSpriteSheet.crop(168,39,16,22);
             marioSmallJumpLeft[1] = playerSpriteSheet.crop(128,40,16,20);
+            marioSmallJumpLeft[2] = playerSpriteSheet.crop(49,39,15,21);//up
+            marioSmallJumpLeft[3] = playerSpriteSheet.crop(89,43,15,14);//down
 
             marioSmallJumpRight[0] = playerSpriteSheet.crop(208,39,16,22);
             marioSmallJumpRight[1] = playerSpriteSheet.crop(248,40,16,20);
+            marioSmallJumpRight[2] = playerSpriteSheet.crop(328,39,15,21);//up
+            marioSmallJumpRight[3] = playerSpriteSheet.crop(288,43,15,14);//down
+
+            // Big
+            marioBigWalkLeft[0] = playerSpriteSheet.crop(169,76,15,28);
+            marioBigWalkLeft[1] = playerSpriteSheet.crop(8,76,16,28);
+
+            marioBigWalkRight[0] = playerSpriteSheet.crop(208,76,15,28);
+            marioBigWalkRight[1] = playerSpriteSheet.crop(368,76,16,28);
+
+            marioBigRunLeft[0] = playerSpriteSheet.crop(169,76,15,28);
+            marioBigRunLeft[1] = playerSpriteSheet.crop(48,76,16,27);
+
+            marioBigRunRight[0] = playerSpriteSheet.crop(208,76,15,28);
+            marioBigRunRight[1] = playerSpriteSheet.crop(328,76,16,27);
+
+            marioBigJumpLeft[0] = playerSpriteSheet.crop(168,114,16,31);
+            marioBigJumpLeft[1] = playerSpriteSheet.crop(128,115,16,29);
+            marioBigJumpLeft[2] = playerSpriteSheet.crop(129,196,15,27);//up
+            marioBigJumpLeft[3] = playerSpriteSheet.crop(88,122,16,15);//down
+            marioBigJumpLeft[4] = playerSpriteSheet.crop(8,115,16,29);//change
+
+            marioBigJumpRight[0] = playerSpriteSheet.crop(208,114,16,31);
+            marioBigJumpRight[1] = playerSpriteSheet.crop(248,115,16,29);
+            marioBigJumpRight[2] = playerSpriteSheet.crop(248,196,15,27);//up
+            marioBigJumpRight[3] = playerSpriteSheet.crop(287,122,16,15);//down
+            marioBigJumpRight[4] = playerSpriteSheet.crop(368,115,16,29);//Change
 
 
             //maps

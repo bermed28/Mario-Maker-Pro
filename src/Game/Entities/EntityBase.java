@@ -25,6 +25,11 @@ public class EntityBase {
         return dimension;
     }
 
+
+    public void setDimension(Dimension dimension) {
+        this.dimension = dimension;
+    }
+
     public Rectangle getTopBounds(){
         return new Rectangle((int)x+dimension.width/6, (int)y, 2*dimension.width/3, dimension.height/2);
     }

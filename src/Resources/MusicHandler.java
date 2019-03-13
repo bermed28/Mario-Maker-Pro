@@ -35,8 +35,12 @@ public class MusicHandler {
             info = new DataLine.Info(Clip.class, format);
             audioClip = (Clip) AudioSystem.getLine(info);
             audioClip.open(audioStream);
-            audioClip.loop(Clip.LOOP_CONTINUOUSLY);
 
+            if(url.equals("background")){
+                audioClip.loop(-1);
+            }else{
+                audioClip.loop(0);
+            }
 
             return audioStream;
 
@@ -72,6 +76,9 @@ public class MusicHandler {
     public void restartBackground() {
         clipTime = 0;
         resumeBackground();
+    }
+    public boolean ended(){
+        return background.getMicrosecondLength()-10<=background.getMicrosecondPosition();
     }
 
     ///Example to play a special effect

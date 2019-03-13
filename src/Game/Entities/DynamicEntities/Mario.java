@@ -16,40 +16,84 @@ public class Mario extends BaseDynamicEntity{
 
     public String facing = "Left";
     public boolean moving = false;
-    public Animation playerSmallLeftAnimation,playerSmallRightAnimation;
-    public boolean falling = true, jumping = false,isBig=false;
+    public Animation playerSmallLeftAnimation,playerSmallRightAnimation,playerBigLeftWalkAnimation,playerBigRightWalkAnimation,playerBigLeftRunAnimation,playerBigRightRunAnimation;
+    public boolean falling = true, jumping = false,isBig=false,running = false,changeDirrection=false;
     public double gravityAcc = 0.38;
+    int changeDirectionCounter=0;
 
     public Mario(int x, int y, int width, int height, Handler handler) {
         super(x, y, width, height, handler, Images.marioSmallWalkRight[0]);
         playerSmallLeftAnimation = new Animation(175,Images.marioSmallWalkLeft);
         playerSmallRightAnimation = new Animation(175,Images.marioSmallWalkRight);
+        playerBigLeftWalkAnimation = new Animation(150,Images.marioBigWalkLeft);
+        playerBigRightWalkAnimation = new Animation(150,Images.marioBigWalkRight);
+        playerBigLeftRunAnimation = new Animation(115,Images.marioBigRunLeft);
+        playerBigRightRunAnimation = new Animation(115,Images.marioBigRunRight);
+        if(isBig){
+            this.y-=8;
+            this.height+=8;
+            setDimension(new Dimension(width, this.height));
+        }
 
     }
 
     public void tick(){
 
+
+        if (changeDirrection) {
+            changeDirectionCounter++;
+        }
+        if(changeDirectionCounter>=10){
+            changeDirrection=false;
+            changeDirectionCounter=0;
+        }
+
         checkBottomCollisions();
         checkMarioHorizontalCollision();
         checkTopCollisions();
 
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE)){
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE)&&!handler.getKeyManager().up&&!handler.getKeyManager().down){
             this.jump();
         }
-
-        if(facing.equals("Left")&&moving){
-            playerSmallLeftAnimation.tick();
-        }else if(facing.equals("Right")&&moving){
-            playerSmallRightAnimation.tick();
+        if(!isBig) {
+            if (facing.equals("Left") && moving) {
+                playerSmallLeftAnimation.tick();
+            } else if (facing.equals("Right") && moving) {
+                playerSmallRightAnimation.tick();
+            }
+        }else{
+            if (facing.equals("Left") && moving && !running) {
+                playerBigLeftWalkAnimation.tick();
+            } else if (facing.equals("Left") && moving && running) {
+                playerBigLeftRunAnimation.tick();
+            } else if (facing.equals("Right") && moving && !running) {
+                playerBigRightWalkAnimation.tick();
+            } else if (facing.equals("Right") && moving && running) {
+                playerBigRightRunAnimation.tick();
+            }
         }
 
 
-        if(handler.getKeyManager().right){
-            velX=3;
+        if(handler.getKeyManager().right&&!handler.getKeyManager().up&&!handler.getKeyManager().down){
+            if(handler.getKeyManager().runbutt){
+                velX = 6;
+                running=true;
+            }else {
+                velX = 3;
+                running=false;
+            }
+            if(facing.equals("Left")){changeDirrection=true;}
             facing = "Right";
             moving=true;
-        }else if(handler.getKeyManager().left){
-            velX=-3;
+        }else if(handler.getKeyManager().left&&!handler.getKeyManager().up&&!handler.getKeyManager().down){
+            if(handler.getKeyManager().runbutt){
+                velX = -6;
+                running=true;
+            }else {
+                velX = -3;
+                running=false;
+            }
+            if(facing.equals("Right")){changeDirrection=true;}
             facing = "Left";
             moving=true;
         }else{
@@ -73,30 +117,100 @@ public class Mario extends BaseDynamicEntity{
     }
 
     public void drawMario(Graphics2D g2) {
-        if(!jumping&&!falling) {
-            if (facing.equals("Left") && moving) {
-                g2.drawImage(playerSmallLeftAnimation.getCurrentFrame(), x, y, width, height, null);
-            } else if (facing.equals("Right") && moving) {
-                g2.drawImage(playerSmallRightAnimation.getCurrentFrame(), x, y, width, height, null);
-            }
-            if (facing.equals("Left") && !moving) {
-                g2.drawImage(Images.marioSmallWalkLeft[0], x, y, width, height, null);
-            } else if (facing.equals("Right") && !moving) {
-                g2.drawImage(Images.marioSmallWalkRight[0], x, y, width, height, null);
-            }
-        }else{
-            if(jumping){
-                if(facing.equals("Left")) {
-                    g2.drawImage(Images.marioSmallJumpLeft[0], x, y, width, height, null);
-                }else{
-                    g2.drawImage(Images.marioSmallJumpRight[0], x, y, width, height, null);
+        if(!isBig) {
+            if (handler.getKeyManager().up) {
+                if (facing.equals("Left")) {
+                    g2.drawImage(Images.marioSmallJumpLeft[2], x, y, width, height, null);
+                } else {
+                    g2.drawImage(Images.marioSmallJumpRight[2], x, y, width, height, null);
                 }
+            } else if (handler.getKeyManager().down) {
+                if (facing.equals("Left")) {
+                    g2.drawImage(Images.marioSmallJumpLeft[3], x, y, width, height, null);
+                } else {
+                    g2.drawImage(Images.marioSmallJumpRight[3], x, y, width, height, null);
+                }
+            } else if (!jumping && !falling) {
+                if (facing.equals("Left") && moving) {
+                    g2.drawImage(playerSmallLeftAnimation.getCurrentFrame(), x, y, width, height, null);
+                } else if (facing.equals("Right") && moving) {
+                    g2.drawImage(playerSmallRightAnimation.getCurrentFrame(), x, y, width, height, null);
+                }
+                if (facing.equals("Left") && !moving) {
+                    g2.drawImage(Images.marioSmallWalkLeft[0], x, y, width, height, null);
+                } else if (facing.equals("Right") && !moving) {
+                    g2.drawImage(Images.marioSmallWalkRight[0], x, y, width, height, null);
+                }
+            } else {
+                if (jumping) {
+                    if (facing.equals("Left")) {
+                        g2.drawImage(Images.marioSmallJumpLeft[0], x, y, width, height, null);
+                    } else {
+                        g2.drawImage(Images.marioSmallJumpRight[0], x, y, width, height, null);
+                    }
 
+                } else {
+                    if (facing.equals("Left")) {
+                        g2.drawImage(Images.marioSmallJumpLeft[1], x, y, width, height, null);
+                    } else {
+                        g2.drawImage(Images.marioSmallJumpRight[1], x, y, width, height, null);
+                    }
+                }
+            }
+        }else {
+            if (!changeDirrection) {
+                if (handler.getKeyManager().up) {
+                    if (facing.equals("Left")) {
+                        g2.drawImage(Images.marioBigJumpLeft[4], x, y, width, height, null);
+                    } else {
+                        g2.drawImage(Images.marioBigJumpRight[4], x, y, width, height, null);
+                    }
+                } else if (handler.getKeyManager().down) {
+                    if (facing.equals("Left")) {
+                        g2.drawImage(Images.marioBigJumpLeft[3], x, y, width, height, null);
+                    } else {
+                        g2.drawImage(Images.marioBigJumpRight[3], x, y, width, height, null);
+                    }
+                } else if (!jumping && !falling) {
+                    if (facing.equals("Left") && moving && running) {
+                        g2.drawImage(playerBigLeftRunAnimation.getCurrentFrame(), x, y, width, height, null);
+                    } else if (facing.equals("Left") && moving && !running) {
+                        g2.drawImage(playerBigLeftWalkAnimation.getCurrentFrame(), x, y, width, height, null);
+                    } else if (facing.equals("Left") && !moving) {
+                        g2.drawImage(Images.marioBigWalkLeft[0], x, y, width, height, null);
+                    } else if (facing.equals("Right") && moving && running) {
+                        g2.drawImage(playerBigRightRunAnimation.getCurrentFrame(), x, y, width, height, null);
+                    } else if (facing.equals("Right") && moving && !running) {
+                        g2.drawImage(playerBigRightWalkAnimation.getCurrentFrame(), x, y, width, height, null);
+                    } else if (facing.equals("Right") && !moving) {
+                        g2.drawImage(Images.marioBigWalkRight[0], x, y, width, height, null);
+                    }
+                } else {
+                    if (jumping) {
+                        if (facing.equals("Left")) {
+                            g2.drawImage(Images.marioBigJumpLeft[0], x, y, width, height, null);
+                        } else {
+                            g2.drawImage(Images.marioBigJumpRight[0], x, y, width, height, null);
+                        }
+
+                    } else {
+                        if (facing.equals("Left")) {
+                            g2.drawImage(Images.marioBigJumpLeft[1], x, y, width, height, null);
+                        } else {
+                            g2.drawImage(Images.marioBigJumpRight[1], x, y, width, height, null);
+                        }
+                    }
+                }
             }else{
-                if(facing.equals("Left")) {
-                    g2.drawImage(Images.marioSmallJumpLeft[1], x, y, width, height, null);
+                if(!running){
+                    changeDirrection=false;
+                    changeDirectionCounter=0;
+                    drawMario(g2);
+                }
+                if(facing.equals("Right")){
+                    g2.drawImage(Images.marioBigJumpRight[4], x, y, width, height, null);
                 }else{
-                    g2.drawImage(Images.marioSmallJumpRight[1], x, y, width, height, null);
+                    g2.drawImage(Images.marioBigJumpLeft[4], x, y, width, height, null);
                 }
             }
         }
@@ -107,7 +221,7 @@ public class Mario extends BaseDynamicEntity{
         if(!jumping && !falling){
             jumping=true;
             velY=10;
-//            handler.getGame().getMusicHandler().playJump();
+            handler.getGame().getMusicHandler().playJump();
         }
     }
 
