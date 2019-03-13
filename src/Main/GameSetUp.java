@@ -166,9 +166,6 @@ public class GameSetUp implements Runnable {
         if (marioVelocityX < 0 && mario.getY() +  2*(handler.getHeight()/3) < handler.getCamera().getY()+handler.height) {
             shiftAmountY = -marioVelocityY;
         }
-//        if(!mario.falling){
-//            handler.getCamera().setY((handler.getMario().y - (MapBuilder.pixelMultiplier*10)));
-//        }
         handler.getCamera().moveCam(shiftAmount,shiftAmountY);
     }
 
