@@ -9,7 +9,7 @@ public class Launch {
 
     public static void main(String[] args) {
         Handler handler = new Handler();
-        GameSetUp game = new GameSetUp("BaseGame",handler);
+        GameSetUp game = new GameSetUp("PA3",handler);
         handler.setGame(game);
         game.start();
     }
