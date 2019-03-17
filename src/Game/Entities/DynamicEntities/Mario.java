@@ -17,7 +17,7 @@ public class Mario extends BaseDynamicEntity{
     public String facing = "Left";
     public boolean moving = false;
     public Animation playerSmallLeftAnimation,playerSmallRightAnimation,playerBigLeftWalkAnimation,playerBigRightWalkAnimation,playerBigLeftRunAnimation,playerBigRightRunAnimation;
-    public boolean falling = true, jumping = false,isBig=false,running = false,changeDirrection=false;
+    public boolean falling = true, jumping = false,isBig=true,running = false,changeDirrection=false;
     public double gravityAcc = 0.38;
     int changeDirectionCounter=0;
 

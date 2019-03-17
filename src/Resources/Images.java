@@ -2,6 +2,7 @@ package Resources;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -28,6 +29,7 @@ public class Images {
 
     public static BufferedImage title;
     public static BufferedImage Pause;
+    public static BufferedImage Cursor;
 
     public static BufferedImage testMap;
     public static BufferedImage testMaptwo;
@@ -75,6 +77,7 @@ public class Images {
             //Images
             title = mainmenuSpriteSheet.crop(16,16,256,224);
             Pause = ImageIO.read(getClass().getResourceAsStream("/Sheets/Pause.png"));
+            Cursor = ImageIO.read(getClass().getResourceAsStream("/Sheets/cursor.png"));
             butstart[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/NormBut.png"));//normbut
             butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
             butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/ClickedBut.png"));//clickbut
@@ -161,5 +164,31 @@ public class Images {
         }
         return null;
     }
+
+    public static BufferedImage tint(BufferedImage src, float r, float g, float b) {
+
+        // Copy image ( who made that so complicated :< )
+        BufferedImage newImage = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TRANSLUCENT);
+        Graphics2D graphics = newImage.createGraphics();
+        graphics.drawImage(src, 0, 0, null);
+        graphics.dispose();
+
+        // Color image
+        for (int i = 0; i < newImage.getWidth(); i++) {
+            for (int j = 0; j < newImage.getHeight(); j++) {
+                int ax = newImage.getColorModel().getAlpha(newImage.getRaster().getDataElements(i, j, null));
+                int rx = newImage.getColorModel().getRed(newImage.getRaster().getDataElements(i, j, null));
+                int gx = newImage.getColorModel().getGreen(newImage.getRaster().getDataElements(i, j, null));
+                int bx = newImage.getColorModel().getBlue(newImage.getRaster().getDataElements(i, j, null));
+                rx *= r;
+                gx *= g;
+                bx *= b;
+                newImage.setRGB(i, j, (ax << 24) | (rx << 16) | (gx << 8) | (bx << 0));
+            }
+        }
+        return newImage;
+    }
+
+
 
 }

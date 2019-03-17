@@ -12,11 +12,11 @@ public class MapBuilder {
 
     public static int pixelMultiplier = 48;
 
-    static int boundBlock = new Color(0,0,0).getRGB();
-    static int mario = new Color(255,0,0).getRGB();
-    static int surfaceBlock = new Color(255,106,0).getRGB();
-    static int breakBlock = new Color(0,38,255).getRGB();
-    static int misteryBlock = new Color(255,216,0).getRGB();
+    public static int boundBlock = new Color(0,0,0).getRGB();
+    public static int mario = new Color(255,0,0).getRGB();
+    public static int surfaceBlock = new Color(255,106,0).getRGB();
+    public static int breakBlock = new Color(0,38,255).getRGB();
+    public static int misteryBlock = new Color(255,216,0).getRGB();
 
     public static Map createMap(BufferedImage mapImage, Handler handler){
         Map mapInCreation = new Map(handler);

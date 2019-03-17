@@ -36,8 +36,8 @@ public class GameSetUp implements Runnable {
     private Graphics g;
 
     //Input
-    private KeyManager keyManager;
-    private MouseManager mouseManager;
+    public KeyManager keyManager;
+    public MouseManager mouseManager;
 
 
     //Handler
