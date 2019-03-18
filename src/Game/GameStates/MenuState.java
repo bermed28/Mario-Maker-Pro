@@ -59,7 +59,7 @@ public class MenuState extends State {
 
         DisplayWidth=(handler.getWidth())+(handler.getWidth()/2);
         DiplayHeight = handler.getHeight();
-        GridPixelsize = 30;
+        GridPixelsize = 20;
         GridHeightPixelCount = DiplayHeight/GridPixelsize;
         GridWidthPixelCount = DisplayWidth/GridPixelsize;
         blocks = new Color[GridWidthPixelCount][GridHeightPixelCount];
