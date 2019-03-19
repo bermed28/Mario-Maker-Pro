@@ -315,7 +315,6 @@ public class MenuState extends State {
             String path2 = path.substring(0,path.indexOf("/out/"))+"/res/maps/"+name+".png";
             f = new File(path2);
             System.out.println("File saved in: "+path2);
-            //f = new File(+name+".png");
             ImageIO.write(img, "png", f);
         }
         catch(IOException e)
