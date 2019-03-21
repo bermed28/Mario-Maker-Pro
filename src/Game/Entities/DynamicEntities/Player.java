@@ -78,6 +78,7 @@ public class Player extends BaseDynamicEntity {
                 this.height+=8;
                 setDimension(new Dimension(width, this.height));
                 ((Item) entity).used=true;
+                entity.y=-100000;
             }
         }
     }
@@ -106,10 +107,13 @@ public class Player extends BaseDynamicEntity {
 
         for (BaseDynamicEntity enemy : enemies) {
             Rectangle enemyTopBounds = enemy.getTopBounds();
-            if (marioBottomBounds.intersects(enemyTopBounds)) {
+            if (marioBottomBounds.intersects(enemyTopBounds) && !(enemy instanceof Item)) {
                 //mario.acquirePoints(100);
+                enemy.kill();
+                falling=false;
+                velY=0;
                 toBeRemoved.add(enemy);
-                //engine.playStomp();
+                handler.getGame().getMusicHandler().playStomp();
             }
         }
 
@@ -157,16 +161,16 @@ public class Player extends BaseDynamicEntity {
         for(BaseDynamicEntity enemy : enemies){
             Rectangle enemyBounds = !toRight ? enemy.getRightBounds() : enemy.getLeftBounds();
             if (marioBounds.intersects(enemyBounds)) {
-                //marioDies = mario.onTouchEnemy(engine);
-                toBeRemoved.add(enemy);
+                marioDies = true;
+                break;
             }
         }
         //removeObjects(toBeRemoved);
 
 
-//        if(marioDies) {
-//            resetCurrentMap(engine);
-//        }
+        if(marioDies) {
+            handler.getMap().reset();
+        }
     }
 
     public void jump() {

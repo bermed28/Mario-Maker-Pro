@@ -175,6 +175,8 @@ public class MenuState extends State {
     }
 
     private void tickNewScreen(){
+        //for the tin take each value and divide by 255.
+        //Ex for a red tint you wan the RGB : 255,0,0 so the tint is 1,0,0
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_0)){
             Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,1,1,1), new Point(0, 0), "cursor1");
             display.getCanvas().setCursor(c);
@@ -209,6 +211,11 @@ public class MenuState extends State {
             Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,069f,0,1), new Point(0, 0), "cursor1");
             display.getCanvas().setCursor(c);
             colorSelected = MapBuilder.mushroom;
+        }
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_7)){
+            Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,06549f,0.05882f,0.003921f), new Point(0, 0), "cursor1");
+            display.getCanvas().setCursor(c);
+            colorSelected = MapBuilder.goomba;
         }
 
 
@@ -250,7 +257,8 @@ public class MenuState extends State {
                         "3 -> Mystery Block (Yellow)\n" +
                         "4 -> Surface Block (Orange)\n" +
                         "5 -> Bounds Block (Black)\n" +
-                        "6 -> Mushroom (Purple)");
+                        "6 -> Mushroom (Purple)\n" +
+                        "7 -> Goomba (Brown)");
             }
 
 

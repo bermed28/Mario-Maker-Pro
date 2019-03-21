@@ -88,7 +88,8 @@ public class MusicHandler {
     }
 
 
-
-
-
+    public void playStomp() {
+        Clip clip = getClip(loadAudio("stomp"));
+        clip.start();
+    }
 }

@@ -1,9 +1,6 @@
 package Game.World;
 
-import Game.Entities.DynamicEntities.BaseDynamicEntity;
-import Game.Entities.DynamicEntities.Item;
-import Game.Entities.DynamicEntities.Mario;
-import Game.Entities.DynamicEntities.Mushroom;
+import Game.Entities.DynamicEntities.*;
 import Game.Entities.StaticEntities.BaseStaticEntity;
 import Main.Handler;
 
@@ -52,6 +49,9 @@ public class Map {
                 if(!((Item)entity).used){
                     g2.drawImage(entity.sprite, entity.x, entity.y, entity.width, entity.height, null);
                 }
+            }else if(entity instanceof Goomba && !entity.ded){
+                    g2.drawImage(((Goomba)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
+
             }else {
                 g2.drawImage(entity.sprite, entity.x, entity.y, entity.width, entity.height, null);
             }
@@ -73,4 +73,6 @@ public class Map {
         return bottomBorder;
     }
 
+    public void reset() {
+    }
 }

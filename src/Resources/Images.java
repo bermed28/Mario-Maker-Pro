@@ -27,6 +27,9 @@ public class Images {
     public static BufferedImage[] marioBigJumpLeft;//also store ide sprites like looking up or down and left<->right transition
     public static BufferedImage[] marioBigJumpRight;
 
+    public static BufferedImage[] goomba;
+
+
     public static BufferedImage title;
     public static BufferedImage Pause;
     public static BufferedImage Cursor;
@@ -39,12 +42,14 @@ public class Images {
     public static BufferedImage surfaceBlock;
     public static BufferedImage boundBlock;
     public static BufferedImage mushroom;
+    public static BufferedImage goombaDies;
 
     private SpriteSheet mainmenuSpriteSheet;
     private SpriteSheet backgroundSpriteSheet;
     private SpriteSheet interactableSpriteSheet;
     private SpriteSheet playerSpriteSheet;
     private SpriteSheet blockSpriteSheet;
+    private SpriteSheet goombaSpriteSheet;
 
     public Images() {
 
@@ -63,6 +68,7 @@ public class Images {
         marioBigRunRight = new BufferedImage[2];
         marioBigJumpLeft = new BufferedImage[5];
         marioBigJumpRight = new BufferedImage[5];
+        goomba = new BufferedImage[2];
 
 
 
@@ -75,6 +81,7 @@ public class Images {
             interactableSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/interactablesSheet.png")));
             playerSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/marioSNESSheet.png")));
             blockSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/blocksSheet.png")));
+            goombaSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/goombaSprite.png")));
 
 
             //Images
@@ -152,6 +159,11 @@ public class Images {
 
             //items
             mushroom = interactableSpriteSheet.crop(112,34,16,16);
+
+            //enemy
+            goomba[0]=goombaSpriteSheet.crop(119,40,162,162);
+            goomba[1]= goombaSpriteSheet.crop(329,40,162,162);
+            goombaDies=goombaSpriteSheet.crop(539,100,162,81);
 
 
         }catch (IOException e) {
