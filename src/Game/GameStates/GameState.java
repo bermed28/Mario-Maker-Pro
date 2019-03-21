@@ -1,9 +1,11 @@
 package Game.GameStates;
 
 import Game.Entities.DynamicEntities.BaseDynamicEntity;
+import Input.MouseManager;
 import Main.Handler;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -20,12 +22,17 @@ public class GameState extends State {
     @Override
     public void tick() {
 
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
+            State.setState(handler.getGame().pauseState);
+        }
+
         handler.getMario().tick();
         for (BaseDynamicEntity entity:handler.getMap().getEnemiesOnMap()) {
             entity.tick();
 
 
         }
+
 
     }
 

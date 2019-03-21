@@ -33,6 +33,7 @@ public class GameSetUp implements Runnable {
     //Input
     public KeyManager keyManager;
     public MouseManager mouseManager;
+    public MouseManager initialmouseManager;
 
 
     //Handler
@@ -54,6 +55,7 @@ public class GameSetUp implements Runnable {
         this.title = title;
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
+        initialmouseManager=mouseManager;
         musicHandler = new MusicHandler(handler);
         handler.setCamera(new Camera());
 

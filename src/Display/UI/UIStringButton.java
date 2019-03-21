@@ -12,12 +12,14 @@ public class UIStringButton extends UIObject{
     private String text;
     private ClickListlener clicker;
     public Handler handler;
+    Color color;
 
-    public UIStringButton(float x, float y, int width, int height, String s, ClickListlener clicker, Handler handler ) {
+    public UIStringButton(float x, float y, int width, int height, String s, ClickListlener clicker, Handler handler ,Color color) {
         super(x, y, width, height);
         this.clicker=clicker;
         text=s;
         this.handler=handler;
+        this.color=color;
     }
 
 
@@ -28,7 +30,7 @@ public class UIStringButton extends UIObject{
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.BLACK);
+        g.setColor(color);
         if(active){
             g.setFont(new Font("Calibri", Font.BOLD, 24));
             g.drawString(text,(int)x, (int)y+(this.heith/2));

@@ -85,7 +85,7 @@ public class MenuState extends State {
                     mode = "Menu";
                     initNew("New Map Creator", handler);
 
-                }, handler));
+                }, handler,Color.BLACK));
 
 
                 //testMap1
@@ -94,7 +94,7 @@ public class MenuState extends State {
                     handler.setMap(MapBuilder.createMap(Images.testMap, handler));
                     State.setState(handler.getGame().gameState);
 
-                }, handler));
+                }, handler,Color.BLACK));
 
                 //testmap2
                 uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) + (64), 128, 64, "Map 2", () -> {
@@ -102,7 +102,7 @@ public class MenuState extends State {
                     handler.setMap(MapBuilder.createMap(Images.testMaptwo, handler));
                     State.setState(handler.getGame().gameState);
 
-                }, handler));
+                }, handler,Color.BLACK));
 
                 //other
                 uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) + (128), 128, 64, "Other", () -> {
@@ -123,7 +123,7 @@ public class MenuState extends State {
                     }
 
 
-                }, handler));
+                }, handler,Color.BLACK));
             }
             if (mode.equals("Selecting") && handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
                 mode = "Menu";
@@ -235,7 +235,7 @@ public class MenuState extends State {
                         creatingMap=false;
                         display.getFrame().setVisible(false);
                         display.getFrame().dispose();
-                        handler.getGame().mouseManager=new MouseManager();
+                        handler.getGame().mouseManager=handler.getGame().initialmouseManager;
                         return;
                     }
                 }
