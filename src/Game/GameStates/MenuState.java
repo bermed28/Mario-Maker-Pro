@@ -31,7 +31,6 @@ public class MenuState extends State {
     private int background;
     private String mode= "Menu";
 
-
     private DisplayScreen display;
 
     private BufferStrategy bs;
@@ -46,14 +45,11 @@ public class MenuState extends State {
     private MouseManager mouseManager;
     private boolean clicked = true;
 
-
-
     public MenuState(Handler handler) {
         super(handler);
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUimanager(uiManager);
         background = new Random().nextInt(9);
-
 
         DisplayWidth=(handler.getWidth())+(handler.getWidth()/2);
         DiplayHeight = handler.getHeight();
@@ -63,7 +59,6 @@ public class MenuState extends State {
         blocks = new Color[GridWidthPixelCount][GridHeightPixelCount];
         keyManager = handler.getGame().keyManager;
         mouseManager = new MouseManager();
-
 
         uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+(handler.getHeight()/8), 128, 64, Images.butstart, () -> {
             mode = "Select";
@@ -121,8 +116,6 @@ public class MenuState extends State {
                             e.printStackTrace();
                         }
                     }
-
-
                 }, handler,Color.BLACK));
             }
             if (mode.equals("Selecting") && handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
@@ -150,12 +143,8 @@ public class MenuState extends State {
             g.drawImage(Images.title, 0, 0, handler.getWidth(), handler.getHeight(), null);
             uiManager.Render(g);
         }else{
-
             renderNewScreen();
-
         }
-
-
     }
 
     private void initNew(String title,Handler handler){
@@ -167,9 +156,7 @@ public class MenuState extends State {
         display.getCanvas().addMouseMotionListener(mouseManager);
         creatingMap = true;
         Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,0,0,0), new Point(0, 0), "cursor1");
-
         display.getCanvas().setCursor(c);
-
     }
 
     private void tickNewScreen(){
@@ -216,7 +203,6 @@ public class MenuState extends State {
             colorSelected = MapBuilder.goomba;
         }
 
-
         if(mouseManager.isLeftPressed() && !clicked){
             int posX =mouseManager.getMouseX()/GridPixelsize;
             int posY =mouseManager.getMouseY()/GridPixelsize;
@@ -226,7 +212,6 @@ public class MenuState extends State {
         }
 
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER)){
-
             for (int i = 0; i < GridWidthPixelCount; i++) {
                 for (int j = 0; j < GridHeightPixelCount; j++) {
                     if(blocks[i][j]!=null && blocks[i][j].equals(new Color(MapBuilder.mario)) && blocks[i][j+1]!=null&& !blocks[i][j+1].equals(new Color(MapBuilder.mario))){
@@ -241,12 +226,7 @@ public class MenuState extends State {
                 }
             }
             JOptionPane.showMessageDialog(display.getFrame(), "You cant have a map without at least a Mario and a floor right under him. (1 for Mario)");
-
-
-
-
         }
-
             if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_H)){
                 JOptionPane.showMessageDialog(display.getFrame(), "Number key <-> Color Mapping: \n" +
                         "0 -> Erase \n" +
@@ -258,13 +238,7 @@ public class MenuState extends State {
                         "6 -> Mushroom (Purple)\n" +
                         "7 -> Goomba (Brown)");
             }
-
-
-
-
         }
-
-
 
     private void renderNewScreen(){
         bs = display.getCanvas().getBufferStrategy();
@@ -298,10 +272,6 @@ public class MenuState extends State {
                 }
             }
         }
-
-
-
-
 
         //End Drawing!
         bs.show();

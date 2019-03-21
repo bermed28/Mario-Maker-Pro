@@ -5,9 +5,6 @@ import Resources.Images;
 
 public class Mushroom extends Item {
 
-
-
-
     public Mushroom(int x, int y, int width, int height, Handler handler) {
         super(x, y, width, height, handler, Images.mushroom);
     }
@@ -24,7 +21,5 @@ public class Mushroom extends Item {
             move();
         }
     }
-
-
 
 }

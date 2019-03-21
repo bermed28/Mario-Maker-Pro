@@ -34,10 +34,6 @@ public class PauseState extends State {
             State.setState(handler.getGame().menuState);
         },handler,Color.WHITE));
 
-
-
-
-
     }
 
     @Override
@@ -47,14 +43,11 @@ public class PauseState extends State {
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
             State.setState(handler.getGame().gameState);
         }
-
-
     }
 
     @Override
     public void render(Graphics g) {
         g.drawImage(Images.Pause,0,0,handler.getWidth(),handler.getHeight(),null);
         uiManager.Render(g);
-
     }
 }

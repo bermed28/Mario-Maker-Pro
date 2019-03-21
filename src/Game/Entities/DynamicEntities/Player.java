@@ -14,15 +14,12 @@ public class Player extends BaseDynamicEntity {
 
     protected double velX,velY;
 
-
     public String facing = "Left";
     public boolean moving = false;
     public Animation playerSmallLeftAnimation,playerSmallRightAnimation,playerBigLeftWalkAnimation,playerBigRightWalkAnimation,playerBigLeftRunAnimation,playerBigRightRunAnimation;
     public boolean falling = true, jumping = false,isBig=false,running = false,changeDirrection=false;
     public double gravityAcc = 0.38;
     int changeDirectionCounter=0;
-
-    int Jump,Run,Up,Down,Left,Right;
 
     public Player(int x, int y, int width, int height, Handler handler, BufferedImage sprite,Animation PSLA,Animation PSRA,Animation PBLWA,Animation PBRWA,Animation PBLRA,Animation PBRRA) {
         super(x, y, width, height, handler, sprite);
@@ -108,7 +105,6 @@ public class Player extends BaseDynamicEntity {
         for (BaseDynamicEntity enemy : enemies) {
             Rectangle enemyTopBounds = enemy.getTopBounds();
             if (marioBottomBounds.intersects(enemyTopBounds) && !(enemy instanceof Item)) {
-                //mario.acquirePoints(100);
                 enemy.kill();
                 falling=false;
                 velY=0;
@@ -116,10 +112,6 @@ public class Player extends BaseDynamicEntity {
                 handler.getGame().getMusicHandler().playStomp();
             }
         }
-
-
-
-        //removeObjects(toBeRemoved);
     }
 
     public void checkTopCollisions() {
@@ -140,7 +132,6 @@ public class Player extends BaseDynamicEntity {
         Player mario = this;
         ArrayList<BaseStaticEntity> bricks = handler.getMap().getBlocksOnMap();
         ArrayList<BaseDynamicEntity> enemies = handler.getMap().getEnemiesOnMap();
-        ArrayList<EntityBase> toBeRemoved = new ArrayList<>();
 
         boolean marioDies = false;
         boolean toRight = moving && facing.equals("Right");
@@ -165,8 +156,6 @@ public class Player extends BaseDynamicEntity {
                 break;
             }
         }
-        //removeObjects(toBeRemoved);
-
 
         if(marioDies) {
             handler.getMap().reset();

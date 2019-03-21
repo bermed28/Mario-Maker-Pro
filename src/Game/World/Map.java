@@ -14,7 +14,6 @@ public class Map {
     Handler handler;
     private double bottomBorder;
 
-
     public Map(Handler handler) {
         this.blocksOnMap = new ArrayList<>();
         this.enemiesOnMap = new ArrayList<>();
@@ -31,7 +30,6 @@ public class Map {
             handler.getCamera().setX(handler.getMario().x- (MapBuilder.pixelMultiplier*6));
             handler.getCamera().setY(handler.getMario().y - (MapBuilder.pixelMultiplier*10));
             bottomBorder=handler.getHeight()+handler.getMario().y;
-
         }else {
             enemiesOnMap.add(entity);
         }
@@ -51,7 +49,6 @@ public class Map {
                 }
             }else if(entity instanceof Goomba && !entity.ded){
                     g2.drawImage(((Goomba)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
-
             }else {
                 g2.drawImage(entity.sprite, entity.x, entity.y, entity.width, entity.height, null);
             }

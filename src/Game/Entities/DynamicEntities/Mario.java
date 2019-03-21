@@ -9,9 +9,6 @@ import java.awt.event.KeyEvent;
 
 public class Mario extends Player{
 
-
-
-
     public Mario(int x, int y, int width, int height, Handler handler) {
         super(x, y, width, height, handler, Images.marioSmallWalkRight[0]
                 ,new Animation(175,Images.marioSmallWalkLeft)
@@ -25,7 +22,6 @@ public class Mario extends Player{
             this.height+=8;
             setDimension(new Dimension(width, this.height));
         }
-
     }
 
     @Override
@@ -178,11 +174,4 @@ public class Mario extends Player{
         }
 
     }
-
-
-
-
-
-
-
 }

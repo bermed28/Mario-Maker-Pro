@@ -74,9 +74,7 @@ public class BaseDynamicEntity extends EntityBase {
         }else{
             x-=velX;
         }
-
         Rectangle mushroomBottom = getBottomBounds();
-
         for (BaseStaticEntity brick: handler.getMap().getBlocksOnMap()) {
             Rectangle topBlock = brick.getTopBounds();
             if(mushroomBottom.intersects(topBlock)){
@@ -84,7 +82,6 @@ public class BaseDynamicEntity extends EntityBase {
             }
         }
         falling=true;
-
     }
 
     public void kill(){

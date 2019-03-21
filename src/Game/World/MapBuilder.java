@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
 public class MapBuilder {
 
     public static int pixelMultiplier = 48;
-
     public static int boundBlock = new Color(0,0,0).getRGB();
     public static int mario = new Color(255,0,0).getRGB();
     public static int surfaceBlock = new Color(255,106,0).getRGB();
@@ -24,7 +23,6 @@ public class MapBuilder {
 
     public static Map createMap(BufferedImage mapImage, Handler handler){
         Map mapInCreation = new Map(handler);
-
         for (int i = 0; i < mapImage.getWidth(); i++) {
             for (int j = 0; j < mapImage.getHeight(); j++) {
                 int currentPixel = mapImage.getRGB(i, j);
@@ -55,7 +53,6 @@ public class MapBuilder {
             }
 
         }
-
         return mapInCreation;
     }
 

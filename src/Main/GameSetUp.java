@@ -35,7 +35,6 @@ public class GameSetUp implements Runnable {
     public MouseManager mouseManager;
     public MouseManager initialmouseManager;
 
-
     //Handler
     private Handler handler;
 
@@ -47,19 +46,14 @@ public class GameSetUp implements Runnable {
     //Res.music
     private MusicHandler musicHandler;
 
-
-    public GameSetUp(String title,Handler handler){
-
+    public GameSetUp(String title,Handler handler) {
         this.handler = handler;
-
         this.title = title;
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
-        initialmouseManager=mouseManager;
+        initialmouseManager = mouseManager;
         musicHandler = new MusicHandler(handler);
         handler.setCamera(new Camera());
-
-
     }
 
     private void init(){
@@ -73,7 +67,6 @@ public class GameSetUp implements Runnable {
         Images img = new Images();
 
         musicHandler.restartBackground();
-
 
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
@@ -122,7 +115,6 @@ public class GameSetUp implements Runnable {
                 ticks++;
                 delta--;
             }
-
             if(timer >= 1000000000){
                 ticks = 0;
                 timer = 0;
@@ -184,13 +176,8 @@ public class GameSetUp implements Runnable {
         //Draw Here!
         Graphics2D g2 = (Graphics2D) g.create();
 
-
         if(State.getState() != null)
             State.getState().render(g);
-
-
-
-
 
         //End Drawing!
         bs.show();

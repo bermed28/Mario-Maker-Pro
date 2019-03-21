@@ -3,7 +3,6 @@ package Display.UI;
 import Main.Handler;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Created by AlexVR on 7/1/2018.
