@@ -38,11 +38,13 @@ public class Images {
     public static BufferedImage misteryBlock;
     public static BufferedImage surfaceBlock;
     public static BufferedImage boundBlock;
+    public static BufferedImage mushroom;
 
     private SpriteSheet mainmenuSpriteSheet;
     private SpriteSheet backgroundSpriteSheet;
     private SpriteSheet interactableSpriteSheet;
     private SpriteSheet playerSpriteSheet;
+    private SpriteSheet blockSpriteSheet;
 
     public Images() {
 
@@ -72,6 +74,7 @@ public class Images {
             backgroundSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/backgroundSheet.png")));
             interactableSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/interactablesSheet.png")));
             playerSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/marioSNESSheet.png")));
+            blockSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/blocksSheet.png")));
 
 
             //Images
@@ -145,7 +148,10 @@ public class Images {
             boundBlock = interactableSpriteSheet.crop(12,73,16,16);
             misteryBlock = interactableSpriteSheet.crop(32,93,16,16);
             surfaceBlock = interactableSpriteSheet.crop(112,93,16,16);
-            breakBlock = interactableSpriteSheet.crop(72,73,16,16);
+            breakBlock = blockSpriteSheet.crop(272,112,16,16);
+
+            //items
+            mushroom = interactableSpriteSheet.crop(112,34,16,16);
 
 
         }catch (IOException e) {

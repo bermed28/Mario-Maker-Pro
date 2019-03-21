@@ -1,7 +1,9 @@
 package Game.World;
 
 import Game.Entities.DynamicEntities.BaseDynamicEntity;
+import Game.Entities.DynamicEntities.Item;
 import Game.Entities.DynamicEntities.Mario;
+import Game.Entities.DynamicEntities.Mushroom;
 import Game.Entities.StaticEntities.BaseStaticEntity;
 import Main.Handler;
 
@@ -46,7 +48,13 @@ public class Map {
             g2.drawImage(block.sprite,block.x,block.y,block.width,block.height,null);
         }
         for (BaseDynamicEntity entity:enemiesOnMap) {
-            g2.drawImage(entity.sprite,entity.x,entity.y,entity.width,entity.height,null);
+            if(entity instanceof Item){
+                if(!((Item)entity).used){
+                    g2.drawImage(entity.sprite, entity.x, entity.y, entity.width, entity.height, null);
+                }
+            }else {
+                g2.drawImage(entity.sprite, entity.x, entity.y, entity.width, entity.height, null);
+            }
         }
         handler.getMario().drawMario(g2);
         g2.translate(camLocation.x, camLocation.y);

@@ -205,6 +205,11 @@ public class MenuState extends State {
             display.getCanvas().setCursor(c);
             colorSelected = MapBuilder.boundBlock;
         }
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_6)){
+            Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,069f,0,1), new Point(0, 0), "cursor1");
+            display.getCanvas().setCursor(c);
+            colorSelected = MapBuilder.mushroom;
+        }
 
 
         if(mouseManager.isLeftPressed() && !clicked){
@@ -233,7 +238,8 @@ public class MenuState extends State {
                         "2 -> Break Block (Blue)\n" +
                         "3 -> Mystery Block (Yellow)\n" +
                         "4 -> Surface Block (Orange)\n" +
-                        "5 -> Bounds Block (Black)\n");
+                        "5 -> Bounds Block (Black)\n" +
+                        "6 -> Mushroom (Purple)");
             }
 
 

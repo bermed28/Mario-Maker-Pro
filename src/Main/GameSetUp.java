@@ -2,6 +2,7 @@ package Main;
 
 import Display.DisplayScreen;
 import Game.Entities.DynamicEntities.Mario;
+import Game.Entities.DynamicEntities.Player;
 import Game.GameStates.GameState;
 import Game.GameStates.MenuState;
 import Game.GameStates.PauseState;
@@ -153,7 +154,7 @@ public class GameSetUp implements Runnable {
     }
 
     private void updateCamera() {
-        Mario mario = handler.getMario();
+        Player mario = handler.getMario();
         double marioVelocityX = mario.getVelX();
         double marioVelocityY = mario.getVelY();
         double shiftAmount = 0;

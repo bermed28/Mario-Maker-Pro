@@ -10,25 +10,19 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public class Mario extends BaseDynamicEntity{
+public class Mario extends Player{
 
-    private double velX,velY;
 
-    public String facing = "Left";
-    public boolean moving = false;
-    public Animation playerSmallLeftAnimation,playerSmallRightAnimation,playerBigLeftWalkAnimation,playerBigRightWalkAnimation,playerBigLeftRunAnimation,playerBigRightRunAnimation;
-    public boolean falling = true, jumping = false,isBig=false,running = false,changeDirrection=false;
-    public double gravityAcc = 0.38;
-    int changeDirectionCounter=0;
+
 
     public Mario(int x, int y, int width, int height, Handler handler) {
-        super(x, y, width, height, handler, Images.marioSmallWalkRight[0]);
-        playerSmallLeftAnimation = new Animation(175,Images.marioSmallWalkLeft);
-        playerSmallRightAnimation = new Animation(175,Images.marioSmallWalkRight);
-        playerBigLeftWalkAnimation = new Animation(150,Images.marioBigWalkLeft);
-        playerBigRightWalkAnimation = new Animation(150,Images.marioBigWalkRight);
-        playerBigLeftRunAnimation = new Animation(115,Images.marioBigRunLeft);
-        playerBigRightRunAnimation = new Animation(115,Images.marioBigRunRight);
+        super(x, y, width, height, handler, Images.marioSmallWalkRight[0]
+                ,new Animation(175,Images.marioSmallWalkLeft)
+                , new Animation(175,Images.marioSmallWalkRight)
+                , new Animation(150,Images.marioBigWalkLeft)
+                , new Animation(150,Images.marioBigWalkRight)
+                , new Animation(115,Images.marioBigRunLeft)
+                , new Animation(115,Images.marioBigRunRight));
         if(isBig){
             this.y-=8;
             this.height+=8;
@@ -37,42 +31,13 @@ public class Mario extends BaseDynamicEntity{
 
     }
 
+    @Override
     public void tick(){
-
-
-        if (changeDirrection) {
-            changeDirectionCounter++;
-        }
-        if(changeDirectionCounter>=10){
-            changeDirrection=false;
-            changeDirectionCounter=0;
-        }
-
-        checkBottomCollisions();
-        checkMarioHorizontalCollision();
-        checkTopCollisions();
+        super.tick();
 
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE)&&!handler.getKeyManager().up&&!handler.getKeyManager().down){
             this.jump();
         }
-        if(!isBig) {
-            if (facing.equals("Left") && moving) {
-                playerSmallLeftAnimation.tick();
-            } else if (facing.equals("Right") && moving) {
-                playerSmallRightAnimation.tick();
-            }
-        }else{
-            if (facing.equals("Left") && moving && !running) {
-                playerBigLeftWalkAnimation.tick();
-            } else if (facing.equals("Left") && moving && running) {
-                playerBigLeftRunAnimation.tick();
-            } else if (facing.equals("Right") && moving && !running) {
-                playerBigRightWalkAnimation.tick();
-            } else if (facing.equals("Right") && moving && running) {
-                playerBigRightRunAnimation.tick();
-            }
-        }
-
 
         if(handler.getKeyManager().right&&!handler.getKeyManager().up&&!handler.getKeyManager().down){
             if(handler.getKeyManager().runbutt){
@@ -217,111 +182,7 @@ public class Mario extends BaseDynamicEntity{
 
     }
 
-    public void jump() {
-        if(!jumping && !falling){
-            jumping=true;
-            velY=10;
-            handler.getGame().getMusicHandler().playJump();
-        }
-    }
 
-    private void checkBottomCollisions() {
-        Mario mario = this;
-        ArrayList<BaseStaticEntity> bricks = handler.getMap().getBlocksOnMap();
-        ArrayList<BaseDynamicEntity> enemies =  handler.getMap().getEnemiesOnMap();
-        ArrayList<EntityBase> toBeRemoved = new ArrayList<>();
-
-        Rectangle marioBottomBounds =getBottomBounds();
-
-        if (!mario.jumping) {
-            falling = true;
-        }
-
-        for (BaseStaticEntity brick : bricks) {
-            Rectangle brickTopBounds = brick.getTopBounds();
-            if (marioBottomBounds.intersects(brickTopBounds)) {
-                mario.setY(brick.getY() - mario.getDimension().height + 1);
-                falling = false;
-                velY=0;
-            }
-        }
-
-        for (BaseDynamicEntity enemy : enemies) {
-            Rectangle enemyTopBounds = enemy.getTopBounds();
-            if (marioBottomBounds.intersects(enemyTopBounds)) {
-                //mario.acquirePoints(100);
-                toBeRemoved.add(enemy);
-                //engine.playStomp();
-            }
-        }
-
-
-
-        //removeObjects(toBeRemoved);
-    }
-
-    private void checkTopCollisions() {
-        Mario mario = this;
-        ArrayList<BaseStaticEntity> bricks = handler.getMap().getBlocksOnMap();
-
-        Rectangle marioTopBounds = mario.getTopBounds();
-        for (BaseStaticEntity brick : bricks) {
-            Rectangle brickBottomBounds = brick.getBottomBounds();
-            if (marioTopBounds.intersects(brickBottomBounds)) {
-                velY=0;
-                mario.setY(brick.getY() + brick.height);
-            }
-        }
-    }
-
-    private void checkMarioHorizontalCollision(){
-        Mario mario = this;
-        ArrayList<BaseStaticEntity> bricks = handler.getMap().getBlocksOnMap();
-        ArrayList<BaseDynamicEntity> enemies = handler.getMap().getEnemiesOnMap();
-        ArrayList<EntityBase> toBeRemoved = new ArrayList<>();
-
-        boolean marioDies = false;
-        boolean toRight = moving && facing.equals("Right");
-
-        Rectangle marioBounds = toRight ? mario.getRightBounds() : mario.getLeftBounds();
-
-        for (BaseStaticEntity brick : bricks) {
-            Rectangle brickBounds = !toRight ? brick.getRightBounds() : brick.getLeftBounds();
-            if (marioBounds.intersects(brickBounds)) {
-                velX=0;
-                if(toRight)
-                    mario.setX(brick.getX() - mario.getDimension().width);
-                else
-                    mario.setX(brick.getX() + brick.getDimension().width);
-            }
-        }
-
-        for(BaseDynamicEntity enemy : enemies){
-            Rectangle enemyBounds = !toRight ? enemy.getRightBounds() : enemy.getLeftBounds();
-            if (marioBounds.intersects(enemyBounds)) {
-                //marioDies = mario.onTouchEnemy(engine);
-                toBeRemoved.add(enemy);
-            }
-        }
-        //removeObjects(toBeRemoved);
-
-
-        if (mario.getX() <= handler.getCamera().getX() && mario.getVelX() < 0) {
-            velX=0;
-            mario.setX((int)handler.getCamera().getX());
-        }
-
-//        if(marioDies) {
-//            resetCurrentMap(engine);
-//        }
-    }
-
-    public double getVelX() {
-        return velX;
-    }
-    public double getVelY() {
-        return velY;
-    }
 
 
 

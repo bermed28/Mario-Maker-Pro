@@ -1,10 +1,7 @@
 package Game.GameStates;
 
-import Game.World.Map;
-import Game.World.MapBuilder;
-import Game.World.WorldManager;
+import Game.Entities.DynamicEntities.BaseDynamicEntity;
 import Main.Handler;
-import Resources.Images;
 
 import java.awt.*;
 
@@ -24,6 +21,10 @@ public class GameState extends State {
     public void tick() {
 
         handler.getMario().tick();
+        for (BaseDynamicEntity entity:handler.getMap().getEnemiesOnMap()) {
+            entity.tick();
+
+        }
 
     }
 

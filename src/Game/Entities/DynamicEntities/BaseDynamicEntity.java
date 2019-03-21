@@ -10,5 +10,8 @@ public class BaseDynamicEntity extends EntityBase {
     public BaseDynamicEntity(int x, int y, int width, int height, Handler handler, BufferedImage sprite) {
         super(x, y, width, height,handler,sprite);
     }
+    public void tick(){
+
+    }
 
 }
