@@ -1,14 +1,11 @@
 package Game.Entities.DynamicEntities;
 
-import Game.Entities.EntityBase;
-import Game.Entities.StaticEntities.BaseStaticEntity;
 import Main.Handler;
 import Resources.Animation;
 import Resources.Images;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 public class Mario extends Player{
 

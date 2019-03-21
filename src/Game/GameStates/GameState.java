@@ -1,7 +1,6 @@
 package Game.GameStates;
 
 import Game.Entities.DynamicEntities.BaseDynamicEntity;
-import Game.Entities.DynamicEntities.Item;
 import Main.Handler;
 
 import java.awt.*;
