@@ -67,15 +67,14 @@ public class Player extends BaseDynamicEntity {
 
     private void checkItemCollision() {
 
-        for (Iterator<BaseDynamicEntity> iterator = handler.getMap().getEnemiesOnMap().iterator(); iterator.hasNext(); ) {
-            BaseDynamicEntity entity = iterator.next();
-            if(entity !=null && getBounds().intersects(entity.getBounds()) && entity instanceof Item && !isBig){
-                isBig=true;
-                this.y-=8;
-                this.height+=8;
+        for (BaseDynamicEntity entity : handler.getMap().getEnemiesOnMap()) {
+            if (entity != null && getBounds().intersects(entity.getBounds()) && entity instanceof Item && !isBig) {
+                isBig = true;
+                this.y -= 8;
+                this.height += 8;
                 setDimension(new Dimension(width, this.height));
-                ((Item) entity).used=true;
-                entity.y=-100000;
+                ((Item) entity).used = true;
+                entity.y = -100000;
             }
         }
     }
@@ -85,7 +84,6 @@ public class Player extends BaseDynamicEntity {
         Player mario = this;
         ArrayList<BaseStaticEntity> bricks = handler.getMap().getBlocksOnMap();
         ArrayList<BaseDynamicEntity> enemies =  handler.getMap().getEnemiesOnMap();
-        ArrayList<EntityBase> toBeRemoved = new ArrayList<>();
 
         Rectangle marioBottomBounds =getBottomBounds();
 
@@ -108,7 +106,6 @@ public class Player extends BaseDynamicEntity {
                 enemy.kill();
                 falling=false;
                 velY=0;
-                toBeRemoved.add(enemy);
                 handler.getGame().getMusicHandler().playStomp();
             }
         }
