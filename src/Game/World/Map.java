@@ -7,17 +7,20 @@ import Main.Handler;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Map {
+import Display.UI.UIListener;
 
+public class Map {
+	UIListener listener;
     ArrayList<BaseStaticEntity> blocksOnMap;
     ArrayList<BaseDynamicEntity> enemiesOnMap;
     Handler handler;
     private double bottomBorder;
 
     public Map(Handler handler) {
+    	this.handler=handler;
+    	listener = new UIListener( this.handler);
         this.blocksOnMap = new ArrayList<>();
         this.enemiesOnMap = new ArrayList<>();
-        this.handler=handler;
         bottomBorder=handler.getHeight();
     }
 
@@ -54,6 +57,7 @@ public class Map {
             }
         }
         handler.getMario().drawMario(g2);
+        if(MapBuilder.mapDone) this.listener.render(g2);
         g2.translate(camLocation.x, camLocation.y);
 
     }
@@ -68,6 +72,10 @@ public class Map {
 
     public double getBottomBorder() {
         return bottomBorder;
+    }
+    
+    public UIListener getListener() {
+    	return this.listener;
     }
 
     public void reset() {

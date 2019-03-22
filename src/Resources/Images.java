@@ -2,6 +2,11 @@ package Resources;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import Game.Entities.StaticEntities.BreakBlock;
+import Game.World.Map;
+import Main.Handler;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -26,6 +31,8 @@ public class Images {
     public static BufferedImage[] marioBigRunRight;
     public static BufferedImage[] marioBigJumpLeft;//also store ide sprites like looking up or down and left<->right transition
     public static BufferedImage[] marioBigJumpRight;
+    
+    public static BufferedImage[] Smash;
 
     public static BufferedImage[] goomba;
 
@@ -61,6 +68,7 @@ public class Images {
         marioSmallWalkRight = new BufferedImage[2];
         marioSmallJumpLeft = new BufferedImage[4];
         marioSmallJumpRight = new BufferedImage[4];
+        Smash = new BufferedImage[19];
 
         marioBigWalkLeft = new BufferedImage[2];
         marioBigWalkRight = new BufferedImage[2];
@@ -145,6 +153,27 @@ public class Images {
             marioBigJumpRight[2] = playerSpriteSheet.crop(248,196,15,27);//up
             marioBigJumpRight[3] = playerSpriteSheet.crop(287,122,16,15);//down
             marioBigJumpRight[4] = playerSpriteSheet.crop(368,115,16,29);//Change
+            
+            Smash[0] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL1.png"));
+            Smash[1] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL2.png"));
+            Smash[2] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL3.png"));
+            Smash[3] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL4.png"));
+            Smash[4] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL5.png"));
+            Smash[5] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL6.png"));
+            Smash[6] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL7.png"));
+            Smash[7] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL8.png"));
+            Smash[8] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL9.png"));
+            Smash[9] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL10.png"));
+            Smash[10] =  Smash[9];
+            Smash[11] =  Smash[8];
+            Smash[12] =  Smash[7];
+            Smash[13] =  Smash[6];
+            Smash[14] =  Smash[5];
+            Smash[15] =  Smash[4];
+            Smash[16] =  Smash[3];
+            Smash[17] =  Smash[2];
+            Smash[18] =  Smash[1];
+
 
 
             //maps
@@ -182,6 +211,13 @@ public class Images {
             System.exit(1);
         }
         return null;
+    }
+    
+    public static  void makeMap(int i , int j, int k, Map map, Handler h) {
+    	for(int x = i; x < k; x++) {
+    		map.addBlock(new BreakBlock( x * j, 100 * j, j, j, h));
+    	}
+    	
     }
 
     public static BufferedImage tint(BufferedImage src, float r, float g, float b) {

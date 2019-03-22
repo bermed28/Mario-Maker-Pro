@@ -1,10 +1,14 @@
 package Game.GameStates;
 
 import Game.Entities.DynamicEntities.BaseDynamicEntity;
+import Game.Entities.StaticEntities.BaseStaticEntity;
+import Game.World.MapBuilder;
 import Main.Handler;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+
+import Display.UI.UIListener;
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -21,6 +25,8 @@ public class GameState extends State {
             State.setState(handler.getGame().pauseState);
         }
         handler.getMario().tick();
+        if(MapBuilder.mapDone) handler.getMap().getListener().tick();
+        
         for (BaseDynamicEntity entity:handler.getMap().getEnemiesOnMap()) {
             entity.tick();
         }
