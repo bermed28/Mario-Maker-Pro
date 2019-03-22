@@ -32,7 +32,7 @@ public class Images {
     public static BufferedImage[] marioBigJumpLeft;//also store ide sprites like looking up or down and left<->right transition
     public static BufferedImage[] marioBigJumpRight;
     
-    public static BufferedImage[] Smash;
+    public static BufferedImage[] item;
 
     public static BufferedImage[] goomba;
 
@@ -68,7 +68,7 @@ public class Images {
         marioSmallWalkRight = new BufferedImage[2];
         marioSmallJumpLeft = new BufferedImage[4];
         marioSmallJumpRight = new BufferedImage[4];
-        Smash = new BufferedImage[19];
+        item = new BufferedImage[19];
 
         marioBigWalkLeft = new BufferedImage[2];
         marioBigWalkRight = new BufferedImage[2];
@@ -154,25 +154,25 @@ public class Images {
             marioBigJumpRight[3] = playerSpriteSheet.crop(287,122,16,15);//down
             marioBigJumpRight[4] = playerSpriteSheet.crop(368,115,16,29);//Change
             
-            Smash[0] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL1.png"));
-            Smash[1] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL2.png"));
-            Smash[2] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL3.png"));
-            Smash[3] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL4.png"));
-            Smash[4] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL5.png"));
-            Smash[5] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL6.png"));
-            Smash[6] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL7.png"));
-            Smash[7] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL8.png"));
-            Smash[8] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL9.png"));
-            Smash[9] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL10.png"));
-            Smash[10] =  Smash[9];
-            Smash[11] =  Smash[8];
-            Smash[12] =  Smash[7];
-            Smash[13] =  Smash[6];
-            Smash[14] =  Smash[5];
-            Smash[15] =  Smash[4];
-            Smash[16] =  Smash[3];
-            Smash[17] =  Smash[2];
-            Smash[18] =  Smash[1];
+            item[0] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL1.png"));
+            item[1] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL2.png"));
+            item[2] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL3.png"));
+            item[3] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL4.png"));
+            item[4] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL5.png"));
+            item[5] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL6.png"));
+            item[6] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL7.png"));
+            item[7] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL8.png"));
+            item[8] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL9.png"));
+            item[9] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL10.png"));
+            item[10] =  item[9];
+            item[11] =  item[8];
+            item[12] =  item[7];
+            item[13] =  item[6];
+            item[14] =  item[5];
+            item[15] =  item[4];
+            item[16] =  item[3];
+            item[17] =  item[2];
+            item[18] =  item[1];
 
 
 

@@ -28,7 +28,7 @@ public class UIListener{
 		this.xPos = 53 * MapBuilder.pixelMultiplier;
 		this.yPos = 99 * MapBuilder.pixelMultiplier;
 		this.size = MapBuilder.pixelMultiplier;
-		smash = new Animation(60, Images.Smash);	
+		smash = new Animation(60, Images.item);	
 		this.bounds = new Rectangle(this.xPos, this.yPos, this.size,this.size);
 	}
 
