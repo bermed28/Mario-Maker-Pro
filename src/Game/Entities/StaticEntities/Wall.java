@@ -24,14 +24,17 @@ public class Wall {
 		this.setX((int) this.handler.getCamera().getX());
 		this.setY((int) this.handler.getCamera().getY());
 		this.size = this.handler.getWidth();
-		this.anim = new Animation(20, Images.hitWall);
+		this.anim = new Animation(35, Images.hitWall);
 		this.rect = new Rectangle(43 * MapBuilder.pixelMultiplier, 90 * MapBuilder.pixelMultiplier, 200, 50);
 	}
 	
 	public void tick() {
-		if(this.anim.getIndex() >= Images.hitWall.length - 1)
-			this.play = false;
-		this.anim.tick();
+		if(this.anim.getIndex() == Images.hitWall.length - 1) {
+			this.setPlay(false);
+			this.handler.getGame().getMusicHandler().play("defeated");
+			this.anim.end();
+		}
+		if(this.play) this.anim.tick();
 		this.setX((int) this.handler.getCamera().getX());
 		this.setY((int) this.handler.getCamera().getY());
 	}

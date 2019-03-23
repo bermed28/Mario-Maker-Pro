@@ -71,7 +71,7 @@ public class Images {
         marioSmallJumpLeft = new BufferedImage[4];
         marioSmallJumpRight = new BufferedImage[4];
         item = new BufferedImage[19];
-        enemy = new BufferedImage[8];
+        enemy = new BufferedImage[9];
         hitWall = new BufferedImage[44];
 
         marioBigWalkLeft = new BufferedImage[2];
@@ -231,6 +231,7 @@ public class Images {
             enemy[5] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H6.png"));
             enemy[6] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H7.png"));
             enemy[7] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H8.png"));
+            enemy[8] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H10.png"));
 
             //maps
             testMap = ImageIO.read(getClass().getResourceAsStream("/maps/testmap1.png"));
