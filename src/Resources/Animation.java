@@ -53,4 +53,7 @@ public class Animation {
         index =0;
         end = false;
     }
+    public void end() {
+    	this.index = 0;
+    }
 }
