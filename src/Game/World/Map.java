@@ -17,12 +17,12 @@ public class Map {
     Handler handler;
     private double bottomBorder;
     private UIListener listener;
-	private Hand hand;
+	private Background hand;
 	private Wall walls;
 
     public Map(Handler handler) {
     	this.handler=handler;
-    	this.hand = new Hand(this.handler);
+    	this.hand = new Background(this.handler);
     	this.listener = new UIListener( this.handler);
     	this.walls = new Wall(this.handler);
         this.blocksOnMap = new ArrayList<>();
@@ -86,7 +86,7 @@ public class Map {
     public UIListener getListener() {
     	return this.listener;
     }
-    public Hand getHand() {
+    public Background getHand() {
     	return this.hand;
     }
     public Wall getWalls() {

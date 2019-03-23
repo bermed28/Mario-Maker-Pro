@@ -1,16 +1,15 @@
-package Game.Entities.DynamicEntities;
+package Game.World;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import Game.World.MapBuilder;
 import Main.Handler;
 import Resources.Animation;
 import Resources.Images;
 
-public class Hand {
+public class Background {
 	private Handler handler;
 	private int xPos;
 	private int yPos;
@@ -21,7 +20,7 @@ public class Hand {
 	private boolean front = true;
 	private long start;
 	private long time;
-	public Hand(Handler handler) {
+	public Background(Handler handler) {
 		this.handler = handler;
 		this.size = 96;
 		this.xPos = 63 * MapBuilder.pixelMultiplier;
