@@ -282,7 +282,7 @@ public class MenuState extends State {
 
         // Create buffered image object
         BufferedImage img = null;
-        if(name.equals("Mario Heaven")) MapBuilder.mapDone = true;
+        if(name.equals("Sub to Pewds")) MapBuilder.mapDone = true;
         img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
         // file object

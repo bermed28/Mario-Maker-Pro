@@ -1,12 +1,9 @@
 package Display.UI;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
-import Game.Entities.StaticEntities.BaseStaticEntity;
 import Game.World.MapBuilder;
 import Main.Handler;
 import Resources.Animation;
@@ -38,7 +35,7 @@ public class UIListener{
 		this.smash.tick();		
 		if(this.handler.getMario().getBounds().intersects(this.getBounds())) {
 			this.bounds.setBounds(0, 0, 0, 0);
-			this.handler.getGame().getMusicHandler().play("item");			
+			this.handler.getGame().getMusicHandler().play("item");	
 			this.Adquire();
 			this.appear = true;
 		}
@@ -48,8 +45,6 @@ public class UIListener{
 	public void render(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(this.smash.getCurrentFrame(), this.xPos, this.yPos, this.size, this.size, null);
-		g2.setColor(Color.WHITE);
-		g2.draw(this.bounds);
 	}		
 	
 	private void Adquired() {

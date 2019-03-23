@@ -1,6 +1,5 @@
 package Game.World;
 
-import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -20,12 +19,16 @@ public class Background {
 	private boolean willA = false;
 	private Animation anim;
 	private Rectangle bounds;
+	private Random rand;
 	private boolean front = true;
 	private long start;
 	private long time;
+	private int d;
 	
 	public Background(Handler handler) {
 		this.handler = handler;
+		this.rand = new Random();
+		this.d = this.rand.nextInt(2);
 		this.size = 96;
 		this.xPos = 63 * MapBuilder.pixelMultiplier;
 		this.xPos2 = 70 * MapBuilder.pixelMultiplier;
@@ -48,14 +51,19 @@ public class Background {
 		if(this.attacked) this.bounds.setBounds(0, 0, 0, 0);
 		else this.bounds.setBounds(this.xPos2, this.yPos,  this.size,  this.size);
 		this.time = System.currentTimeMillis();
+		if(!this.handler.getMario().getHit() && this.getBounds().getX() <= 40 * MapBuilder.pixelMultiplier && 
+				this.getBounds().getX() >= 39 * MapBuilder.pixelMultiplier) {
+			this.handler.getMap().getWalls().setDraw(true);
+			if(this.d == 0) this.handler.getGame().getMusicHandler().play("congrats");
+			else this.handler.getGame().getMusicHandler().play("wow");
+		}
 	}
 
 	public void render(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		if(this.handler.getMap().getListener().getAppear()) g2.drawImage(this.anim.getCurrentFrame(), this.xPos, this.yPos, this.size, this.size, null);
 		if(this.willA) g2.drawImage(Images.enemy[8], this.xPos2, this.yPos, this.size, this.size, null);
-		if(this.willA) this.attack();
-		g2.draw(this.bounds);		
+		if(this.willA) this.attack();	
 	}
 
 	public void move() {

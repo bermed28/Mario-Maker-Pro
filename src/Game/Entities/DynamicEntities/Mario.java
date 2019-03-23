@@ -28,7 +28,6 @@ public class Mario extends Player{
 
 	@Override
 	public void tick(){
-		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_L)) System.out.println("width: " + this.handler.getWidth() + " height: " + this.handler.getHeight());
 		super.tick();
 		if(!this.hit) {
 			if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE)&&!handler.getKeyManager().up&&!handler.getKeyManager().down){
@@ -185,10 +184,10 @@ public class Mario extends Player{
 					}
 				}
 			}
-			g2.setColor(Color.RED);
-			g2.draw(this.getBounds());
 		}
-		
+		public boolean getHit() {
+			return this.hit;
+		}
 		public void setHit(Boolean hit) {
 			this.hit = hit;
 		}
