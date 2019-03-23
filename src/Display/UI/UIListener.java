@@ -19,12 +19,14 @@ public class UIListener{
 	private int size;
 	private boolean up = false;
 	private boolean down = false;
+	private boolean appear;
 	private double velY;
 	private Animation smash;
 	private Rectangle bounds;
 
 	public UIListener(Handler handler) {
 		this.handler = handler;
+		this.appear = false;
 		this.xPos = 53 * MapBuilder.pixelMultiplier;
 		this.yPos = 99 * MapBuilder.pixelMultiplier;
 		this.size = MapBuilder.pixelMultiplier;
@@ -35,9 +37,10 @@ public class UIListener{
 	public void tick() {
 		this.smash.tick();		
 		if(this.handler.getMario().getBounds().intersects(this.getBounds())) {
-			this.bounds.setBounds(0, 0, 1, 1);
-			this.handler.getGame().getMusicHandler().playItem();
+			this.bounds.setBounds(0, 0, 0, 0);
+			this.handler.getGame().getMusicHandler().play("item");			
 			this.Adquire();
+			this.appear = true;
 		}
 		this.Adquired();
 	}
@@ -49,7 +52,7 @@ public class UIListener{
 		g2.draw(this.bounds);
 	}		
 	
-	public void Adquired() {
+	private void Adquired() {
 		if(this.up) {
             velY = velY - 0.6;
             this.yPos = (int)(this.yPos - velY);
@@ -63,13 +66,22 @@ public class UIListener{
             velY = velY + 0.6;
         }
 	}
-
 	
 	private void Adquire() {
 		if(!this.up && !this.down){
             this.up=true;
             velY=10;
         }
+	}
+	
+	public int getYPos() {
+		return this.yPos;
+	}
+	public void setAppear(boolean appear) {
+		this.appear = appear;
+	}
+	public boolean getAppear() {
+		return appear;
 	}
 
 	public Rectangle getBounds() {	

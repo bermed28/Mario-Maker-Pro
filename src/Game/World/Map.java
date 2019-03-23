@@ -2,6 +2,7 @@ package Game.World;
 
 import Game.Entities.DynamicEntities.*;
 import Game.Entities.StaticEntities.BaseStaticEntity;
+import Game.Entities.StaticEntities.Wall;
 import Main.Handler;
 
 import java.awt.*;
@@ -10,15 +11,20 @@ import java.util.ArrayList;
 import Display.UI.UIListener;
 
 public class Map {
-	UIListener listener;
+	
     ArrayList<BaseStaticEntity> blocksOnMap;
     ArrayList<BaseDynamicEntity> enemiesOnMap;
     Handler handler;
     private double bottomBorder;
+    private UIListener listener;
+	private Hand hand;
+	private Wall walls;
 
     public Map(Handler handler) {
     	this.handler=handler;
-    	listener = new UIListener( this.handler);
+    	this.hand = new Hand(this.handler);
+    	this.listener = new UIListener( this.handler);
+    	this.walls = new Wall(this.handler);
         this.blocksOnMap = new ArrayList<>();
         this.enemiesOnMap = new ArrayList<>();
         bottomBorder=handler.getHeight();
@@ -57,9 +63,12 @@ public class Map {
             }
         }
         handler.getMario().drawMario(g2);
-        if(MapBuilder.mapDone) this.listener.render(g2);
+        if(this.listener != null && MapBuilder.mapDone) {
+        	this.listener.render(g2);
+        	this.hand.render(g2);
+        	this.walls.render(g2);
+        }
         g2.translate(camLocation.x, camLocation.y);
-
     }
 
     public ArrayList<BaseStaticEntity> getBlocksOnMap() {
@@ -76,6 +85,12 @@ public class Map {
     
     public UIListener getListener() {
     	return this.listener;
+    }
+    public Hand getHand() {
+    	return this.hand;
+    }
+    public Wall getWalls() {
+    	return this.walls;
     }
 
     public void reset() {
