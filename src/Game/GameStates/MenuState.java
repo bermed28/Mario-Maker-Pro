@@ -3,6 +3,7 @@ package Game.GameStates;
 
 import Display.DisplayScreen;
 import Display.UI.UIStringButton;
+import Game.World.Map;
 import Game.World.MapBuilder;
 import Input.KeyManager;
 import Input.MouseManager;
@@ -27,7 +28,7 @@ import java.util.Random;
  */
 public class MenuState extends State {
 
-    private UIManager uiManager;
+    public UIManager uiManager;
     private int background;
     private String mode= "Menu";
 
@@ -277,7 +278,7 @@ public class MenuState extends State {
         bs.show();
         g.dispose();
     }
-
+    
     public BufferedImage createImage(int width,int height,Color[][] blocks,String name){
 
         // Create buffered image object

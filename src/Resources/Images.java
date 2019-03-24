@@ -5,6 +5,7 @@ import javax.swing.*;
 
 import Game.Entities.StaticEntities.BreakBlock;
 import Game.World.Map;
+import Game.World.MapBuilder;
 import Main.Handler;
 
 import java.awt.*;
@@ -60,6 +61,7 @@ public class Images {
     private SpriteSheet playerSpriteSheet;
     private SpriteSheet blockSpriteSheet;
     private SpriteSheet goombaSpriteSheet;
+    private SpriteSheet SSpriteSheet;
 
     public Images() {
 
@@ -96,6 +98,7 @@ public class Images {
             playerSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/marioSNESSheet.png")));
             blockSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/blocksSheet.png")));
             goombaSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/goombaSprite.png")));
+            SSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/Sheets.png")));
 
 
             //Images
@@ -230,15 +233,16 @@ public class Images {
             hitWall[42] = ImageIO.read(getClass().getResourceAsStream("/Sheets/KO/KO45.png"));
             hitWall[43] = ImageIO.read(getClass().getResourceAsStream("/Sheets/KO/KO46.png"));
 
-            enemy[0] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H1.png"));
-            enemy[1] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H2.png"));
-            enemy[2] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H3.png"));
-            enemy[3] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H4.png"));
-            enemy[4] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H5.png"));
-            enemy[5] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H6.png"));
-            enemy[6] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H7.png"));
-            enemy[7] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H8.png"));
-            enemy[8] = ImageIO.read(getClass().getResourceAsStream("/Sheets/item/H10.png"));
+            enemy[0] = SSpriteSheet.crop(8,14,64,45);
+            enemy[1] = SSpriteSheet.crop(88,21,60,38);
+            enemy[2] = SSpriteSheet.crop(165,25,55,37);
+            enemy[3] = SSpriteSheet.crop(242,28,50,35);
+            enemy[4] = SSpriteSheet.crop(315,28,48,34);
+            enemy[5] = SSpriteSheet.crop(381,27,57,35);
+            enemy[6] = SSpriteSheet.crop(454,25,61,35);
+            enemy[7] = SSpriteSheet.crop(525,19,62,37);
+            enemy[8] = SSpriteSheet.crop(75,89,51,41);
+
 
             //maps
             testMap = ImageIO.read(getClass().getResourceAsStream("/maps/testmap1.png"));
@@ -275,13 +279,11 @@ public class Images {
             System.exit(1);
         }
         return null;
-    }
-    
+    }   
     public static  void makeMap(int i , int j, int k, Map map, Handler h) {
     	for(int x = i; x < k; x++) {
     		map.addBlock(new BreakBlock( x * j, 100 * j, j, j, h));
-    	}
-    	
+    	}	
     }
 
     public static BufferedImage tint(BufferedImage src, float r, float g, float b) {
