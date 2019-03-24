@@ -1,6 +1,7 @@
 package Display.UI;
 
 import Game.Entities.DynamicEntities.BaseDynamicEntity;
+import Game.GameStates.State;
 import Main.Handler;
 import Resources.Animation;
 import Resources.Images;
@@ -10,14 +11,17 @@ import java.util.Random;
 
 public class UIPointer extends BaseDynamicEntity {
 
-    Animation idle,GB1,GB2,GB3,FG;
-    boolean FlagGB1=false,FlagGB2=false,FlagGB3=false,FlagFG=false,FlagSmash=false,wasHit=false,died=false,attacking=false,start=true,movingToIdle =false,outOfCamera=true,smash=false;
+    Animation idle,GB1,GB2,GB3,FG,hit;
+    boolean FlagGB1=false,FlagGB2=false,FlagGB3=false,FlagFG=false,FlagSmash=false,wasHit=false,died=false,attacking=false,start=true,movingToIdle =false,outOfCamera=true,smash=false,kill=false,killed=false,bulletOnMap=false;
     float HitR=0.0f,HitG=0.0f,HitB=0.0f;
     int health=3,attackCounter=0,startX,startY,idleCounter=0,squeeze=0;
     Rectangle wasHitBound = new Rectangle();
     Dimension wasHitDim = new Dimension();
     Dimension oldDim;
     int floorY = 200*48;
+    int bulletX=0;
+    int bulletY=0;
+    Rectangle bulletRect;
 
 
     public UIPointer(int x, int y, int width, int height, Handler handler) {
@@ -27,55 +31,81 @@ public class UIPointer extends BaseDynamicEntity {
         GB2 = new Animation(500, Images.enemyGB2);
         GB3 = new Animation(450, Images.enemyGB3);
         FG = new Animation(200, Images.enemyFG);
+        hit = new Animation(25, Images.hitWall);
         falling=false;
         oldDim = getDimension();
         direction="Left";
         startX=x;
         startY=y;
+        bulletRect = new Rectangle(0,0,64,71);
     }
 
     public void tick(){
 
-        if(start) {
-            if(idle.getIndex()>=7){
-                idle.reset();
+        if(bulletOnMap) {
+            bulletRect = new Rectangle(bulletX, bulletY, 64, 73);
+            if(bulletX<=x-handler.getWidth()){
+                bulletOnMap=false;
             }
-            if (!attacking) {
+        }
+        if(start) {
+            if (kill) {
                 idle.tick();
-                move();
-                attackCounter++;
-                if (attackCounter >= 128) {
-                    if (new Random().nextInt(3) >= 1) {
-                        attack();
-                        attacking = true;
+                hit.tick();
+
+            }else if(!killed){
+                if (idle.getIndex() >= 7) {
+                    idle.reset();
+                }
+                if (!attacking) {
+                    idle.tick();
+                    move();
+                    attackCounter++;
+                    if (attackCounter >= 128) {
+                        if (new Random().nextInt(3) >= 1) {
+                            attack();
+                            attacking = true;
+                        }
+                        attackCounter = 0;
                     }
-                    attackCounter = 0;
-                }
-            } else if (FlagFG) {
-                if(!outOfCamera){
+                } else if (FlagFG) {
+                    if(bulletOnMap){
+                        if(FG.getIndex()==8){
+                            idle.tick();
+                        }else{
+                            if(FG.getIndex()==8){
+                                idle.tick();
+                            }else {
+                                FG.tick();
+                            }
+                        }
+                    }else {
+                        if(FG.getIndex()==8){
+                            idle.tick();
+                        }else {
+                            FG.tick();
+                        }
+                    }
+                    FingerGun();
+                } else if (FlagGB1) {
+                    GB1.tick();
+                    Grab();
+                } else if (FlagGB2) {
+                    GB2.tick();
+                    Grab();
+                } else if (FlagGB3) {
+                    GB3.tick();
+                    Grab();
+                } else if (FlagSmash) {
+                    if (!outOfCamera) {
+                        idle.tick();
+                    } else {
+                        return;
+                    }
+                } else {
                     idle.tick();
-                }else {
-                    FG.tick();
+                    Idle();
                 }
-                FingerGun();
-            } else if (FlagGB1) {
-                GB1.tick();
-                Grab();
-            } else if (FlagGB2) {
-                GB2.tick();
-                Grab();
-            } else if (FlagGB3) {
-                GB3.tick();
-                Grab();
-            } else if (FlagSmash) {
-                if(!outOfCamera){
-                    idle.tick();
-                }else {
-                    return;
-                }
-            } else {
-                idle.tick();
-                Idle();
             }
         }else{
             if(x-handler.getMario().x<=150){
@@ -86,40 +116,68 @@ public class UIPointer extends BaseDynamicEntity {
 
     public void render(Graphics g){
         if(start) {
-            if (wasHit) {
-                g.drawImage(Images.tint(Images.enemyHT, Math.min(HitR += 0.016f, 1.0f), Math.min(HitR += 0.0139f, 0.839f), Math.min(HitR += 0.008, 0.482f)), x, y, width, height, null);
-                setDimension(wasHitDim);
-
-                if (HitR >= 1.0f && HitG >= 0.839f && HitB >= 0.482f) {
-                    wasHit = false;
-                    HitR = 0.0f;
-                    HitG = 0.0f;
-                    HitB = 0.0f;
-                    health--;
-                    setDimension(oldDim);
-
+            if (kill) {
+                g.drawImage(idle.getCurrentFrame(), x, y, width, height, null);
+                g.drawImage(hit.getCurrentFrame(), (int) this.handler.getCamera().getX(), (int) this.handler.getCamera().getY(), handler.getWidth(), handler.getHeight(), null);
+                handler.getMario().setX(handler.getMario().getX() - 30);
+                handler.getMario().setY(handler.getMario().getY() - 30);
+                if(handler.getMario().x<=handler.getCamera().getX()-handler.getWidth()/6 && handler.getMario().y<=handler.getCamera().getY()-handler.getHeight()/6){
+                    kill=false;
+                    killed=true;
+                    attacking=false;
+                    x=startX;
+                    y=startY;
+                    this.handler.getGame().getMusicHandler().play("finished");
+                    State.setState(handler.getGame().menuState);
                 }
-            } else {
-                if (!attacking) {
-                    g.drawImage(idle.getCurrentFrame(), x, y, width, height, null);
-                } else if (FlagFG) {
-                    if(!outOfCamera){
-                        g.drawImage(idle.getCurrentFrame(), x, y, width, height, null);
-                    }else {
-                        g.drawImage(FG.getCurrentFrame(), x, y, width, height, null);
+
+            } else if(!killed){
+                if (wasHit) {
+                    g.drawImage(Images.tint(Images.enemyHT, Math.min(HitR += 0.016f, 1.0f), Math.min(HitR += 0.0139f, 0.839f), Math.min(HitR += 0.008, 0.482f)), x, y, width, height, null);
+                    setDimension(wasHitDim);
+
+                    if (HitR >= 1.0f && HitG >= 0.839f && HitB >= 0.482f) {
+                        wasHit = false;
+                        HitR = 0.0f;
+                        HitG = 0.0f;
+                        HitB = 0.0f;
+                        health--;
+                        setDimension(oldDim);
+
                     }
-                } else if (FlagGB1) {
-                    g.drawImage(GB1.getCurrentFrame(), x, y, width, height, null);
-                } else if (FlagGB2) {
-                    g.drawImage(GB2.getCurrentFrame(), x, y, width, height, null);
-                } else if (FlagGB3) {
-                    g.drawImage(GB3.getCurrentFrame(), x, y, width, height, null);
-                } else if (FlagSmash) {
-                    Smash(g);
-                }else{
-                    g.drawImage(idle.getCurrentFrame(), x, y, width, height, null);
+                } else {
+                    if (!attacking) {
+                        g.drawImage(idle.getCurrentFrame(), x, y, width, height, null);
+                    } else if (FlagFG) {
+
+                        if(bulletOnMap){
+                            if(FG.getIndex()>=8){
+                                g.drawImage(idle.getCurrentFrame(), x, y, width, height, null);
+                            }else{
+                                g.drawImage(FG.getCurrentFrame(), x, y, width, height, null);
+                            }
+                        }else {
+                            g.drawImage(FG.getCurrentFrame(), x, y, width, height, null);
+                        }
+                    } else if (FlagGB1) {
+                        g.drawImage(GB1.getCurrentFrame(), x, y, width, height, null);
+                    } else if (FlagGB2) {
+                        g.drawImage(GB2.getCurrentFrame(), x, y, width, height, null);
+                    } else if (FlagGB3) {
+                        g.drawImage(GB3.getCurrentFrame(), x, y, width, height, null);
+                    } else if (FlagSmash) {
+                        Smash(g);
+                    } else {
+                        g.drawImage(idle.getCurrentFrame(), x, y, width, height, null);
+                    }
                 }
             }
+        }
+        if(bulletOnMap){
+            g.drawImage(Images.enemyBL,bulletX-=4,bulletY,64,73,null);
+        }
+        if(killed){
+            killed = false;
         }
     }
 
@@ -131,6 +189,14 @@ public class UIPointer extends BaseDynamicEntity {
     private void attack() {
 
         outOfCamera=false;
+        bulletOnMap=false;
+        FlagSmash=false;
+        FlagFG=false;
+        FlagGB1=false;
+        FlagGB2=false;
+        FlagGB3=false;
+        movingToIdle=false;
+
         int attack = new Random().nextInt(4);
         switch (attack){
             case 0:
@@ -140,7 +206,6 @@ public class UIPointer extends BaseDynamicEntity {
             case 1:
                 FlagFG=true;
                 System.out.println("FingerGun");
-
                 return;
             case 2:
                 System.out.println("Grab");
@@ -177,6 +242,11 @@ public class UIPointer extends BaseDynamicEntity {
             if(idleCounter>=300){
                 attacking=false;
                 outOfCamera=false;
+                FlagSmash=false;
+                FlagFG=false;
+                FlagGB1=false;
+                FlagGB2=false;
+                FlagGB3=false;
                 idleCounter=0;
             }
         }
@@ -187,11 +257,25 @@ public class UIPointer extends BaseDynamicEntity {
 
         createDistance("Center");
         if(outOfCamera){
-            if(FG.getIndex()>=8){
-                attacking = false;
-                outOfCamera=false;
-                FlagFG=false;
+            if(!bulletOnMap &&FG.getIndex()==6){
+                bulletX=x;
+                bulletY= y+42;
+                bulletOnMap=true;
+                bulletRect = new Rectangle(bulletX,bulletY,64,71);
             }
+            if(FG.getIndex()==8 && !bulletOnMap){
+                attacking=false;
+                outOfCamera=false;
+                FlagSmash=false;
+                FlagFG=false;
+                FlagGB1=false;
+                FlagGB2=false;
+                FlagGB3=false;
+                FG.end();
+            }
+        }
+        if(bulletRect.intersects(handler.getMario().getBounds())){
+            kill=true;
         }
 
 
@@ -225,6 +309,10 @@ public class UIPointer extends BaseDynamicEntity {
             g.drawImage(Images.enemySmash, x, y, width, height, null);
             if(y+height<floorY && !smash){
                 y+=22;
+                if(getBounds().intersects(handler.getMario().getBounds())){
+                    kill=true;
+                    this.handler.getGame().getMusicHandler().play("defeated");
+                }
             }
             else{
                 smash=true;

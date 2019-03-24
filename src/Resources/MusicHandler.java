@@ -88,7 +88,7 @@ public class MusicHandler {
 	}
 	
 	public void play(String str) {
-		Clip clip = getClip(this.loadAudio(str));
+		Clip clip = getClip(loadAudio(str));
 		clip.start();
 	}
 
