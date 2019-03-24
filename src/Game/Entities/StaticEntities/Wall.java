@@ -8,6 +8,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import Game.GameStates.State;
 import Game.World.MapBuilder;
 import Main.Handler;
 import Resources.Animation;
@@ -62,7 +63,8 @@ public class Wall {
 			if(this.alpha >= 254) this.alpha = 255;
 		}
 		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER) && this.opacity == 255) {
-			System.exit(0);
+			this.handler.getGame().reStart();
+			State.setState(this.handler.getGame().menuState);
 		}
 	}
 

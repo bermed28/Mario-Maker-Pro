@@ -19,6 +19,7 @@ public class Images {
 
     public static BufferedImage[] butstart;
     public static BufferedImage[] backgrounds;
+    public static BufferedImage[] backgrounds2;
 
     public static BufferedImage[] marioSmallWalkLeft;
     public static BufferedImage[] marioSmallWalkRight;
@@ -65,6 +66,7 @@ public class Images {
         butstart = new BufferedImage[3];
 
         backgrounds = new BufferedImage[9];
+        backgrounds2 = new BufferedImage[4];
 
         marioSmallWalkLeft = new BufferedImage[2];
         marioSmallWalkRight = new BufferedImage[2];
@@ -113,6 +115,11 @@ public class Images {
             backgrounds[6] = backgroundSpriteSheet.crop(2,1306,512,432);
             backgrounds[7] = backgroundSpriteSheet.crop(516,1306,512,432);
             backgrounds[8] = backgroundSpriteSheet.crop(2,1740,512,432);
+            
+            backgrounds2[0] = ImageIO.read(getClass().getResourceAsStream("/Sheets/GrasslandBackground.png"));
+            backgrounds2[1] = ImageIO.read(getClass().getResourceAsStream("/Sheets/DarkBackground.png"));
+            backgrounds2[2] = ImageIO.read(getClass().getResourceAsStream("/Sheets/CanyonBackground.png"));
+            backgrounds2[3] = ImageIO.read(getClass().getResourceAsStream("/Sheets/DesertBackground.png"));
 
 
             //player sprites
