@@ -56,7 +56,7 @@ public class MapBuilder {
 
 		}
 		if(mapDone) {
-			Images.makeMap(50, pixelMultiplier, mapImage.getWidth(), mapInCreation, handler);
+			Images.makeMap(50, pixelMultiplier, mapImage.getWidth(), 100, mapInCreation, handler);
 		}
 		return mapInCreation;
 	}

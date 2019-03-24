@@ -5,6 +5,7 @@ import javax.swing.*;
 
 import Game.Entities.StaticEntities.BreakBlock;
 import Game.World.Map;
+import Game.World.MapBuilder;
 import Main.Handler;
 
 import java.awt.*;
@@ -19,6 +20,7 @@ public class Images {
 
     public static BufferedImage[] butstart;
     public static BufferedImage[] backgrounds;
+    public static BufferedImage[] backgrounds2;
 
     public static BufferedImage[] marioSmallWalkLeft;
     public static BufferedImage[] marioSmallWalkRight;
@@ -66,6 +68,7 @@ public class Images {
         butstart = new BufferedImage[3];
 
         backgrounds = new BufferedImage[9];
+        backgrounds2 = new BufferedImage[6];
 
         marioSmallWalkLeft = new BufferedImage[2];
         marioSmallWalkRight = new BufferedImage[2];
@@ -115,6 +118,13 @@ public class Images {
             backgrounds[6] = backgroundSpriteSheet.crop(2,1306,512,432);
             backgrounds[7] = backgroundSpriteSheet.crop(516,1306,512,432);
             backgrounds[8] = backgroundSpriteSheet.crop(2,1740,512,432);
+            
+            backgrounds2[0] = ImageIO.read(getClass().getResourceAsStream("/Sheets/GrasslandBackground.png"));
+            backgrounds2[1] = ImageIO.read(getClass().getResourceAsStream("/Sheets/DarkBackground.png"));
+            backgrounds2[2] = ImageIO.read(getClass().getResourceAsStream("/Sheets/CanyonBackground.png"));
+            backgrounds2[3] = ImageIO.read(getClass().getResourceAsStream("/Sheets/DesertBackground.png"));
+            backgrounds2[4] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Snow1Background.png"));
+            backgrounds2[5] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Snow2Background.png"));
 
 
             //player sprites
@@ -271,13 +281,11 @@ public class Images {
             System.exit(1);
         }
         return null;
-    }
-    
-    public static  void makeMap(int i , int j, int k, Map map, Handler h) {
+    }   
+    public static  void makeMap(int i, int j, int k, int z,  Map map, Handler h) {
     	for(int x = i; x < k; x++) {
-    		map.addBlock(new BreakBlock( x * j, 100 * j, j, j, h));
-    	}
-    	
+    		map.addBlock(new BreakBlock( x * j, z * j, j, j, h));
+    	}	
     }
 
     public static BufferedImage tint(BufferedImage src, float r, float g, float b) {

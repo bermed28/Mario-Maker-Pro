@@ -1,11 +1,15 @@
 package Main;
 
 import Display.DisplayScreen;
+import Game.Entities.DynamicEntities.Mario;
 import Game.Entities.DynamicEntities.Player;
+import Game.Entities.StaticEntities.BreakBlock;
 import Game.GameStates.GameState;
 import Game.GameStates.MenuState;
 import Game.GameStates.PauseState;
 import Game.GameStates.State;
+import Game.World.Map;
+import Game.World.MapBuilder;
 import Input.Camera;
 import Input.KeyManager;
 import Input.MouseManager;
@@ -182,6 +186,18 @@ public class GameSetUp implements Runnable {
         //End Drawing!
         bs.show();
         g.dispose();
+    }
+    public Map getDrawnMap() {
+    	Map map = new Map(this.handler);
+    	Images.makeMap(0, MapBuilder.pixelMultiplier, 31, 200, map, this.handler);
+    	for(int i = 195; i < 200; i++) {
+    		map.addBlock(new BreakBlock(0, i*MapBuilder.pixelMultiplier, 48,48, this.handler));
+    		map.addBlock(new BreakBlock(30*MapBuilder.pixelMultiplier, i*MapBuilder.pixelMultiplier, 48,48, this.handler));
+    	}
+    	Mario mario = new Mario(15 * MapBuilder.pixelMultiplier, 150 * MapBuilder.pixelMultiplier, 48,48, this.handler);
+    	map.addEnemy(mario);
+    	handler.setMario(mario);
+    	return map;
     }
 
     public synchronized void stop(){

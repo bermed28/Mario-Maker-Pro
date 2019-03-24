@@ -81,6 +81,7 @@ public class Wall {
 			if(this.alpha >= 254) this.alpha = 255;
 		}
 		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER) && this.opacity == 255) {
+			MapBuilder.mapDone = false;
 			State.setState(handler.getGame().menuState);
 		}
 	}
@@ -94,7 +95,7 @@ public class Wall {
 			g2.setColor(new Color(255, 255 ,255 , this.opacity++));
 			g2.fillRect(this.xPos, this.yPos, this.size, this.size);
 			g2.setFont(font);
-			if(str.equals("DEFEATED!"))g2.setColor(Color.BLACK);
+			if(str.startsWith("D"))g2.setColor(Color.BLACK);
 			else g2.setColor(Color.red);
 			g2.drawString(this.str, this.sX, this.sY);
 			this.drawDef();
@@ -104,11 +105,11 @@ public class Wall {
 			g2.setColor(Color.ORANGE);
 			g2.setColor(new Color(0 ,0 ,0 , this.alpha));
 			g2.drawString("'Enter' --  Exit Game.", this.sX + 140, this.sY + 50);	
-			if(str.startsWith("CONGRATS!")) {
+			if(str.startsWith("C")) {
+				((MenuState) handler.getGame().menuState).getBut().setDraw(true);
 				g2.setColor(Color.ORANGE);
 				g2.drawString("Skill or just Luck?", this.sX + 150, this.sY - 125);
 				g2.setColor(new Color(0,0, 255, this.alpha));
-                ((MenuState)handler.getGame().menuState).uiManager.addObjects(new UIImageButton(handler.getWidth() - (handler.getWidth()/ 84), (handler.getHeight()/0b1100), 32, 32, Images.item, () -> {/*discretly change map here*/}));
 				g2.setFont(new Font("AR ESSENCE", Font.BOLD, 50));
 				g2.drawString("Sub to Pewdiepie", this.sX + 65, this.sY + 175);
 				g2.drawString(str2, this.sX + 140, this.sY + 75);
@@ -126,6 +127,9 @@ public class Wall {
 	}
 	public Rectangle getRect() {
 		return this.rect;
+	}
+	public boolean getDraw() {
+		return this.draw;
 	}
 	public void setDraw(boolean b) {
 		this.draw = b;

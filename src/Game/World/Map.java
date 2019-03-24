@@ -4,9 +4,11 @@ import Game.Entities.DynamicEntities.*;
 import Game.Entities.StaticEntities.BaseStaticEntity;
 import Game.Entities.StaticEntities.Wall;
 import Main.Handler;
+import Resources.Images;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 import Display.UI.UIListener;
 
@@ -18,16 +20,20 @@ public class Map {
     private double bottomBorder;
     private UIListener listener;
 	private Background hand;
+	private Random rand;
 	private Wall walls;
+	private int mapBackground;
 
     public Map(Handler handler) {
     	this.handler=handler;
+    	this.rand = new Random();
     	this.hand = new Background(this.handler);
     	this.listener = new UIListener( this.handler);
     	this.walls = new Wall(this.handler);
         this.blocksOnMap = new ArrayList<>();
         this.enemiesOnMap = new ArrayList<>();
         bottomBorder=handler.getHeight();
+        this.mapBackground = this.rand.nextInt(6);
     }
 
     public void addBlock(BaseStaticEntity block){
@@ -48,6 +54,7 @@ public class Map {
         handler.setIsInMap(true);
         Point camLocation = new Point((int)handler.getCamera().getX(), (int)handler.getCamera().getY());
         g2.translate(-camLocation.x, -camLocation.y);
+        g2.drawImage(Images.backgrounds2[this.mapBackground], camLocation.x, camLocation.y, this.handler.getWidth(), this.handler.getHeight(),null);
         for (BaseStaticEntity block:blocksOnMap) {
             g2.drawImage(block.sprite,block.x,block.y,block.width,block.height,null);
         }
