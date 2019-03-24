@@ -67,7 +67,7 @@ public class Wall {
 			str="";
 			for (int i:alf5) { str+=(char)i;}str+="!";
 		}
-		else {
+		else if(!this.handler.getMario().getHit()&& handler.getMario().getVelY()==0){
 			str="";
 			for (int i:alf) { str+=(char)i;}str+="! ";
 			for (int i:alf2) { str2+=(char)i;}str2+=" ";
@@ -107,12 +107,12 @@ public class Wall {
 			g2.drawString("'Enter' --  Exit Game.", this.sX + 140, this.sY + 50);	
 			if(str.startsWith("C")) {
 				((MenuState) handler.getGame().menuState).getBut().setDraw(true);
+				g2.drawString(str2, 0, this.sY + 75);
 				g2.setColor(Color.ORANGE);
 				g2.drawString("Skill or just Luck?", this.sX + 150, this.sY - 125);
 				g2.setColor(new Color(0,0, 255, this.alpha));
 				g2.setFont(new Font("AR ESSENCE", Font.BOLD, 50));
 				g2.drawString("Sub to Pewdiepie", this.sX + 65, this.sY + 175);
-				g2.drawString(str2, this.sX + 140, this.sY + 75);
 			}
 		}
 	}

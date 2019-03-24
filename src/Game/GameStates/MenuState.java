@@ -3,7 +3,6 @@ package Game.GameStates;
 
 import Display.DisplayScreen;
 import Display.UI.UIStringButton;
-import Game.World.Map;
 import Game.World.MapBuilder;
 import Input.KeyManager;
 import Input.MouseManager;
@@ -63,7 +62,7 @@ public class MenuState extends State {
 		keyManager = handler.getGame().keyManager;
 		mouseManager = new MouseManager();
 		this.but = new UIAnimationButton(handler.getWidth() - (handler.getWidth()/ 8),(handler.getHeight()/0b1100),32, 32 , Images.item, () -> {
-			if(but.getdraw()) {handler.setMap(handler.getGame().getDrawnMap());
+			if(but.getdraw()) {handler.setMap(handler.getGame().getMap());
 			State.setState(handler.getGame().gameState);}}, this.handler);
 		uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+(handler.getHeight()/8), 128, 64, Images.butstart, () -> {
 			mode = "Select";
