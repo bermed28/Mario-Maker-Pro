@@ -57,6 +57,10 @@ public class MapBuilder {
 		}
 		if(mapDone) {
 			Images.makeMap(50, pixelMultiplier, mapImage.getWidth(), 100, mapInCreation, handler);
+			for(int i = 96; i < 101; i++) {
+				mapInCreation.addBlock(new BreakBlock(49*pixelMultiplier, i*pixelMultiplier,48,48,handler));
+				mapInCreation.addBlock(new BreakBlock(54*pixelMultiplier, i*pixelMultiplier,48,48,handler));
+			}
 		}
 		return mapInCreation;
 	}
