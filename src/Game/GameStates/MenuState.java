@@ -27,7 +27,7 @@ import java.util.Random;
  */
 public class MenuState extends State {
 
-    private UIManager uiManager;
+    public UIManager uiManager;
     private int background;
     private String mode= "Menu";
 
