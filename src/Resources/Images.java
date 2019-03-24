@@ -68,7 +68,7 @@ public class Images {
         butstart = new BufferedImage[3];
 
         backgrounds = new BufferedImage[9];
-        backgrounds2 = new BufferedImage[4];
+        backgrounds2 = new BufferedImage[6];
 
         marioSmallWalkLeft = new BufferedImage[2];
         marioSmallWalkRight = new BufferedImage[2];
@@ -123,6 +123,8 @@ public class Images {
             backgrounds2[1] = ImageIO.read(getClass().getResourceAsStream("/Sheets/DarkBackground.png"));
             backgrounds2[2] = ImageIO.read(getClass().getResourceAsStream("/Sheets/CanyonBackground.png"));
             backgrounds2[3] = ImageIO.read(getClass().getResourceAsStream("/Sheets/DesertBackground.png"));
+            backgrounds2[4] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Snow1Background.png"));
+            backgrounds2[5] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Snow2Background.png"));
 
 
             //player sprites

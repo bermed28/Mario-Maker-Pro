@@ -33,7 +33,7 @@ public class Map {
         this.blocksOnMap = new ArrayList<>();
         this.enemiesOnMap = new ArrayList<>();
         bottomBorder=handler.getHeight();
-        this.mapBackground = this.rand.nextInt(4);
+        this.mapBackground = this.rand.nextInt(6);
     }
 
     public void addBlock(BaseStaticEntity block){
