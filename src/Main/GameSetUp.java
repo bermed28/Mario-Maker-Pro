@@ -1,6 +1,7 @@
 package Main;
 
 import Display.DisplayScreen;
+import Display.UI.UIPointer;
 import Game.Entities.DynamicEntities.Mario;
 import Game.Entities.DynamicEntities.Player;
 import Game.Entities.StaticEntities.BreakBlock;
@@ -30,9 +31,11 @@ public class GameSetUp implements Runnable {
 
     private boolean running = false;
     private Thread thread;
+    public static boolean threadB;
 
     private BufferStrategy bs;
     private Graphics g;
+    public UIPointer pointer;
 
     //Input
     public KeyManager keyManager;
@@ -53,6 +56,8 @@ public class GameSetUp implements Runnable {
     public GameSetUp(String title,Handler handler) {
         this.handler = handler;
         this.title = title;
+        threadB=false;
+
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
         initialmouseManager = mouseManager;
@@ -143,6 +148,7 @@ public class GameSetUp implements Runnable {
         if (handler.isInMap()) {
             updateCamera();
         }
+
     }
 
     private void updateCamera() {
@@ -169,6 +175,7 @@ public class GameSetUp implements Runnable {
 
     private void render(){
         bs = display.getCanvas().getBufferStrategy();
+
         if(bs == null){
             display.getCanvas().createBufferStrategy(3);
             return;
@@ -194,8 +201,10 @@ public class GameSetUp implements Runnable {
     		map.addBlock(new BreakBlock(0, i*MapBuilder.pixelMultiplier, 48,48, this.handler));
     		map.addBlock(new BreakBlock(30*MapBuilder.pixelMultiplier, i*MapBuilder.pixelMultiplier, 48,48, this.handler));
     	}
-    	Mario mario = new Mario(15 * MapBuilder.pixelMultiplier, 150 * MapBuilder.pixelMultiplier, 48,48, this.handler);
+    	Mario mario = new Mario(24 * MapBuilder.pixelMultiplier, 196 * MapBuilder.pixelMultiplier, 48,48, this.handler);
     	map.addEnemy(mario);
+        map.addEnemy(pointer);
+        threadB=true;
     	return map;
     }
 

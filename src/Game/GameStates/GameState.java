@@ -1,5 +1,6 @@
 package Game.GameStates;
 
+import Display.UI.UIPointer;
 import Game.Entities.DynamicEntities.BaseDynamicEntity;
 import Game.Entities.StaticEntities.BaseStaticEntity;
 import Game.World.MapBuilder;
@@ -17,6 +18,8 @@ public class GameState extends State {
 
     public GameState(Handler handler){
         super(handler);
+        handler.getGame().pointer = new UIPointer(28 * MapBuilder.pixelMultiplier,197 * MapBuilder.pixelMultiplier,128,128,handler);
+
     }
 
     @Override

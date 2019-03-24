@@ -37,6 +37,15 @@ public class Images {
     public static BufferedImage[] item;
     public static BufferedImage[] enemy;
     public static BufferedImage[] hitWall;
+    public static BufferedImage[] enemyFG;
+    public static BufferedImage[] enemyGB1;
+    public static BufferedImage[] enemyGB2;
+    public static BufferedImage[] enemyGB3;
+    public static BufferedImage enemyBL;
+    public static BufferedImage enemyPS;
+    public static BufferedImage enemyHT;
+    public static BufferedImage enemySmash;
+
 
     public static BufferedImage[] goomba;
 
@@ -62,6 +71,7 @@ public class Images {
     private SpriteSheet blockSpriteSheet;
     private SpriteSheet goombaSpriteSheet;
     private SpriteSheet SSpriteSheet;
+    private SpriteSheet SAttackSpriteSheet;
 
     public Images() {
 
@@ -77,6 +87,11 @@ public class Images {
         item = new BufferedImage[19];
         enemy = new BufferedImage[9];
         hitWall = new BufferedImage[44];
+        enemyFG = new BufferedImage[9];
+        enemyGB1 = new BufferedImage[3];
+        enemyGB2 = new BufferedImage[2];
+        enemyGB3 = new BufferedImage[3];
+
 
         marioBigWalkLeft = new BufferedImage[2];
         marioBigWalkRight = new BufferedImage[2];
@@ -99,6 +114,7 @@ public class Images {
             blockSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/blocksSheet.png")));
             goombaSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/goombaSprite.png")));
             SSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/Sheets.png")));
+            SAttackSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/enemySheet2.png")));
 
 
             //Images
@@ -245,6 +261,33 @@ public class Images {
             enemy[7] = SSpriteSheet.crop(525,19,62,37);
             enemy[8] = SSpriteSheet.crop(75,89,51,41);
 
+            enemyFG[0] = SAttackSpriteSheet.crop(3,115,66,45);
+            enemyFG[1] = SAttackSpriteSheet.crop(72,103,71,55);
+            enemyFG[2] =  SAttackSpriteSheet.crop(149,101,64,62);
+            enemyFG[3] =  SAttackSpriteSheet.crop(215,102,80,62);
+            enemyFG[4] =  SAttackSpriteSheet.crop(5,167,79,62);
+            enemyFG[5] =  SAttackSpriteSheet.crop(90,167,93,62);
+            enemyFG[6] = SAttackSpriteSheet.crop(188,167,99,72);
+            enemyFG[7] =  enemyFG[1];
+            enemyFG[8] =  enemyFG[0];
+
+            enemyGB1[0] = SAttackSpriteSheet.crop(3,248,53,48);
+            enemyGB1[1] = SAttackSpriteSheet.crop(68,247,61,46);
+            enemyGB1[2] =  SAttackSpriteSheet.crop(147,252,48,40);
+
+
+            enemyGB2[0] = SAttackSpriteSheet.crop(205,250,34,41);
+            enemyGB2[1] = SAttackSpriteSheet.crop(252,251,45,44);
+
+
+            enemyGB3[0] = enemyGB1[2];
+            enemyGB3[1] = enemyGB1[1];
+            enemyGB3[2] =  enemyGB1[0];
+
+            enemyPS= SAttackSpriteSheet.crop(68,358,29,64);
+            enemyHT= SAttackSpriteSheet.crop(178,357,52,62);
+            enemySmash= SAttackSpriteSheet.crop(9,302,51,41);
+            enemyBL= SAttackSpriteSheet.crop(188,184,41,55);
 
             //maps
             testMap = ImageIO.read(getClass().getResourceAsStream("/maps/testmap1.png"));

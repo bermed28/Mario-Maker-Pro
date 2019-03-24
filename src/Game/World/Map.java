@@ -1,5 +1,6 @@
 package Game.World;
 
+import Display.UI.UIPointer;
 import Game.Entities.DynamicEntities.*;
 import Game.Entities.StaticEntities.BaseStaticEntity;
 import Game.Entities.StaticEntities.Wall;
@@ -13,23 +14,23 @@ import java.util.Random;
 import Display.UI.UIListener;
 
 public class Map {
-	
+
     ArrayList<BaseStaticEntity> blocksOnMap;
     ArrayList<BaseDynamicEntity> enemiesOnMap;
     Handler handler;
     private double bottomBorder;
     private UIListener listener;
-	private Background hand;
-	private Random rand;
-	private Wall walls;
-	private int mapBackground;
+    private Background hand;
+    private Random rand;
+    private Wall walls;
+    private int mapBackground;
 
     public Map(Handler handler) {
-    	this.handler=handler;
-    	this.rand = new Random();
-    	this.hand = new Background(this.handler);
-    	this.listener = new UIListener( this.handler);
-    	this.walls = new Wall(this.handler);
+        this.handler=handler;
+        this.rand = new Random();
+        this.hand = new Background(this.handler);
+        this.listener = new UIListener( this.handler);
+        this.walls = new Wall(this.handler);
         this.blocksOnMap = new ArrayList<>();
         this.enemiesOnMap = new ArrayList<>();
         bottomBorder=handler.getHeight();
@@ -64,16 +65,19 @@ public class Map {
                     g2.drawImage(entity.sprite, entity.x, entity.y, entity.width, entity.height, null);
                 }
             }else if(entity instanceof Goomba && !entity.ded){
-                    g2.drawImage(((Goomba)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
+                g2.drawImage(((Goomba)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
+            }
+            else if(entity instanceof UIPointer ){
+                ((UIPointer) entity).render(g2);
             }else {
                 g2.drawImage(entity.sprite, entity.x, entity.y, entity.width, entity.height, null);
             }
         }
         handler.getMario().drawMario(g2);
         if(this.listener != null && MapBuilder.mapDone) {
-        	this.listener.render(g2);
-        	this.hand.render(g2);
-        	this.walls.render(g2);
+            this.listener.render(g2);
+            this.hand.render(g2);
+            this.walls.render(g2);
         }
         g2.translate(camLocation.x, camLocation.y);
     }
@@ -89,15 +93,15 @@ public class Map {
     public double getBottomBorder() {
         return bottomBorder;
     }
-    
+
     public UIListener getListener() {
-    	return this.listener;
+        return this.listener;
     }
     public Background getHand() {
-    	return this.hand;
+        return this.hand;
     }
     public Wall getWalls() {
-    	return this.walls;
+        return this.walls;
     }
 
     public void reset() {
