@@ -67,7 +67,7 @@ public class Background {
 	}
 
 	public void move() {
-		int pos = 55 * MapBuilder.pixelMultiplier;
+		int pos = 56 * MapBuilder.pixelMultiplier;
 		int pos2 = 65 * MapBuilder.pixelMultiplier;
 		if(this.front && this.xPos >= pos) this.xPos-=2;
 		if(!this.front && this.xPos <= pos2) {
