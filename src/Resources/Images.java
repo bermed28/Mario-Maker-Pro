@@ -280,9 +280,9 @@ public class Images {
         }
         return null;
     }   
-    public static  void makeMap(int i , int j, int k, Map map, Handler h) {
+    public static  void makeMap(int i, int j, int k, int z,  Map map, Handler h) {
     	for(int x = i; x < k; x++) {
-    		map.addBlock(new BreakBlock( x * j, 100 * j, j, j, h));
+    		map.addBlock(new BreakBlock( x * j, z * j, j, j, h));
     	}	
     }
 

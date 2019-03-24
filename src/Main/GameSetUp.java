@@ -189,12 +189,12 @@ public class GameSetUp implements Runnable {
     }
     public Map getDrawnMap() {
     	Map map = new Map(this.handler);
-    	Images.makeMap(0, MapBuilder.pixelMultiplier, 31, map, this.handler);
-    	for(int i = 95; i < 100; i++) {
+    	Images.makeMap(0, MapBuilder.pixelMultiplier, 31, 200, map, this.handler);
+    	for(int i = 195; i < 200; i++) {
     		map.addBlock(new BreakBlock(0, i*MapBuilder.pixelMultiplier, 48,48, this.handler));
     		map.addBlock(new BreakBlock(30*MapBuilder.pixelMultiplier, i*MapBuilder.pixelMultiplier, 48,48, this.handler));
     	}
-    	Mario mario = new Mario(15 * MapBuilder.pixelMultiplier, 49 * MapBuilder.pixelMultiplier, 48,48, this.handler);
+    	Mario mario = new Mario(15 * MapBuilder.pixelMultiplier, 150 * MapBuilder.pixelMultiplier, 48,48, this.handler);
     	map.addEnemy(mario);
     	handler.setMario(mario);
     	return map;
