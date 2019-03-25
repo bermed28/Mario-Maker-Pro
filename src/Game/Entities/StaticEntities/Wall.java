@@ -52,6 +52,11 @@ public class Wall {
 	}
 
 	public void tick() {
+		if(this.handler.getMario().getHit() && this.getRect().intersects(this.handler.getMario().getBounds())) {
+			this.getRect().setBounds(0, 0, 0, 0);
+			this.handler.getGame().getMusicHandler().play("finished");
+			this.setPlay(true);
+		}
 		if(this.anim.getIndex() == Images.hitWall.length - 1) {
 			this.setPlay(false);
 			if(this.d == 0) this.handler.getGame().getMusicHandler().play("defeated");
@@ -115,6 +120,7 @@ public class Wall {
 				g2.drawString("Sub to Pewdiepie", this.sX + 65, this.sY + 175);
 			}
 		}
+
 	}
 	public void drawDef() {
 		this.sX -= 15;

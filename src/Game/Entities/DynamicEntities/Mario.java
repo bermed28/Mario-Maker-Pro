@@ -78,11 +78,6 @@ public class Mario extends Player{
 		else {
 			this.setX(this.getX() - 30);
 			this.setY(this.getY() - 30);
-			if(this.hit && this.getBounds().intersects(this.handler.getMap().getWalls().getRect())) {
-				this.handler.getMap().getWalls().getRect().setBounds(0, 0, 0, 0);
-				this.handler.getGame().getMusicHandler().play("finished");
-				this.handler.getMap().getWalls().setPlay(true);
-			}
 		}
 	}
 
