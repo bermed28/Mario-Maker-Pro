@@ -125,6 +125,14 @@ public class UIPointer extends BaseDynamicEntity {
                     kill=false;
                     killed=true;
                     attacking=false;
+                    outOfCamera=false;
+                    bulletOnMap=false;
+                    FlagSmash=false;
+                    FlagFG=false;
+                    FlagGB1=false;
+                    FlagGB2=false;
+                    FlagGB3=false;
+                    movingToIdle=false;
                     x=startX;
                     y=startY;
                     this.handler.getGame().getMusicHandler().play("finished");
@@ -276,6 +284,7 @@ public class UIPointer extends BaseDynamicEntity {
         }
         if(bulletRect.intersects(handler.getMario().getBounds())){
             kill=true;
+            this.handler.getGame().getMusicHandler().play("defeated");
         }
 
 
