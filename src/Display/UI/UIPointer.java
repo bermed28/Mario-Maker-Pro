@@ -15,7 +15,7 @@ public class UIPointer extends BaseDynamicEntity {
     Animation idle,GB1,GB2,GB3,FG,hit;
     boolean FlagGB1=false,FlagGB2=false,FlagGB3=false,FlagFG=false,FlagSmash=false,wasHit=false,died=false,attacking=false,start=true,movingToIdle =false,outOfCamera=true,smash=false,kill=false,killed=false,bulletOnMap=false;
     float HitR=0.0f,HitG=0.0f,HitB=0.0f;
-    int health=1,attackCounter=0,startX,startY,idleCounter=0,squeeze=0,grabcounter=0;
+    int health=3,attackCounter=0,startX,startY,idleCounter=0,squeeze=0,grabcounter=0;
     Rectangle wasHitBound = new Rectangle();
     Dimension wasHitDim = new Dimension();
     Dimension oldDim;
