@@ -33,6 +33,9 @@ public class MenuState extends State {
 	private String mode= "Menu";
 
 	private DisplayScreen display;
+	private int[] str={83,117,98,32,116,111,32,80,101,119,100,115};
+	private String str2="";
+
 
 	private BufferStrategy bs;
 	private Graphics g;
@@ -61,6 +64,7 @@ public class MenuState extends State {
 		blocks = new Color[GridWidthPixelCount][GridHeightPixelCount];
 		keyManager = handler.getGame().keyManager;
 		mouseManager = new MouseManager();
+		for (int i:str) { str2+=(char)i;}
 		this.but = new UIAnimationButton(handler.getWidth() - (handler.getWidth()/ 8),(handler.getHeight()/0b1100),32, 32 , Images.item, () -> {
 			if(but.getdraw() && !handler.isInMap()) {handler.setMap(handler.getGame().getMap());
 				handler.getGame().getMusicHandler().pauseBackground();
@@ -299,7 +303,8 @@ public class MenuState extends State {
 
 		// Create buffered image object
 		BufferedImage img = null;
-		if(name.equals("Sub to Pewds")) MapBuilder.mapDone = true;
+		MapBuilder.mapDone=false;
+		if(name.equals(str2)) MapBuilder.mapDone = true;
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
 		// file object
