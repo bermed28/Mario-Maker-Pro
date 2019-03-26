@@ -26,11 +26,13 @@ public class PauseState extends State {
 
         uiManager.addObjects(new UIStringButton(56, 223+(64+16), 128, 64, "Options", () -> {
             handler.getMouseManager().setUimanager(null);
+            handler.setIsInMap(false);
             State.setState(handler.getGame().menuState);
         },handler,Color.WHITE));
 
         uiManager.addObjects(new UIStringButton(56, (223+(64+16))+(64+16), 128, 64, "Title", () -> {
             handler.getMouseManager().setUimanager(null);
+            handler.setIsInMap(false);
             State.setState(handler.getGame().menuState);
         },handler,Color.WHITE));
 

@@ -7,6 +7,7 @@ import Resources.Animation;
 import Resources.Images;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class UIPointer extends BaseDynamicEntity {
@@ -117,7 +118,7 @@ public class UIPointer extends BaseDynamicEntity {
     public void render(Graphics g){
         if(start) {
             if (kill) {
-                g.drawImage(idle.getCurrentFrame(), x, y, width, height, null);
+                g.drawImage(getTint(idle.getCurrentFrame()), x, y, width, height, null);
                 g.drawImage(hit.getCurrentFrame(), (int) this.handler.getCamera().getX(), (int) this.handler.getCamera().getY(), handler.getWidth(), handler.getHeight(), null);
                 handler.getMario().setX(handler.getMario().getX() - 30);
                 handler.getMario().setY(handler.getMario().getY() - 30);
@@ -136,16 +137,23 @@ public class UIPointer extends BaseDynamicEntity {
                     x=startX;
                     y=startY;
                     this.handler.getGame().getMusicHandler().play("finished");
+                    handler.setIsInMap(false);
                     State.setState(handler.getGame().menuState);
                 }
 
             } else if(!killed){
                 if (wasHit) {
-                    g.drawImage(Images.tint(Images.enemyHT, Math.min(HitR += 0.016f, 1.0f), Math.min(HitR += 0.0139f, 0.839f), Math.min(HitR += 0.008, 0.482f)), x, y, width, height, null);
+                    HitR += 0.016f;
+                    HitB += 0.0139f;
+                    HitG += 0.008f;
+                    g.drawImage(getTint(Images.tint(Images.enemyHT,  Math.min(HitR, 1.0f), Math.min(HitB, 0.839f), Math.min(HitG, 0.482f))), x, y, width, height, null);
                     setDimension(wasHitDim);
 
                     if (HitR >= 1.0f && HitG >= 0.839f && HitB >= 0.482f) {
                         wasHit = false;
+                        ded=false;
+                        attacking=false;
+                        idleCounter=150;
                         HitR = 0.0f;
                         HitG = 0.0f;
                         HitB = 0.0f;
@@ -155,34 +163,34 @@ public class UIPointer extends BaseDynamicEntity {
                     }
                 } else {
                     if (!attacking) {
-                        g.drawImage(idle.getCurrentFrame(), x, y, width, height, null);
+                        g.drawImage(getTint(idle.getCurrentFrame()), x, y, width, height, null);
                     } else if (FlagFG) {
 
                         if(bulletOnMap){
                             if(FG.getIndex()>=8){
-                                g.drawImage(idle.getCurrentFrame(), x, y, width, height, null);
+                                g.drawImage(getTint(idle.getCurrentFrame()), x, y, width, height, null);
                             }else{
-                                g.drawImage(FG.getCurrentFrame(), x, y, width, height, null);
+                                g.drawImage(getTint(FG.getCurrentFrame()), x, y, width, height, null);
                             }
                         }else {
-                            g.drawImage(FG.getCurrentFrame(), x, y, width, height, null);
+                            g.drawImage(getTint(FG.getCurrentFrame()), x, y, width, height, null);
                         }
                     } else if (FlagGB1) {
-                        g.drawImage(GB1.getCurrentFrame(), x, y, width, height, null);
+                        g.drawImage(getTint(GB1.getCurrentFrame()), x, y, width, height, null);
                     } else if (FlagGB2) {
-                        g.drawImage(GB2.getCurrentFrame(), x, y, width, height, null);
+                        g.drawImage(getTint(GB2.getCurrentFrame()), x, y, width, height, null);
                     } else if (FlagGB3) {
-                        g.drawImage(GB3.getCurrentFrame(), x, y, width, height, null);
+                        g.drawImage(getTint(GB3.getCurrentFrame()), x, y, width, height, null);
                     } else if (FlagSmash) {
                         Smash(g);
                     } else {
-                        g.drawImage(idle.getCurrentFrame(), x, y, width, height, null);
+                        g.drawImage(getTint(idle.getCurrentFrame()), x, y, width, height, null);
                     }
                 }
             }
         }
         if(bulletOnMap){
-            g.drawImage(Images.enemyBL,bulletX-=4,bulletY,64,73,null);
+            g.drawImage(Images.enemyBL,bulletX-=getBulletSpeed(),bulletY,64,73,null);
         }
         if(killed){
             killed = false;
@@ -247,7 +255,7 @@ public class UIPointer extends BaseDynamicEntity {
             }
         }else{
             idleCounter++;
-            if(idleCounter>=300){
+            if(idleCounter>=150){
                 attacking=false;
                 outOfCamera=false;
                 FlagSmash=false;
@@ -312,12 +320,12 @@ public class UIPointer extends BaseDynamicEntity {
 
     private void Smash(Graphics g) {
         if(!outOfCamera){
-            g.drawImage(idle.getCurrentFrame(), x, y, width, height, null);
+            g.drawImage(getTint(idle.getCurrentFrame()), x, y, width, height, null);
             createDistance("Top");
         }else {
-            g.drawImage(Images.enemySmash, x, y, width, height, null);
+            g.drawImage(getTint(Images.enemySmash), x, y, width, height, null);
             if(y+height<floorY && !smash){
-                y+=22;
+                y+=this.getSpeed();
                 if(getBounds().intersects(handler.getMario().getBounds())){
                     kill=true;
                     this.handler.getGame().getMusicHandler().play("defeated");
@@ -335,6 +343,35 @@ public class UIPointer extends BaseDynamicEntity {
                 }
             }
 
+        }
+    }
+
+    public BufferedImage getTint(BufferedImage image){
+        if(health==3){
+            return image;
+        }else if(health ==2){
+            return Images.tint(image,0.50f,0.50f,0.50f);
+        }else{
+            return Images.tint(image,0.25f,0.25f,0.25f);
+        }
+    }
+
+    public int getSpeed(){
+        if(health==3){
+            return 25;
+        }else if(health ==2){
+            return 31;
+        }else{
+            return 36;
+        }
+    }
+    public int getBulletSpeed(){
+        if(health==3){
+            return 6;
+        }else if(health ==2){
+            return 8;
+        }else{
+            return 10;
         }
     }
 
@@ -388,7 +425,13 @@ public class UIPointer extends BaseDynamicEntity {
         }
     }
 
+    //kill here is damage and ded means it was hit
 
-
-
+    @Override
+    public void kill() {
+        if(idleCounter>0&&idleCounter<150) {
+            ded = true;
+            wasHit = true;
+        }
+    }
 }

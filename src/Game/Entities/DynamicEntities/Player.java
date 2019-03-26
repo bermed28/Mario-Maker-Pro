@@ -102,10 +102,13 @@ public class Player extends BaseDynamicEntity {
         for (BaseDynamicEntity enemy : enemies) {
             Rectangle enemyTopBounds = enemy.getTopBounds();
             if (marioBottomBounds.intersects(enemyTopBounds) && !(enemy instanceof Item)) {
+                if(!enemy.ded) {
+                    handler.getGame().getMusicHandler().playStomp();
+                }
                 enemy.kill();
                 falling=false;
                 velY=0;
-                handler.getGame().getMusicHandler().playStomp();
+
             }
         }
     }
