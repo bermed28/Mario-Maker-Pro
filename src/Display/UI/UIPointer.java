@@ -12,16 +12,15 @@ import java.util.Random;
 
 public class UIPointer extends BaseDynamicEntity {
 
-    Animation idle,GB1,GB2,GB3,FG,hit;
-    boolean FlagGB1=false,FlagGB2=false,FlagGB3=false,FlagFG=false,FlagSmash=false,wasHit=false,died=false,attacking=false,start=true,movingToIdle =false,outOfCamera=true,smash=false,kill=false,killed=false,bulletOnMap=false;
-    float HitR=0.0f,HitG=0.0f,HitB=0.0f;
-    int health=3,attackCounter=0,startX,startY,idleCounter=0,squeeze=0,grabcounter=0;
-    Dimension wasHitDim = new Dimension();
-    Dimension oldDim;
-    int floorY = 200*48;
-    int bulletX=0;
-    int bulletY=0;
-    Rectangle bulletRect;
+    private Animation idle,GB1,GB2,GB3,FG,hit;
+    private boolean FlagGB1=false,FlagGB2=false,FlagGB3=false,FlagFG=false,FlagSmash=false,wasHit=false,died=false,attacking=false,start=true,movingToIdle =false,outOfCamera=true,smash=false,kill=false,killed=false,bulletOnMap=false;
+    private float HitR=0.0f,HitG=0.0f,HitB=0.0f;
+    private int health=3,attackCounter=0,startX,startY,idleCounter=0,squeeze=0,grabcounter=0;
+    private Dimension wasHitDim = new Dimension();
+    private Dimension oldDim;
+    private int bulletX=0;
+    private int bulletY=0;
+    private Rectangle bulletRect;
 
 
 
@@ -102,8 +101,6 @@ public class UIPointer extends BaseDynamicEntity {
                     } else if (FlagSmash) {
                         if (!outOfCamera) {
                             idle.tick();
-                        } else {
-                            return;
                         }
                     } else {
                         idle.tick();
@@ -128,6 +125,7 @@ public class UIPointer extends BaseDynamicEntity {
         hit.tick();
     }
 
+    @SuppressWarnings("Duplicates")
     public void render(Graphics g){
         if(health>0) {
             if (start) {
@@ -215,6 +213,7 @@ public class UIPointer extends BaseDynamicEntity {
         }
     }
 
+    @SuppressWarnings("Duplicates")
     private void killRender(Graphics g) {
         g.drawImage(getTint(idle.getCurrentFrame()), x, y, width+new Random().nextInt(3), height, null);
         x-=25;
@@ -274,7 +273,6 @@ public class UIPointer extends BaseDynamicEntity {
             case 3:
                 System.out.println("Smash");
                 FlagSmash=true;
-                return;
         }
     }
 
@@ -399,7 +397,8 @@ public class UIPointer extends BaseDynamicEntity {
             createDistance("Top");
         }else {
             g.drawImage(getTint(Images.enemySmash), x, y, width, height, null);
-            if(y+height<floorY && !smash){
+            int floorY = 200 * 48;
+            if(y+height< floorY && !smash){
                 y+=this.getSpeed();
                 if(getBounds().intersects(handler.getMario().getBounds())){
                     kill=true;
@@ -421,7 +420,7 @@ public class UIPointer extends BaseDynamicEntity {
         }
     }
 
-    public BufferedImage getTint(BufferedImage image){
+    private BufferedImage getTint(BufferedImage image){
         if(health==3){
             return image;
         }else if(health ==2){
@@ -431,7 +430,7 @@ public class UIPointer extends BaseDynamicEntity {
         }
     }
 
-    public int getSpeed(){
+    private int getSpeed(){
         if(health==3){
             return 25;
         }else if(health ==2){
@@ -440,7 +439,7 @@ public class UIPointer extends BaseDynamicEntity {
             return 36;
         }
     }
-    public int getBulletSpeed(){
+    private int getBulletSpeed(){
         if(health==3){
             return 6;
         }else if(health ==2){
@@ -451,68 +450,80 @@ public class UIPointer extends BaseDynamicEntity {
     }
 
     private void createDistance(String dirrection) {
-        if(dirrection.equals("Top")){
-            int distanceX = this.x-handler.getMario().x;
+        switch (dirrection) {
+            case "Top": {
+                int distanceX = this.x - handler.getMario().x;
 
-            if(distanceX>4){
-                x-=4;
-            }else if(distanceX<4){
-                x+=4;
+                if (distanceX > 4) {
+                    x -= 4;
+                } else if (distanceX < 4) {
+                    x += 4;
+                }
+                y -= 4;
+                if (y + height <= (handler.getMario().y - handler.getHeight())) {
+                    outOfCamera = true;
+                }
+                break;
             }
-            y-=4;
-            if(y+height<=(handler.getMario().y-handler.getHeight())){
-                outOfCamera=true;
-            }
-        }else if(dirrection.equals("Right")){
-            int distanceY = this.y-handler.getMario().y;
+            case "Right": {
+                int distanceY = this.y - handler.getMario().y;
 
-            if(distanceY>2){
-                y-=4;
-            }else if(distanceY<2){
-                y+=4;
+                if (distanceY > 2) {
+                    y -= 4;
+                } else if (distanceY < 2) {
+                    y += 4;
+                }
+                x += 4;
+                if (x >= (handler.getWidth() + handler.getMario().x)) {
+                    outOfCamera = true;
+                }
+                break;
             }
-            x+=4;
-            if(x>=(handler.getWidth()+handler.getMario().x)){
-                outOfCamera=true;
-            }
-        }else if(dirrection.equals("Follow")){
-            int distanceX = this.x-handler.getMario().x-10;
-            int distanceY = this.y-handler.getMario().y;
-            int speed = 4;
-            if(handler.getKeyManager().runbutt){speed=6;}
-            int speedY = Math.abs((int) handler.getMario().getVelY());
+            case "Follow": {
+                int distanceX = this.x - handler.getMario().x - 10;
+                int distanceY = this.y - handler.getMario().y;
+                int speed = 4;
+                if (handler.getKeyManager().runbutt) {
+                    speed = 6;
+                }
+                int speedY = Math.abs((int) handler.getMario().getVelY());
 
-            if(distanceX>speed){
-                x-=speed;
-            }else if(distanceX<-speed){
-                x+=speed;
-            }
-            if(distanceY>speedY){
-                y-=speedY;
-            }else if(distanceY<-speedY){
-                y+=speedY;
-            }
+                if (distanceX > speed) {
+                    x -= speed;
+                } else if (distanceX < -speed) {
+                    x += speed;
+                }
+                if (distanceY > speedY) {
+                    y -= speedY;
+                } else if (distanceY < -speedY) {
+                    y += speedY;
+                }
 
-        }
-        else{
-            int distanceX = this.x-handler.getMario().x;
-            int distanceY = handler.getMario().y-this.y;
-            int speed = 4;
-            if(handler.getKeyManager().runbutt){speed=6;}
-            int speedY = Math.abs((int) handler.getMario().getVelY());
+                break;
+            }
+            default: {
+                int distanceX = this.x - handler.getMario().x;
+                int distanceY = handler.getMario().y - this.y;
+                int speed = 4;
+                if (handler.getKeyManager().runbutt) {
+                    speed = 6;
+                }
+                int speedY = Math.abs((int) handler.getMario().getVelY());
 
-            if(distanceX>200){
-                x-=speed;
-            }else if(distanceX<172){
-                x+=speed;
-            }
-            if(distanceY>100){
-                y+=speedY;
-            }else if(distanceY<75){
-                y-=speedY;
-            }
-            if(distanceX<=174 && distanceX>=152&&distanceY<=100 &&distanceY>=75){
-                outOfCamera=true;
+                if (distanceX > 200) {
+                    x -= speed;
+                } else if (distanceX < 172) {
+                    x += speed;
+                }
+                if (distanceY > 100) {
+                    y += speedY;
+                } else if (distanceY < 75) {
+                    y -= speedY;
+                }
+                if (distanceX <= 174 && distanceX >= 152 && distanceY <= 100 && distanceY >= 75) {
+                    outOfCamera = true;
+                }
+                break;
             }
         }
     }
