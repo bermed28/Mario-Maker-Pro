@@ -13,9 +13,9 @@ import java.util.Random;
 public class UIPointer extends BaseDynamicEntity {
 
     Animation idle,GB1,GB2,GB3,FG,hit;
-    boolean FlagGB1=false,FlagGB2=false,FlagGB3=false,FlagFG=false,FlagSmash=false,wasHit=false,died=false,attacking=false,start=true,movingToIdle =false,outOfCamera=true,smash=false,kill=false,killed=false,bulletOnMap=false;
+    boolean FlagGB1=false,FlagGB2=false,FlagGB3=false,FlagFG=false,FlagSmash=false,wasHit=false,died=false,attacking=false,start=true,movingToIdle =false,outOfCamera=true,smash=false,kill=false,killed=false,bulletOnMap=false,followGrab=false;
     float HitR=0.0f,HitG=0.0f,HitB=0.0f;
-    int health=3,attackCounter=0,startX,startY,idleCounter=0,squeeze=0;
+    int health=3,attackCounter=0,startX,startY,idleCounter=0,squeeze=0,grabcounter=0;
     Rectangle wasHitBound = new Rectangle();
     Dimension wasHitDim = new Dimension();
     Dimension oldDim;
@@ -23,6 +23,7 @@ public class UIPointer extends BaseDynamicEntity {
     int bulletX=0;
     int bulletY=0;
     Rectangle bulletRect;
+
 
 
     public UIPointer(int x, int y, int width, int height, Handler handler) {
@@ -89,7 +90,9 @@ public class UIPointer extends BaseDynamicEntity {
                     }
                     FingerGun();
                 } else if (FlagGB1) {
-                    GB1.tick();
+                    if(GB1.getIndex()<2){
+                        GB1.tick();
+                    }
                     Grab();
                 } else if (FlagGB2) {
                     GB2.tick();
@@ -136,6 +139,7 @@ public class UIPointer extends BaseDynamicEntity {
                     movingToIdle=false;
                     x=startX;
                     y=startY;
+                    health=3;
                     this.handler.getGame().getMusicHandler().play("finished");
                     handler.setIsInMap(false);
                     State.setState(handler.getGame().menuState);
@@ -300,21 +304,52 @@ public class UIPointer extends BaseDynamicEntity {
     }
 
     private void Grab() {
-        if(GB1.getIndex()>=2 && FlagGB1){
-            FlagGB1=false;
-            FlagGB2=true;
-        }else if(GB2.getIndex()>=1 && FlagGB2){
-            squeeze++;
-            if(squeeze>3) {
+        if(FlagGB1){
+            grabcounter++;
+            if(grabcounter<85) {
+                createDistance("Follow");
+            }else{
+                if(GB1.getIndex()>=2){
+                    GB1.reset();
+                    FlagGB1 = false;
+                    FlagGB2 = true;
+                    grabcounter=0;
+                }
+            }
+
+
+
+        }else if(FlagGB2){
+            if(getBounds().intersects(handler.getMario().getBounds())&& !handler.getMario().grabbed){
+                handler.getMario().grabbed=true;
+            }else if(getBounds().intersects(handler.getMario().getBounds()) && !handler.getMario().grabbed){
                 FlagGB2 = false;
                 FlagGB3 = true;
+                return;
+            }
+            if(GB2.getIndex()>=1){
+                squeeze++;
+                GB2.reset();
+                if(squeeze>3) {
+                    FlagGB2 = false;
+                    FlagGB3 = true;
+                }
+            }
+        }else if(FlagGB3){
+            if(GB3.getIndex()>=2 && FlagGB3){
+                GB3.reset();
+                FlagGB3=false;
+                attacking=false;
+                outOfCamera=false;
+                if(handler.getMario().grabbed){
+                    handler.getMario().grabbed=false;
+                    kill=true;
+                    this.handler.getGame().getMusicHandler().play("defeated");
+                }
             }
         }
-        else if(GB3.getIndex()>=2 && FlagGB3){
-            FlagGB3=false;
-            attacking=false;
-            outOfCamera=false;
-        }
+
+
 
     }
 
@@ -387,7 +422,6 @@ public class UIPointer extends BaseDynamicEntity {
             y-=4;
             if(y+height<=(handler.getMario().y-handler.getHeight())){
                 outOfCamera=true;
-                System.out.println("on Top");
             }
         }else if(dirrection.equals("Right")){
             int distanceY = this.y-handler.getMario().y;
@@ -401,6 +435,24 @@ public class UIPointer extends BaseDynamicEntity {
             if(x>=(handler.getWidth()+handler.getMario().x)){
                 outOfCamera=true;
             }
+        }else if(dirrection.equals("Follow")){
+            int distanceX = this.x-handler.getMario().x-10;
+            int distanceY = this.y-handler.getMario().y;
+            int speed = 4;
+            if(handler.getKeyManager().runbutt){speed=6;}
+            int speedY = Math.abs((int) handler.getMario().getVelY());
+
+            if(distanceX>speed){
+                x-=speed;
+            }else if(distanceX<-speed){
+                x+=speed;
+            }
+            if(distanceY>speedY){
+                y-=speedY;
+            }else if(distanceY<-speedY){
+                y+=speedY;
+            }
+
         }
         else{
             int distanceX = this.x-handler.getMario().x;
@@ -409,9 +461,9 @@ public class UIPointer extends BaseDynamicEntity {
             if(handler.getKeyManager().runbutt){speed=6;}
             int speedY = Math.abs((int) handler.getMario().getVelY());
 
-            if(distanceX>174){
+            if(distanceX>200){
                 x-=speed;
-            }else if(distanceX<152){
+            }else if(distanceX<172){
                 x+=speed;
             }
             if(distanceY>100){
