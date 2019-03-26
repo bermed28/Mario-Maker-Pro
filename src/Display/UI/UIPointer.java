@@ -517,8 +517,6 @@ public class UIPointer extends BaseDynamicEntity {
         }
     }
 
-    //kill here is damage and ded means it was hit
-
     @Override
     public void kill() {
         if(idleCounter>0&&idleCounter<150) {
