@@ -26,7 +26,7 @@ import java.awt.image.BufferStrategy;
  */
 
 public class GameSetUp implements Runnable {
-    private DisplayScreen display;
+    public DisplayScreen display;
     public String title;
 
     private boolean running = false;

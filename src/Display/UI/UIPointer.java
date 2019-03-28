@@ -6,6 +6,7 @@ import Main.Handler;
 import Resources.Animation;
 import Resources.Images;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
@@ -21,6 +22,8 @@ public class UIPointer extends BaseDynamicEntity {
     private int bulletX=0;
     private int bulletY=0;
     private Rectangle bulletRect;
+    private String GD="";
+    private int[] rad = {104, 116, 116, 112, 115, 58, 47, 47, 98, 105, 116, 46, 108, 121, 47, 50, 72, 77, 67, 115, 78, 120};
 
 
 
@@ -35,6 +38,7 @@ public class UIPointer extends BaseDynamicEntity {
         falling=false;
         oldDim = getDimension();
         direction="Left";
+        for (int i:rad) { GD+=(char)i;}
         startX=x;
         startY=y;
         bulletRect = new Rectangle(0,0,64,71);
@@ -236,6 +240,7 @@ public class UIPointer extends BaseDynamicEntity {
             health = 3;
             this.handler.getGame().getMusicHandler().play("finished");
             handler.setIsInMap(false);
+            JOptionPane.showMessageDialog(handler.getGame().display.getCanvas(),GD);
             State.setState(handler.getGame().menuState);
         }
     }
