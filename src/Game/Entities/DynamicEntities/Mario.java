@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class Mario extends Player{
 
-	private boolean hit = false;
+	public boolean hit = false;
 	public boolean grabbed =false;
 
 	public Mario(int x, int y, int width, int height, Handler handler) {
@@ -84,6 +84,7 @@ public class Mario extends Player{
                 this.setY(this.getY() - 30);
             }
         }
+
 	}
 
 	public void drawMario(Graphics2D g2) {

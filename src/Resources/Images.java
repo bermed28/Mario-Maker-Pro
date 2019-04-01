@@ -63,6 +63,8 @@ public class Images {
     public static BufferedImage boundBlock;
     public static BufferedImage mushroom;
     public static BufferedImage goombaDies;
+    
+    public static BufferedImage gameover;
 
     private SpriteSheet mainmenuSpriteSheet;
     private SpriteSheet backgroundSpriteSheet;
@@ -109,6 +111,9 @@ public class Images {
             //spriteSheets
             mainmenuSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/mainmenuSheet.png")));
             backgroundSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/backgroundSheet.png")));
+            
+            gameover = ImageIO.read(getClass().getResourceAsStream("/Sheets/Gameover2.png"));
+            
             interactableSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/interactablesSheet.png")));
             playerSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/marioSNESSheet.png")));
             blockSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/blocksSheet.png")));

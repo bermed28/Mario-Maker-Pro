@@ -10,6 +10,7 @@ public class Goomba extends BaseDynamicEntity {
 
     public Animation anim;
 
+
     public Goomba(int x, int y, int width, int height, Handler handler) {
         super(x, y, width, height, handler, Images.goomba[0]);
         anim = new Animation(160,Images.goomba);
@@ -27,7 +28,9 @@ public class Goomba extends BaseDynamicEntity {
             }
             checkHorizontal();
             move();
-        }else if(ded&&dedCounter==0){
+        }
+       
+        else if(ded&&dedCounter==0){
             y++;
             height--;
             setDimension(new Dimension(width,height));
@@ -36,6 +39,7 @@ public class Goomba extends BaseDynamicEntity {
                 y=-10000;
             }
         }
+       
     }
 
     @Override
