@@ -94,12 +94,12 @@ public class Player extends BaseDynamicEntity {
 
 		for (BaseStaticEntity brick : bricks) {
 			Rectangle brickTopBounds = brick.getTopBounds();
-			
-		
+
+
 			if( brick instanceof BoundBlock && handler.getMario().getBottomBounds().intersects(brick.getTopBounds())) {
 				handler.getMario().setHit(true);
 			}
-			
+
 			if (marioBottomBounds.intersects(brickTopBounds)) {
 				mario.setY(brick.getY() - mario.getDimension().height + 1);
 				falling = false;
@@ -110,16 +110,21 @@ public class Player extends BaseDynamicEntity {
 		for (BaseDynamicEntity enemy : enemies) {
 			Rectangle enemyTopBounds = enemy.getTopBounds();
 			if (marioBottomBounds.intersects(enemyTopBounds) && !(enemy instanceof Item)) {
+				
 				if(!enemy.ded) {
-
-					if(enemy.getLeftBounds().intersects(handler.getMario().getRightBounds()) || enemy.getRightBounds().intersects(handler.getMario().getLeftBounds()) ) {
-						handler.getMario().setHit(true);
+					if(!handler.getMario().isBig) {
+						if(enemy.getLeftBounds().intersects(handler.getMario().getRightBounds()) || enemy.getRightBounds().intersects(handler.getMario().getLeftBounds()) ) {
+							handler.getMario().setHit(true);
+						}
 					}
+					else if (handler.getMario().isBig)
+						handler.getMario().isBig = false;
 
 					handler.getGame().getMusicHandler().playStomp();
 					enemy.kill();
 					falling=false;
 					velY=0;
+
 				}
 
 			}
