@@ -225,6 +225,12 @@ public class MenuState extends State {
 			display.getCanvas().setCursor(c);
 			colorSelected = MapBuilder.superpowerblock;
 		}
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_9)){
+			Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,0.38823f,0.90588f,0.04705f), new Point(0, 0), "cursor1");
+			display.getCanvas().setCursor(c);
+			colorSelected = MapBuilder.piranhaPlant;
+		}
+		
 		
 
 		if(mouseManager.isLeftPressed() && !clicked){

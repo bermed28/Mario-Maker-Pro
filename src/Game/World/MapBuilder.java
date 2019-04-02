@@ -4,6 +4,7 @@ import Game.Entities.DynamicEntities.BaseDynamicEntity;
 import Game.Entities.DynamicEntities.Goomba;
 import Game.Entities.DynamicEntities.Mario;
 import Game.Entities.DynamicEntities.Mushroom;
+import Game.Entities.DynamicEntities.PiranhaPlant;
 import Game.Entities.StaticEntities.*;
 import Main.Handler;
 import Resources.Images;
@@ -21,6 +22,7 @@ public class MapBuilder {
 	public static int misteryBlock = new Color(255,216,0).getRGB();
 	public static int mushroom = new Color(178,0,255).getRGB();
 	public static int goomba = new Color(167,15,1).getRGB();
+	public static int piranhaPlant = new Color(99,231,12).getRGB();	
 	public static int superpowerblock = new Color(129,41,19).getRGB();
 	public static boolean mapDone = false;
 
@@ -54,10 +56,13 @@ public class MapBuilder {
 				}else if(currentPixel == goomba){
 					BaseDynamicEntity Goomba = new Goomba(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
 					mapInCreation.addEnemy(Goomba);
-				}
-				else if(currentPixel == superpowerblock){
+				}else if(currentPixel == superpowerblock){
 					SuperPowerBlock SuperPowerBlock = new SuperPowerBlock(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
 					mapInCreation.addBlock(SuperPowerBlock);
+				}
+				else if(currentPixel == piranhaPlant){
+					BaseDynamicEntity piranhaPlant = new PiranhaPlant(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
+					mapInCreation.addEnemy(piranhaPlant);
 				}
 			}
 

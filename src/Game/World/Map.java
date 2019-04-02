@@ -67,6 +67,9 @@ public class Map {
             }else if(entity instanceof Goomba && !entity.ded){
                 g2.drawImage(((Goomba)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
             }
+            else if(entity instanceof PiranhaPlant && !entity.ded){
+                g2.drawImage(((PiranhaPlant)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
+            }
             else if(entity instanceof UIPointer ){
                 ((UIPointer) entity).render(g2);
             }else {
