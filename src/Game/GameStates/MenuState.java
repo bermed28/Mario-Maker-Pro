@@ -271,9 +271,10 @@ public class MenuState extends State {
 					"6 -> Mushroom (Purple)\n" +
 					"7 -> Goomba (Brown)\n" +
 					"8 -> Super Power Block \n" +
-					"9 -> Piranha Plant \n" +
+					"9 -> Piranha Plant (Neon Green) \n" +
 					"T -> Teleportation Block \n" +
-					"\t (Place Block in the air)");
+					"\t (Place Block in the air)" + 
+					"L -> Luigi (Kelly Green)");
 		}
 		
 	}
