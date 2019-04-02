@@ -153,7 +153,7 @@ public class GameSetUp implements Runnable {
         }
 
     }
-
+    // COPY PASTE THIS FOR LUIGIS CAMERA
     private void updateCamera() {
         Player mario = handler.getMario();
         double marioVelocityX = mario.getVelX();

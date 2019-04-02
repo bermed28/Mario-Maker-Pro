@@ -23,6 +23,8 @@ public class MapBuilder {
 	public static int goomba = new Color(167,15,1).getRGB();
 	public static boolean mapDone = false;
 
+	
+	// Codes Images that are passed as parameters. By going pixel by pixel.
 	public static Map createMap(BufferedImage mapImage, Handler handler){
 		Map mapInCreation = new Map(handler);
 		for (int i = 0; i < mapImage.getWidth(); i++) {
