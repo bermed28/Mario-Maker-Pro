@@ -231,7 +231,7 @@ public class MenuState extends State {
 			colorSelected = MapBuilder.piranhaPlant;
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_T)){
-			Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,0.568627f,0.090196f,0.160784f), new Point(0, 0), "cursor1");
+			Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,0.72941f,0.050980f,0.835294f), new Point(0, 0), "cursor1");
 			display.getCanvas().setCursor(c);
 			colorSelected = MapBuilder.teleportationB;
 		}
@@ -272,7 +272,8 @@ public class MenuState extends State {
 					"7 -> Goomba (Brown)\n" +
 					"8 -> Super Power Block \n" +
 					"9 -> Piranha Plant \n" +
-					"T -> Other Block");
+					"T -> Teleportation Block \n" +
+					"\t (Place Block in the air)");
 		}
 		
 	}
