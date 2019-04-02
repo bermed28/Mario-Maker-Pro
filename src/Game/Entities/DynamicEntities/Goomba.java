@@ -29,11 +29,6 @@ public class Goomba extends BaseDynamicEntity {
 			checkHorizontal();
 			move();
 		}
-		if(!ded) {
-			if(this.getLeftBounds().intersects(handler.getMario().getRightBounds()) || this.getRightBounds().intersects(handler.getMario().getLeftBounds()) ) {
-				handler.getMario().setHit(true);
-			}
-		}
 		
 		else if(ded&&dedCounter==0){
 			y++;

@@ -9,4 +9,7 @@ public class BreakBlock extends BaseStaticEntity {
         super(x, y, width, height,handler, Images.breakBlock);
     }
 
+    public String type() {
+    	return "BreakBlock";
+    }
 }
