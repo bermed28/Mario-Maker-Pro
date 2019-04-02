@@ -7,6 +7,9 @@ import Resources.Images;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+import Game.Entities.StaticEntities.BaseStaticEntity;
+import Game.Entities.StaticEntities.TeleportationBlock;
+
 public class Mario extends Player{
 
 	public boolean hit = false;

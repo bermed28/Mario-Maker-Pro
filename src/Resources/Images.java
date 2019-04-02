@@ -75,6 +75,7 @@ public class Images {
 	public static BufferedImage surfaceBlock;
 	public static BufferedImage boundBlock;
 	public static BufferedImage superPB;
+	public static BufferedImage teleportationB;
 	public static BufferedImage mushroom;
 	public static BufferedImage goombaDies;
 	public static BufferedImage piranhaPlantDies;
@@ -165,6 +166,7 @@ public class Images {
 			butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
 			butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/ClickedBut.png"));//clickbut
 			superPB =  newblockSpriteSheet.crop(1728,34,347,355);
+			teleportationB =  newblockSpriteSheet.crop(24,729,348,357);
 
 			backgrounds[0] = backgroundSpriteSheet.crop(2,2,512,432);
 			backgrounds[1] = backgroundSpriteSheet.crop(516,2,512,432);

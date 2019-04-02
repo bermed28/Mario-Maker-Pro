@@ -14,6 +14,7 @@ import java.awt.image.BufferedImage;
 
 public class MapBuilder {
 
+	public static int limitOfOtherBlocks = 2;
 	public static int pixelMultiplier = 48;
 	public static int boundBlock = new Color(0,0,0).getRGB();
 	public static int mario = new Color(255,0,0).getRGB();
@@ -24,6 +25,7 @@ public class MapBuilder {
 	public static int goomba = new Color(167,15,1).getRGB();
 	public static int piranhaPlant = new Color(99,231,12).getRGB();	
 	public static int superpowerblock = new Color(129,41,19).getRGB();
+	public static int teleportationB = new Color(186,6,213).getRGB();
 	public static boolean mapDone = false;
 
 	
@@ -57,12 +59,17 @@ public class MapBuilder {
 					BaseDynamicEntity Goomba = new Goomba(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
 					mapInCreation.addEnemy(Goomba);
 				}else if(currentPixel == superpowerblock){
-					SuperPowerBlock SuperPowerBlock = new SuperPowerBlock(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
+					BaseStaticEntity SuperPowerBlock = new SuperPowerBlock(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
 					mapInCreation.addBlock(SuperPowerBlock);
-				}
-				else if(currentPixel == piranhaPlant){
+				}else if(currentPixel == piranhaPlant){
 					BaseDynamicEntity piranhaPlant = new PiranhaPlant(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
 					mapInCreation.addEnemy(piranhaPlant);
+				}else if(currentPixel == teleportationB){
+					BaseStaticEntity TeleportationBlock = new TeleportationBlock(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
+					if(limitOfOtherBlocks > 0) {
+					mapInCreation.addBlock(TeleportationBlock);
+					limitOfOtherBlocks --;
+					}
 				}
 			}
 

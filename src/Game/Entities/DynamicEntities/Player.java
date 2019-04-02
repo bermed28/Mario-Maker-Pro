@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import Game.Entities.StaticEntities.BaseStaticEntity;
 import Game.Entities.StaticEntities.BoundBlock;
 import Game.Entities.StaticEntities.BreakBlock;
+import Game.Entities.StaticEntities.TeleportationBlock;
 import Main.Handler;
 import Resources.Animation;
 
@@ -135,10 +136,22 @@ public class Player extends BaseDynamicEntity {
 		Rectangle marioTopBounds = mario.getTopBounds();
 		for (BaseStaticEntity brick : bricks) {
 			Rectangle brickBottomBounds = brick.getBottomBounds();
+			if(brick instanceof TeleportationBlock) {
+				if (marioTopBounds.intersects(brickBottomBounds)) {
+					for (BaseStaticEntity otherbrick : bricks) {
+						if(otherbrick instanceof TeleportationBlock && !(otherbrick.getX() == handler.getMario().getX()) && !(otherbrick.getY() - otherbrick.height == handler.getMario().getY())) {
+							mario.setX(otherbrick.getX());
+							mario.setY(otherbrick.getY() + otherbrick.height);
+							velY=0;
+						}
+					}
+				}
+			}
 			if (marioTopBounds.intersects(brickBottomBounds)) {
 				velY=0;
 				mario.setY(brick.getY() + brick.height);
 			}
+			
 		}
 	}
 
