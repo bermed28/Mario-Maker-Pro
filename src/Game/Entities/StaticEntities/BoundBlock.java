@@ -9,7 +9,5 @@ public class BoundBlock extends BaseStaticEntity {
         super(x, y, width, height,handler, Images.boundBlock);
     }
 
-    public String type() {
-    	return "BoundBlock";
-    }
+   
 }
