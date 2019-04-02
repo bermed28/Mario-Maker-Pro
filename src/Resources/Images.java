@@ -73,6 +73,7 @@ public class Images {
     public static BufferedImage misteryBlock;
     public static BufferedImage surfaceBlock;
     public static BufferedImage boundBlock;
+    public static BufferedImage superPB;
     public static BufferedImage mushroom;
     public static BufferedImage goombaDies;
     
@@ -83,6 +84,7 @@ public class Images {
     private SpriteSheet interactableSpriteSheet;
     private SpriteSheet player1SpriteSheet;
     private SpriteSheet blockSpriteSheet;
+    private SpriteSheet newblockSpriteSheet;
     private SpriteSheet goombaSpriteSheet;
     private SpriteSheet SSpriteSheet;
     private SpriteSheet SAttackSpriteSheet;
@@ -144,6 +146,7 @@ public class Images {
             player1SpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/marioSNESSheet.png")));
             player2SpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/playerSheet.png")));
             blockSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/blocksSheet.png")));
+            newblockSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/New_Blocks.png")));
             goombaSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/goombaSprite.png")));
             SSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/Sheets.png")));
             SAttackSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/enemySheet2.png")));
@@ -156,6 +159,7 @@ public class Images {
             butstart[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/NormBut.png"));//normbut
             butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
             butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/ClickedBut.png"));//clickbut
+            superPB =  newblockSpriteSheet.crop(1728,34,347,355);
 
             backgrounds[0] = backgroundSpriteSheet.crop(2,2,512,432);
             backgrounds[1] = backgroundSpriteSheet.crop(516,2,512,432);

@@ -220,6 +220,12 @@ public class MenuState extends State {
 			display.getCanvas().setCursor(c);
 			colorSelected = MapBuilder.goomba;
 		}
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_8)){
+			Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,0.568627f,0.090196f,0.160784f), new Point(0, 0), "cursor1");
+			display.getCanvas().setCursor(c);
+			colorSelected = MapBuilder.superpowerblock;
+		}
+		
 
 		if(mouseManager.isLeftPressed() && !clicked){
 			int posX =mouseManager.getMouseX()/GridPixelsize;
@@ -254,7 +260,8 @@ public class MenuState extends State {
 					"4 -> Surface Block (Orange)\n" +
 					"5 -> Bounds Block (Black)\n" +
 					"6 -> Mushroom (Purple)\n" +
-					"7 -> Goomba (Brown)");
+					"7 -> Goomba (Brown)\n" +
+					"8 -> Super Power Block");
 		}
 	}
 	public UIAnimationButton getBut() {

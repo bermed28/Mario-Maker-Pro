@@ -21,6 +21,7 @@ public class MapBuilder {
 	public static int misteryBlock = new Color(255,216,0).getRGB();
 	public static int mushroom = new Color(178,0,255).getRGB();
 	public static int goomba = new Color(167,15,1).getRGB();
+	public static int superpowerblock = new Color(129,41,19).getRGB();
 	public static boolean mapDone = false;
 
 	
@@ -53,6 +54,10 @@ public class MapBuilder {
 				}else if(currentPixel == goomba){
 					BaseDynamicEntity Goomba = new Goomba(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
 					mapInCreation.addEnemy(Goomba);
+				}
+				else if(currentPixel == superpowerblock){
+					SuperPowerBlock SuperPowerBlock = new SuperPowerBlock(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
+					mapInCreation.addBlock(SuperPowerBlock);
 				}
 			}
 
