@@ -1,13 +1,15 @@
 package Game.Entities.DynamicEntities;
 
-import Game.Entities.EntityBase;
-import Game.Entities.StaticEntities.BaseStaticEntity;
-import Main.Handler;
-import Resources.Animation;
-
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+import Game.Entities.StaticEntities.BaseStaticEntity;
+import Game.Entities.StaticEntities.BoundBlock;
+import Game.Entities.StaticEntities.BreakBlock;
+import Main.Handler;
+import Resources.Animation;
 
 public class Player extends BaseDynamicEntity {
 
@@ -92,6 +94,12 @@ public class Player extends BaseDynamicEntity {
 
 		for (BaseStaticEntity brick : bricks) {
 			Rectangle brickTopBounds = brick.getTopBounds();
+			
+		
+			if( brick instanceof BoundBlock && handler.getMario().getBottomBounds().intersects(brick.getTopBounds())) {
+				handler.getMario().setHit(true);
+			}
+			
 			if (marioBottomBounds.intersects(brickTopBounds)) {
 				mario.setY(brick.getY() - mario.getDimension().height + 1);
 				falling = false;
@@ -103,6 +111,11 @@ public class Player extends BaseDynamicEntity {
 			Rectangle enemyTopBounds = enemy.getTopBounds();
 			if (marioBottomBounds.intersects(enemyTopBounds) && !(enemy instanceof Item)) {
 				if(!enemy.ded) {
+
+					if(enemy.getLeftBounds().intersects(handler.getMario().getRightBounds()) || enemy.getRightBounds().intersects(handler.getMario().getLeftBounds()) ) {
+						handler.getMario().setHit(true);
+					}
+
 					handler.getGame().getMusicHandler().playStomp();
 					enemy.kill();
 					falling=false;
@@ -154,7 +167,7 @@ public class Player extends BaseDynamicEntity {
 				marioDies = true;
 				break;
 			}
-			
+
 		}
 
 		if(marioDies) {
