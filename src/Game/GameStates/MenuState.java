@@ -235,6 +235,11 @@ public class MenuState extends State {
 			display.getCanvas().setCursor(c);
 			colorSelected = MapBuilder.teleportationB;
 		}
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_L)){
+			Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,0.12549f,0.58039f,0.062745f), new Point(0, 0), "cursor1");
+			display.getCanvas().setCursor(c);
+			colorSelected = MapBuilder.luigi;
+		}
 
 		if(mouseManager.isLeftPressed() && !clicked){
 			int posX =mouseManager.getMouseX()/GridPixelsize;
@@ -273,7 +278,7 @@ public class MenuState extends State {
 					"8 -> Super Power Block \n" +
 					"9 -> Piranha Plant (Neon Green) \n" +
 					"T -> Teleportation Block \n" +
-					"\t (Place Block in the air)" + 
+					"\t (Place Block in the air) \n" + 
 					"L -> Luigi (Kelly Green)");
 		}
 		

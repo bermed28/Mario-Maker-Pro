@@ -13,14 +13,14 @@ public class Luigi extends Player {
 
 	public boolean hit = false;
 	public boolean grabbed = false;
-	public Luigi(int x, int y, int width, int height, Handler handler) { //Have to change to Luigi arrays SOMEHOW
-		super(x, y, width, height, handler, Images.marioSmallWalkRight[0]
-				,new Animation(175,Images.marioSmallWalkLeft)
-				, new Animation(175,Images.marioSmallWalkRight)
-				, new Animation(150,Images.marioBigWalkLeft)
-				, new Animation(150,Images.marioBigWalkRight)
-				, new Animation(115,Images.marioBigRunLeft)
-				, new Animation(115,Images.marioBigRunRight));
+	public Luigi(int x, int y, int width, int height, Handler handler) { 
+		super(x, y, width, height, handler, Images.luigiSmallWalkRight[0]
+				,new Animation(175,Images.luigiSmallWalkLeft)
+				, new Animation(175,Images.luigiSmallWalkRight)
+				, new Animation(150,Images.luigiBigWalkLeft)
+				, new Animation(150,Images.luigiBigWalkRight)
+				, new Animation(115,Images.luigiBigRunLeft)
+				, new Animation(115,Images.luigiBigRunRight));
 		if(isBig){
 			this.y-=8;
 			this.height+=8;

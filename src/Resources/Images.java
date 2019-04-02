@@ -232,45 +232,46 @@ public class Images {
 			//Player 2 (Luigi) Sprites
 			//Luigi Small 
 
-			luigiSmallWalkLeft[0] = player2SpriteSheet.crop(169,0,14,20);
-			luigiSmallWalkLeft[1] = player2SpriteSheet.crop(49,0,15,19);
-			luigiSmallWalkRight[0] = player2SpriteSheet.crop(209,0,14,20);
-			luigiSmallWalkRight[1] = player2SpriteSheet.crop(328,0,15,19);
+			luigiSmallWalkLeft[0] = player2SpriteSheet.crop(169,0,16,22);
+			luigiSmallWalkLeft[1] = player2SpriteSheet.crop(200,0,13,23);
+			
+			luigiSmallWalkRight[0] = player2SpriteSheet.crop(235, 0, 14, 23);
+			luigiSmallWalkRight[1] = player2SpriteSheet.crop(264,0,15,22);
 
-			luigiSmallJumpLeft[0] = player2SpriteSheet.crop(168,39,16,22);
-			luigiSmallJumpLeft[1] = player2SpriteSheet.crop(128,40,16,20);
-			luigiSmallJumpLeft[2] = player2SpriteSheet.crop(49,39,15,21);//up
-			luigiSmallJumpLeft[3] = player2SpriteSheet.crop(89,43,15,14);//down
+			luigiSmallJumpLeft[0] = player2SpriteSheet.crop(200,30,15,22);
+			luigiSmallJumpLeft[1] = player2SpriteSheet.crop(113,0,15,22);
+			luigiSmallJumpLeft[2] = player2SpriteSheet.crop(89,29,16,24);//up
+			luigiSmallJumpLeft[3] = player2SpriteSheet.crop(112,33,16,16);//down
 
-			luigiSmallJumpRight[0] = player2SpriteSheet.crop(208,39,16,22);
-			luigiSmallJumpRight[1] = player2SpriteSheet.crop(248,40,16,20);
-			luigiSmallJumpRight[2] = player2SpriteSheet.crop(328,39,15,21);//up
-			luigiSmallJumpRight[3] = player2SpriteSheet.crop(288,43,15,14);//down
+			luigiSmallJumpRight[0] = player2SpriteSheet.crop(234,30,16,22);
+			luigiSmallJumpRight[1] = player2SpriteSheet.crop(264,0,16,22);
+			luigiSmallJumpRight[2] = player2SpriteSheet.crop(348,30,15,23);//up
+			luigiSmallJumpLeft[3] = player2SpriteSheet.crop(321,34,16,16);//down
 
 			// Luigi Big
-			luigiBigWalkLeft[0] = player2SpriteSheet.crop(169,76,15,28);
-			luigiBigWalkLeft[1] = player2SpriteSheet.crop(8,76,16,28);
+			luigiBigWalkLeft[0] = player2SpriteSheet.crop(119,116,16,31);
+			luigiBigWalkLeft[1] = player2SpriteSheet.crop(167,115,18,32);
 
-			luigiBigWalkRight[0] = player2SpriteSheet.crop(208,76,15,28);
-			luigiBigWalkRight[1] = player2SpriteSheet.crop(368,76,16,28);
+			luigiBigWalkRight[0] = player2SpriteSheet.crop(233,115,17,32);
+			luigiBigWalkRight[1] = player2SpriteSheet.crop(263,115,16,32);
 
-			luigiBigRunLeft[0] = player2SpriteSheet.crop(169,76,15,28);
-			luigiBigRunLeft[1] = player2SpriteSheet.crop(48,76,16,27);
+			luigiBigRunLeft[0] = player2SpriteSheet.crop(167,115,18,32);
+			luigiBigRunLeft[1] = player2SpriteSheet.crop(137,115,19,32);
 
-			luigiBigRunRight[0] = player2SpriteSheet.crop(208,76,15,28);
-			luigiBigRunRight[1] = player2SpriteSheet.crop(328,76,16,27);
+			luigiBigRunRight[0] = player2SpriteSheet.crop(263,115,16,32);
+			luigiBigRunRight[1] = player2SpriteSheet.crop(293,115,19,30);
 
-			luigiBigJumpLeft[0] = player2SpriteSheet.crop(168,114,16,31);
-			luigiBigJumpLeft[1] = player2SpriteSheet.crop(128,115,16,29);
-			luigiBigJumpLeft[2] = player2SpriteSheet.crop(129,196,15,27);//up
-			luigiBigJumpLeft[3] = player2SpriteSheet.crop(88,122,16,15);//down
-			luigiBigJumpLeft[4] = player2SpriteSheet.crop(8,115,16,29);//change
+			luigiBigJumpLeft[0] = player2SpriteSheet.crop(119,116,16,31);
+			luigiBigJumpLeft[1] = player2SpriteSheet.crop(198,156,17,30);
+			luigiBigJumpLeft[2] = player2SpriteSheet.crop(85,156,16,30);//up
+			luigiBigJumpLeft[3] = player2SpriteSheet.crop(111,163,17,17);//down
+			luigiBigJumpLeft[4] = player2SpriteSheet.crop(0,156,18,32);//change
 
-			luigiBigJumpRight[0] = player2SpriteSheet.crop(208,114,16,31);
-			luigiBigJumpRight[1] = player2SpriteSheet.crop(248,115,16,29);
-			luigiBigJumpRight[2] = player2SpriteSheet.crop(248,196,15,27);//up
-			luigiBigJumpRight[3] = player2SpriteSheet.crop(287,122,16,15);//down
-			luigiBigJumpRight[4] = player2SpriteSheet.crop(368,115,16,29);//Change
+			luigiBigJumpRight[0] = player2SpriteSheet.crop(233,115,17,32);
+			luigiBigJumpRight[1] = player2SpriteSheet.crop(234,156,17,30);
+			luigiBigJumpRight[2] = player2SpriteSheet.crop(348,155,16,31);//up
+			luigiBigJumpRight[3] = player2SpriteSheet.crop(321,162, 16,16);//down
+			luigiBigJumpRight[4] = player2SpriteSheet.crop(432,156,16,31);//Change
 
 
 			item[0] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL1.png"));
