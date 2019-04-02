@@ -267,8 +267,10 @@ public class MenuState extends State {
 					"5 -> Bounds Block (Black)\n" +
 					"6 -> Mushroom (Purple)\n" +
 					"7 -> Goomba (Brown)\n" +
-					"8 -> Super Power Block");
+					"8 -> Super Power Block \n" +
+					"9 -> Piranha Plant");
 		}
+		
 	}
 	public UIAnimationButton getBut() {
 		return this.but;
