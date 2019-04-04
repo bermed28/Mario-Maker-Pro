@@ -158,7 +158,6 @@ public class Player extends BaseDynamicEntity {
 					mario.isBig = true;
 				}
 			}
-
 		}
 	}
 
