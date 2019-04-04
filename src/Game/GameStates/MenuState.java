@@ -67,13 +67,13 @@ public class MenuState extends State {
 		for (int i:str) { str2+=(char)i;}
 		this.but = new UIAnimationButton(handler.getWidth() - (handler.getWidth()/ 8),(handler.getHeight()/0b1100),32, 32 , Images.item, () -> {
 			if(but.getdraw() && !handler.isInMap()) {handler.setMap(handler.getGame().getMap());
-				handler.getGame().getMusicHandler().pauseBackground();
-				handler.getGame().getMusicHandler().play("Megalovania");
-				State.setState(handler.getGame().gameState);}}, this.handler);
+			handler.getGame().getMusicHandler().pauseBackground();
+			handler.getGame().getMusicHandler().play("Megalovania");
+			State.setState(handler.getGame().gameState);}}, this.handler);
 		//uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+(handler.getHeight()/8), 128, 64, Images.butstart, () -> {
-			//if(!handler.isInMap()) {
-				//mode = "Select";
-			//}
+		//if(!handler.isInMap()) {
+		//mode = "Select";
+		//}
 		//}));
 		mode = "Select";
 	}
@@ -236,10 +236,12 @@ public class MenuState extends State {
 			display.getCanvas().setCursor(c);
 			colorSelected = MapBuilder.teleportationB;
 		}
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_L)){
-			Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,0.12549f,0.58039f,0.062745f), new Point(0, 0), "cursor1");
-			display.getCanvas().setCursor(c);
-			colorSelected = MapBuilder.luigi;
+		if(Player_Selection.MultiPlayer) {
+			if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_L)){
+				Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,0.12549f,0.58039f,0.062745f), new Point(0, 0), "cursor1");
+				display.getCanvas().setCursor(c);
+				colorSelected = MapBuilder.luigi;
+			}
 		}
 
 		if(mouseManager.isLeftPressed() && !clicked){
@@ -267,22 +269,41 @@ public class MenuState extends State {
 			JOptionPane.showMessageDialog(display.getFrame(), "You cant have a map without at least a Mario and a floor right under him. (1 for Mario)");
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_H)){
-			JOptionPane.showMessageDialog(display.getFrame(), "Number key <-> Color Mapping: \n" +
-					"0 -> Erase \n" +
-					"1 -> Mario (Red)\n" +
-					"2 -> Break Block (Blue)\n" +
-					"3 -> Mystery Block (Yellow)\n" +
-					"4 -> Surface Block (Orange)\n" +
-					"5 -> Bounds Block (Black)\n" +
-					"6 -> Mushroom (Purple)\n" +
-					"7 -> Goomba (Brown)\n" +
-					"8 -> Super Power Block \n" +
-					"9 -> Piranha Plant (Neon Green) \n" +
-					"T -> Teleportation Block \n" +
-					"\t (Place Block in the air) \n" + 
-					"L -> Luigi (Kelly Green)");
+			if(Player_Selection.MultiPlayer) {
+				JOptionPane.showMessageDialog(display.getFrame(), "Number key <-> Color Mapping: \n" +
+						"0 -> Erase \n" +
+						"1 -> Mario (Red)\n" +
+						"2 -> Break Block (Blue)\n" +
+						"3 -> Mystery Block (Yellow)\n" +
+						"4 -> Surface Block (Orange)\n" +
+						"5 -> Bounds Block (Black)\n" +
+						"6 -> Mushroom (Purple)\n" +
+						"7 -> Goomba (Brown)\n" +
+						"8 -> Super Power Block \n" +
+						"9 -> Piranha Plant (Neon Green) \n" +
+						"T -> Teleportation Block \n" +
+						"\t (Place Block in the air) \n" + 
+						"L -> Luigi (Kelly Green)");
+			}
+
+			else {
+				JOptionPane.showMessageDialog(display.getFrame(), "Number key <-> Color Mapping: \n" +
+						"0 -> Erase \n" +
+						"1 -> Mario (Red)\n" +
+						"2 -> Break Block (Blue)\n" +
+						"3 -> Mystery Block (Yellow)\n" +
+						"4 -> Surface Block (Orange)\n" +
+						"5 -> Bounds Block (Black)\n" +
+						"6 -> Mushroom (Purple)\n" +
+						"7 -> Goomba (Brown)\n" +
+						"8 -> Super Power Block \n" +
+						"9 -> Piranha Plant (Neon Green) \n" +
+						"T -> Teleportation Block \n" +
+						"\t (Place Block in the air) \n"); 
+
+			}
 		}
-		
+
 	}
 	public UIAnimationButton getBut() {
 		return this.but;
