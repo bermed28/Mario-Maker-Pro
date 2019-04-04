@@ -8,7 +8,9 @@ import Game.Entities.StaticEntities.BreakBlock;
 import Game.GameStates.GameOverState;
 import Game.GameStates.GameState;
 import Game.GameStates.MenuState;
+//import Game.GameStates.MultiPlayerState;
 import Game.GameStates.PauseState;
+import Game.GameStates.Player_Selection;
 import Game.GameStates.State;
 import Game.World.Map;
 import Game.World.MapBuilder;
@@ -50,7 +52,9 @@ public class GameSetUp implements Runnable {
     public State gameState;
     public State menuState;
     public State pauseState;
+    public State playerSelectionState;
     public State gameoverState;
+    public State multiPlayerState;
 
     //Res.music
     private MusicHandler musicHandler;
@@ -83,8 +87,10 @@ public class GameSetUp implements Runnable {
         menuState = new MenuState(handler);
         pauseState = new PauseState(handler);
         gameoverState = new GameOverState(handler);
+        playerSelectionState = new Player_Selection(handler);
+        //multiPlayerState = new MultiPlayerState(handler);
 
-        State.setState(menuState);
+        State.setState(playerSelectionState);
     }
 
     public void reStart(){

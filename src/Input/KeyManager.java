@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
 public class KeyManager implements KeyListener {
 
 	private boolean[] keys,justPressed,cantPress;
-	public boolean up=false, down=false, left=false, right=false,pbutt=false,runbutt=false, ebutt=false;
+	public boolean up_mario=false, down_mario=false, left_mario=false, right_mario=false,up_luigi=false, down_luigi=false, left_luigi=false, right_luigi=false,pbutt=false,runbutt=false, ebutt=false;
 
 
 	public KeyManager(){
@@ -37,10 +37,19 @@ public class KeyManager implements KeyListener {
 			}
 		}
 
-		up = keys[KeyEvent.VK_W] || keys[KeyEvent.VK_UP];
-		down = keys[KeyEvent.VK_S] || keys[KeyEvent.VK_DOWN];
-		left = keys[KeyEvent.VK_A] || keys[KeyEvent.VK_LEFT];
-		right = keys[KeyEvent.VK_D] || keys[KeyEvent.VK_RIGHT];
+		up_mario= keys[KeyEvent.VK_W];
+		down_mario = keys[KeyEvent.VK_S];  
+		left_mario = keys[KeyEvent.VK_A];  
+		right_mario = keys[KeyEvent.VK_D];  
+
+
+		up_luigi = keys[KeyEvent.VK_UP];
+		down_luigi = keys[KeyEvent.VK_DOWN];
+		left_luigi = keys[KeyEvent.VK_LEFT];
+		right_luigi = keys[KeyEvent.VK_RIGHT];
+
+
+
 
 		pbutt = keys[KeyEvent.VK_ESCAPE];
 		runbutt = keys[KeyEvent.VK_SHIFT];

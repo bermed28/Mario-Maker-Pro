@@ -6,6 +6,7 @@ import Display.UI.UIStringButton;
 import Game.World.MapBuilder;
 import Input.KeyManager;
 import Input.MouseManager;
+import Main.GameSetUp;
 import Main.Handler;
 import Resources.Images;
 import Display.UI.UIAnimationButton;
@@ -26,7 +27,7 @@ import java.util.Random;
 /**
  * Created by AlexVR on 7/1/2018.
  */
-public class MenuState extends State {
+public class Player_Selection extends State {
 
 	public UIManager uiManager;
 	private int background;
@@ -35,8 +36,6 @@ public class MenuState extends State {
 	private DisplayScreen display;
 	private int[] str={83,117,98,32,116,111,32,80,101,119,100,115};
 	private String str2="";
-
-
 	private BufferStrategy bs;
 	private Graphics g;
 	private UIAnimationButton but;
@@ -49,8 +48,9 @@ public class MenuState extends State {
 	private KeyManager keyManager;
 	private MouseManager mouseManager;
 	private boolean clicked = true;
+	private Canvas secondscreen;
 
-	public MenuState(Handler handler) {
+	public Player_Selection(Handler handler) {
 		super(handler);
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUimanager(uiManager);
@@ -67,15 +67,14 @@ public class MenuState extends State {
 		for (int i:str) { str2+=(char)i;}
 		this.but = new UIAnimationButton(handler.getWidth() - (handler.getWidth()/ 8),(handler.getHeight()/0b1100),32, 32 , Images.item, () -> {
 			if(but.getdraw() && !handler.isInMap()) {handler.setMap(handler.getGame().getMap());
-				handler.getGame().getMusicHandler().pauseBackground();
-				handler.getGame().getMusicHandler().play("Megalovania");
-				State.setState(handler.getGame().gameState);}}, this.handler);
-		//uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+(handler.getHeight()/8), 128, 64, Images.butstart, () -> {
-			//if(!handler.isInMap()) {
-				//mode = "Select";
-			//}
-		//}));
-		mode = "Select";
+			handler.getGame().getMusicHandler().pauseBackground();
+			handler.getGame().getMusicHandler().play("Megalovania");
+			State.setState(handler.getGame().gameState);}}, this.handler);
+		uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+(handler.getHeight()/8), 128, 64, Images.butstart, () -> {
+			if(!handler.isInMap()) {
+				mode = "Select";
+			}
+		}));
 	}
 
 	@Override
@@ -89,53 +88,16 @@ public class MenuState extends State {
 				handler.getMouseManager().setUimanager(uiManager);
 
 				//New Map
-				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) - (64), 128, 64, "New Map", () -> {
-					if(!handler.isInMap()) {
-						mode = "Menu";
-						initNew("New Map Creator", handler);
-					}
+				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) - (64), 128, 64, "1 Player", () -> {
+					State.setState(handler.getGame().menuState);
 				}, handler,Color.BLACK));
 
 
 				//testMap1
-				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, handler.getHeight() / 2 + (handler.getHeight() / 10), 128, 64, "Map 1", () -> {
-					if(!handler.isInMap()) {
-						mode = "Menu";
-						handler.setMap(MapBuilder.createMap(Images.testMap, handler));
-						State.setState(handler.getGame().gameState);
-					}
+				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, handler.getHeight() / 2 + (handler.getHeight() / 10), 128, 64, "2 Players", () -> {
+					State.setState(handler.getGame().menuState);
+		
 				}, handler,Color.BLACK));
-
-				//testmap2
-				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) + (64), 128, 64, "Map 2", () -> {
-					if(!handler.isInMap()) {
-						mode = "Menu";
-						handler.setMap(MapBuilder.createMap(Images.testMaptwo, handler));
-						State.setState(handler.getGame().gameState);
-					}
-				}, handler,Color.BLACK));
-
-				//other
-				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) + (128), 128, 64, "Other", () -> {
-					if(!handler.isInMap()){
-						mode = "Menu";
-						JFileChooser chooser = new JFileChooser("/maps");
-						FileNameExtensionFilter filter = new FileNameExtensionFilter(
-								"JPG, & PNG Images", "jpg", "png");
-						chooser.setFileFilter(filter);
-						int returnVal = chooser.showOpenDialog(null);
-						if (returnVal == JFileChooser.APPROVE_OPTION) {
-							System.out.println("You chose to open this file: " + chooser.getSelectedFile().getAbsolutePath());
-							try {
-								handler.setMap(MapBuilder.createMap(ImageIO.read(chooser.getSelectedFile()), handler));
-								State.setState(handler.getGame().gameState);
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-						}
-					}
-				}, handler,Color.BLACK));
-				uiManager.addObjects(this.but);
 			}
 			if (mode.equals("Selecting") && handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE) && (!handler.isInMap())) {
 				mode = "Menu";
@@ -282,7 +244,7 @@ public class MenuState extends State {
 					"\t (Place Block in the air) \n" + 
 					"L -> Luigi (Kelly Green)");
 		}
-		
+
 	}
 	public UIAnimationButton getBut() {
 		return this.but;

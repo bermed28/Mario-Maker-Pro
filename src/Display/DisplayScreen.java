@@ -19,7 +19,7 @@ public class DisplayScreen {
     private URL iconURL;
 
     private String title;
-    private int width, height;
+    public int width, height;
 
     public DisplayScreen(String title, int width, int height){
         this.title = title;
@@ -31,7 +31,7 @@ public class DisplayScreen {
         createDisplay();
     }
 
-    private void createDisplay(){
+    public void createDisplay(){
         frame = new JFrame(title);
         frame.setSize(width, height);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

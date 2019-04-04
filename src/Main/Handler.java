@@ -1,5 +1,6 @@
 package Main;
 
+import Game.Entities.DynamicEntities.Luigi;
 import Game.Entities.DynamicEntities.Mario;
 import Game.World.Map;
 import Input.Camera;
@@ -23,10 +24,12 @@ public class Handler {
 
     private GameSetUp game;
     private Mario mario;
+    private Luigi luigi;
     private Map map;
     private boolean marioInMap =false;
 
     private Camera camera;
+    
 
 
     public Handler(){
@@ -64,6 +67,9 @@ public class Handler {
     ///TO CHange
     public Mario getMario() {
         return mario;
+    }
+    public Luigi getLuigi() {
+        return luigi;
     }
 
     public void setMario(Mario mario) {
