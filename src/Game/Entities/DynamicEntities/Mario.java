@@ -35,11 +35,11 @@ public class Mario extends Player{
 	    if(!grabbed) {
             super.tick();
             if (!this.hit) {
-                if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE) && !handler.getKeyManager().up && !handler.getKeyManager().down) {
+                if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE) && !handler.getKeyManager().up_mario && !handler.getKeyManager().down_mario){
                     this.jump();
                 }
 
-                if (handler.getKeyManager().right && !handler.getKeyManager().up && !handler.getKeyManager().down) {
+                if (handler.getKeyManager().right_mario && !handler.getKeyManager().up_mario && !handler.getKeyManager().down_mario) {
                     if (handler.getKeyManager().runbutt) {
                         velX = 6;
                         running = true;
@@ -52,7 +52,7 @@ public class Mario extends Player{
                     }
                     facing = "Right";
                     moving = true;
-                } else if (handler.getKeyManager().left && !handler.getKeyManager().up && !handler.getKeyManager().down) {
+                } else if (handler.getKeyManager().left_mario && !handler.getKeyManager().up_mario&& !handler.getKeyManager().down_mario) {
                     if (handler.getKeyManager().runbutt) {
                         velX = -6;
                         running = true;
@@ -93,13 +93,13 @@ public class Mario extends Player{
 	public void drawMario(Graphics2D g2) {
 		if(!grabbed) {
 			if (!isBig) {
-				if (handler.getKeyManager().up) {
+				if (handler.getKeyManager().up_mario) {
 					if (facing.equals("Left")) {
 						g2.drawImage(Images.marioSmallJumpLeft[2], x, y, width, height, null);
 					} else {
 						g2.drawImage(Images.marioSmallJumpRight[2], x, y, width, height, null);
 					}
-				} else if (handler.getKeyManager().down) {
+				} else if (handler.getKeyManager().down_mario) {
 					if (facing.equals("Left")) {
 						g2.drawImage(Images.marioSmallJumpLeft[3], x, y, width, height, null);
 					} else {
@@ -134,13 +134,13 @@ public class Mario extends Player{
 				}
 			} else {
 				if (!changeDirrection) {
-					if (handler.getKeyManager().up) {
+					if (handler.getKeyManager().up_mario) {
 						if (facing.equals("Left")) {
 							g2.drawImage(Images.marioBigJumpLeft[4], x, y, width, height, null);
 						} else {
 							g2.drawImage(Images.marioBigJumpRight[4], x, y, width, height, null);
 						}
-					} else if (handler.getKeyManager().down) {
+					} else if (handler.getKeyManager().down_mario){
 						if (facing.equals("Left")) {
 							g2.drawImage(Images.marioBigJumpLeft[3], x, y, width, height, null);
 						} else {
