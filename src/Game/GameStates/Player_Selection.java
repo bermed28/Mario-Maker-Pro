@@ -34,6 +34,7 @@ public class Player_Selection extends State {
 	private String mode= "Menu";
 
 	public static boolean MultiPlayer = false;
+	public static boolean Screenmove = false;
 	
 	private DisplayScreen display;
 	private int[] str={83,117,98,32,116,111,32,80,101,119,100,115};
@@ -99,6 +100,7 @@ public class Player_Selection extends State {
 				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, handler.getHeight() / 2 + (handler.getHeight() / 10), 128, 64, "2 Players", () -> {
 					State.setState(handler.getGame().menuState);
 					Player_Selection.MultiPlayer = true;
+					Player_Selection.Screenmove = true;
 		
 				}, handler,Color.BLACK));
 			}

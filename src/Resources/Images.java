@@ -64,6 +64,7 @@ public class Images {
 
 
 	public static BufferedImage title;
+	public static BufferedImage luigiLoading;
 	public static BufferedImage Pause;
 	public static BufferedImage Cursor;
 
@@ -160,6 +161,7 @@ public class Images {
 
 			//Images
 			title = mainmenuSpriteSheet.crop(16,16,256,224);
+			luigiLoading = ImageIO.read(getClass().getResourceAsStream("/Sheets/luigi-wallpapers.jpg"));
 			Pause = ImageIO.read(getClass().getResourceAsStream("/Sheets/Pause.png"));
 			Cursor = ImageIO.read(getClass().getResourceAsStream("/Sheets/cursor.png"));
 			butstart[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/NormBut.png"));//normbut
