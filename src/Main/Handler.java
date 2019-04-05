@@ -27,6 +27,7 @@ public class Handler {
     private Luigi luigi;
     private Map map;
     private boolean marioInMap =false;
+   
 
     private Camera camera;
     
@@ -68,13 +69,21 @@ public class Handler {
     public Mario getMario() {
         return mario;
     }
-    public Luigi getLuigi() {
-        return luigi;
-    }
+ 
 
     public void setMario(Mario mario) {
         this.mario = mario;
     }
+    
+    public Luigi getLuigi() {
+        return luigi;
+    }
+ 
+
+    public void setLuigi(Luigi luigi) {
+        this.luigi = luigi;
+    }
+  
 
     public Map getMap() {
         return map;
