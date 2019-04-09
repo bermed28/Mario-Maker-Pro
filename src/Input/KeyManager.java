@@ -12,7 +12,8 @@ import java.awt.event.KeyListener;
 public class KeyManager implements KeyListener {
 
 	private boolean[] keys,justPressed,cantPress;
-	public boolean up_mario=false, down_mario=false, left_mario=false, right_mario=false,up_luigi=false, down_luigi=false, left_luigi=false, right_luigi=false,pbutt=false,runbutt=false, ebutt=false;
+	public boolean up_mario=false, down_mario=false, left_mario=false, right_mario=false,up_luigi=false, down_luigi=false, left_luigi=false, right_luigi=false,pbutt=false,runbutt=false, ebutt=false,luigiRun = false;
+	
 
 
 	public KeyManager(){
@@ -47,6 +48,7 @@ public class KeyManager implements KeyListener {
 		down_luigi = keys[KeyEvent.VK_DOWN];
 		left_luigi = keys[KeyEvent.VK_LEFT];
 		right_luigi = keys[KeyEvent.VK_RIGHT];
+		luigiRun  = keys[KeyEvent.VK_SLASH];
 
 
 

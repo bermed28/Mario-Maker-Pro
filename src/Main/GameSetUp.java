@@ -75,6 +75,7 @@ public class GameSetUp implements Runnable {
 		initialmouseManager = mouseManager;
 		musicHandler = new MusicHandler(handler);
 		handler.setCamera(new Camera());
+		handler.setLuigiCamera(new Camera());
 	}
 
 	private void init(){
@@ -172,6 +173,7 @@ public class GameSetUp implements Runnable {
 			}
 			else {
 				updateCamera();
+				updateLuigiCamera();
 
 			}
 
@@ -199,6 +201,28 @@ public class GameSetUp implements Runnable {
 			shiftAmountY = -marioVelocityY;
 		}
 		handler.getCamera().moveCam(shiftAmount,shiftAmountY);
+	}
+
+	private void updateLuigiCamera() {
+		Player luigi = handler.getLuigi();
+		double luigiVelocityX = luigi.getVelX();
+		double luigiVelocityY = luigi.getVelY();
+		double shiftAmount = 0;
+		double shiftAmountY = 0;
+
+		if (luigiVelocityX > 0 && luigi.getX() - 2*(handler.getWidth()/3) > handler.getLuigiCamera().getX()) {
+			shiftAmount = luigiVelocityX;
+		}
+		if (luigiVelocityX < 0 && luigi.getX() +  2*(handler.getWidth()/3) < handler.getLuigiCamera().getX()+handler.width) {
+			shiftAmount = luigiVelocityX;
+		}
+		if (luigiVelocityY > 0 && luigi.getY() - 2*(handler.getHeight()/3) > handler.getLuigiCamera().getY()) {
+			shiftAmountY = luigiVelocityY;
+		}
+		if (luigiVelocityX < 0 && luigi.getY() +  2*(handler.getHeight()/3) < handler.getLuigiCamera().getY()+handler.height) {
+			shiftAmountY = -luigiVelocityY;
+		}
+		handler.getLuigiCamera().moveCam(shiftAmount,shiftAmountY);
 	}
 
 	private void render(){
@@ -244,15 +268,18 @@ public class GameSetUp implements Runnable {
 			Graphics2D luigig2 = (Graphics2D) gluigi.create();
 			Graphics2D g2 = (Graphics2D) g.create();
 
-			if(State.getState() != null)
+			if(State.getState() != null) {
 				State.getState().render(g);
-			if(State.getState() == handler.getGame().gameState) {
-				State.getState().render(gluigi);
+				if(State.getState() instanceof GameState && Player_Selection.MultiPlayer) {
+					handler.getMap().drawMap2(luigig2);
+
+				}
 			}
-			else {
+			if (State.getState() instanceof MenuState) {
 				gluigi.drawImage(Images.luigiLoading, 0, 0, luigi_display.getCanvas().getWidth(), luigi_display.getCanvas().getHeight(), null);
-				
 			}
+
+
 
 			//End Drawing!
 			bs.show();

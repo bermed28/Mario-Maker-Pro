@@ -37,6 +37,9 @@ public class GameState extends State {
 		}
 
 		handler.getMario().tick();
+		if(Player_Selection.MultiPlayer) {
+			handler.getLuigi().tick();
+		}
 		if(handler.getMap().getListener() != null && MapBuilder.mapDone) {
 			handler.getMap().getListener().tick();
 			handler.getMap().getHand().tick();
