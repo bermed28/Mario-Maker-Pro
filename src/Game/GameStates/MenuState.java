@@ -70,11 +70,7 @@ public class MenuState extends State {
 			handler.getGame().getMusicHandler().pauseBackground();
 			handler.getGame().getMusicHandler().play("Megalovania");
 			State.setState(handler.getGame().gameState);}}, this.handler);
-		//uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+(handler.getHeight()/8), 128, 64, Images.butstart, () -> {
-		//if(!handler.isInMap()) {
-		//mode = "Select";
-		//}
-		//}));
+
 		mode = "Select";
 	}
 

@@ -29,14 +29,23 @@ public class Handler {
     private boolean marioInMap =false;
 
     private Camera camera;
+    private Camera luigiCamera;
     
 
 
     public Handler(){
 
-        height=2*(DEFAULTHEIGHT/3)  ;
+        height= 700; //2*(DEFAULTHEIGHT/3)  ;
         width =height;
 
+    }
+    
+    public Camera getLuigiCamera() {
+    	return luigiCamera;
+    }
+    
+    public void setLuigiCamera(Camera camera) {
+    	this.luigiCamera = camera;
     }
 
     public int getWidth(){
@@ -71,6 +80,10 @@ public class Handler {
     public Luigi getLuigi() {
         return luigi;
     }
+    
+    public void setLuigi(Luigi luigi) {
+		this.luigi = luigi;	
+	}
 
     public void setMario(Mario mario) {
         this.mario = mario;
@@ -99,4 +112,6 @@ public class Handler {
     public void setCamera(Camera camera) {
         this.camera = camera;
     }
+
+	
 }
