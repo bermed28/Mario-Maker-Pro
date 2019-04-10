@@ -317,52 +317,80 @@ public class Images {
 			luigiBigJumpRight[3] = player2SpriteSheet.crop(321,162, 16,16);//down
 			luigiBigJumpRight[4] = player2SpriteSheet.crop(378,154,18,33);//Change
 
-			//Blue Brudda Animations
+			//Blue Brudda Animations //DONE
 
 			//JUMP
-			blueBruddaJumpLeft[0] = bruddaSpriteSheet.crop(197,156,18,30);
-			blueBruddaJumpLeft[1] = bruddaSpriteSheet.crop(167,156,18,30);
-			blueBruddaJumpLeft[2] = bruddaSpriteSheet.crop(85,155,16,31);//up
-			blueBruddaJumpLeft[3] = bruddaSpriteSheet.crop(110,162,18,17);//down
-			blueBruddaJumpLeft[4] = bruddaSpriteSheet.crop(53,155,18,32);//change
+			blueBruddaJumpRight[0] = bruddaSpriteSheet.crop(235,171,44,44); 
+			blueBruddaJumpRight[1] = bruddaSpriteSheet.crop(192,178,43,38);
+			blueBruddaJumpRight[2] = bruddaSpriteSheet.crop(381,94,39,38);//up
+			blueBruddaJumpRight[3] = bruddaSpriteSheet.crop(152,185,42,30);//down
+			blueBruddaJumpRight[4] = bruddaSpriteSheet.crop(358,174,31,40);//change
 
-			blueBruddaJumpRight[0] = bruddaSpriteSheet.crop(233,155,17,31);
-			blueBruddaJumpRight[1] = bruddaSpriteSheet.crop(263,157,19,30);
-			blueBruddaJumpRight[2] = bruddaSpriteSheet.crop(348,155,16,31);//up
-			blueBruddaJumpRight[3] = bruddaSpriteSheet.crop(321,162, 16,16);//down
-			blueBruddaJumpRight[4] = bruddaSpriteSheet.crop(378,154,18,33);//Change
+			blueBruddaJumpLeft[0] = bruddaSpriteSheet.crop(745,167,44,44);
+			blueBruddaJumpLeft[1] = bruddaSpriteSheet.crop(789,173,44,38); 
+			blueBruddaJumpLeft[2] = bruddaSpriteSheet.crop(605,89,40,39);//up
+			blueBruddaJumpLeft[3] = bruddaSpriteSheet.crop(832,181,41,30);//down
+			blueBruddaJumpLeft[4] = bruddaSpriteSheet.crop(636,170,32,40);//Change
 
 			//RUN
-			blueBruddaRunLeft[0] = bruddaSpriteSheet.crop(197,156,18,30);
-			blueBruddaRunLeft[1] = bruddaSpriteSheet.crop(167,156,18,30);
+			blueBruddaRunLeft[0] = bruddaSpriteSheet.crop(604,90,41,38);
+			blueBruddaRunLeft[1] = bruddaSpriteSheet.crop(986,130,88,37); 
+			blueBruddaRunLeft[2] = bruddaSpriteSheet.crop(950,129,38,37);
+			blueBruddaRunLeft[3] = bruddaSpriteSheet.crop(913,129,39,38);
+			blueBruddaRunLeft[4] = bruddaSpriteSheet.crop(879,130,36,36);
+			blueBruddaRunLeft[5] = bruddaSpriteSheet.crop(845,129,34,38);
+			blueBruddaRunLeft[6] = bruddaSpriteSheet.crop(810,130,35,36);
+			blueBruddaRunLeft[7] = bruddaSpriteSheet.crop(773,130,38,37);
+			blueBruddaRunLeft[8] = bruddaSpriteSheet.crop(816,220,36,32);
+			blueBruddaRunLeft[9] = bruddaSpriteSheet.crop(779,218,37,35);
+			blueBruddaRunLeft[10] = bruddaSpriteSheet.crop(743,218,36,35);
+			blueBruddaRunLeft[11] = bruddaSpriteSheet.crop(709,218,35,35);
+			blueBruddaRunLeft[12] = bruddaSpriteSheet.crop(670,218,40,34);
 
-			blueBruddaRunRight[0] = bruddaSpriteSheet.crop(197,156,18,30);
-			blueBruddaRunRight[1] = bruddaSpriteSheet.crop(167,156,18,30);
+
+			blueBruddaRunRight[0] = bruddaSpriteSheet.crop(381,95,38,37);
+			blueBruddaRunRight[1] = bruddaSpriteSheet.crop(0,135,38,37);
+			blueBruddaRunRight[2] = bruddaSpriteSheet.crop(39,132,35,40);
+			blueBruddaRunRight[3] = bruddaSpriteSheet.crop(75,135,36,37);
+			blueBruddaRunRight[4] = bruddaSpriteSheet.crop(111,135,35,36);
+			blueBruddaRunRight[5] = bruddaSpriteSheet.crop(148,134,32,38);
+			blueBruddaRunRight[6] = bruddaSpriteSheet.crop(180,135,35,36);
+			blueBruddaRunRight[7] = bruddaSpriteSheet.crop(216,135,36,37);
+			blueBruddaRunRight[8] = bruddaSpriteSheet.crop(174,225,36,33);
+			blueBruddaRunRight[9] = bruddaSpriteSheet.crop(211,225,36,35);
+			blueBruddaRunRight[10] = bruddaSpriteSheet.crop(248,223,35,34);
+			blueBruddaRunRight[11] = bruddaSpriteSheet.crop(282,223,34,30);
+			blueBruddaRunRight[12] = bruddaSpriteSheet.crop(317,224,37,34);
+			
 
 			//WALK
-			blueBruddaWalkLeft[0] = bruddaSpriteSheet.crop(197,156,18,30);
-			blueBruddaWalkLeft[1] = bruddaSpriteSheet.crop(167,156,18,30);
+			blueBruddaWalkLeft[0] = bruddaSpriteSheet.crop(986,91,38,39);
+			blueBruddaWalkLeft[1] = bruddaSpriteSheet.crop(954,90,33,40); 
+			blueBruddaWalkLeft[2] = bruddaSpriteSheet.crop(884,89,34,40);
+			blueBruddaWalkLeft[3] = bruddaSpriteSheet.crop(787,90,31,39);
 
-			blueBruddaWalkRight[0] = bruddaSpriteSheet.crop(197,156,18,30);
-			blueBruddaWalkRight[1] = bruddaSpriteSheet.crop(167,156,18,30);
+			blueBruddaWalkRight[0] = bruddaSpriteSheet.crop(0,94,37,40); 
+			blueBruddaWalkRight[1] = bruddaSpriteSheet.crop(71,94,32,40);
+			blueBruddaWalkRight[2] = bruddaSpriteSheet.crop(107,95,34,39);
+			blueBruddaWalkRight[3] = bruddaSpriteSheet.crop(209,93,31,42);
 
 			//Red Brudda Animations //DONE
 
 			//JUMP
 			redBruddaJumpLeft[0] = bruddaSpriteSheet.crop(677,382,44,42);
-			redBruddaJumpLeft[1] = bruddaSpriteSheet.crop(787,382,44,37);//DONE
+			redBruddaJumpLeft[1] = bruddaSpriteSheet.crop(787,382,44,37);
 			redBruddaJumpLeft[2] = bruddaSpriteSheet.crop(946,296,40,39);//up
 			redBruddaJumpLeft[3] = bruddaSpriteSheet.crop(759,437,39,29);//down
 			redBruddaJumpLeft[4] = bruddaSpriteSheet.crop(947,425,35,41);//change
 
 			redBruddaJumpRight[0] = bruddaSpriteSheet.crop(307,386,42,43);
-			redBruddaJumpRight[1] = bruddaSpriteSheet.crop(197,386,44,38); //DONE
+			redBruddaJumpRight[1] = bruddaSpriteSheet.crop(197,386,44,38); 
 			redBruddaJumpRight[2] = bruddaSpriteSheet.crop(42,301,40,40); //up
 			redBruddaJumpRight[3] = bruddaSpriteSheet.crop(230,443, 40,28);//down
 			redBruddaJumpRight[4] = bruddaSpriteSheet.crop(46,430,32,42);//Change
 
 			//RUN
-			redBruddaRunLeft[0] = bruddaSpriteSheet.crop(946,296,40,39); //DONE
+			redBruddaRunLeft[0] = bruddaSpriteSheet.crop(946,296,40,39); 
 			redBruddaRunLeft[1] = bruddaSpriteSheet.crop(910,298,37,38);
 			redBruddaRunLeft[2] = bruddaSpriteSheet.crop(873,299,37,36);
 			redBruddaRunLeft[3] = bruddaSpriteSheet.crop(837,298,38,38);
@@ -377,7 +405,7 @@ public class Images {
 			redBruddaRunLeft[12] = bruddaSpriteSheet.crop(516,302,39,34);
 			
 
-			redBruddaRunRight[0] = bruddaSpriteSheet.crop(42,301,40,40); //DONE
+			redBruddaRunRight[0] = bruddaSpriteSheet.crop(42,301,40,40); 
 			redBruddaRunRight[1] = bruddaSpriteSheet.crop(83,304,35,38);
 			redBruddaRunRight[2] = bruddaSpriteSheet.crop(119,303,35,38);
 			redBruddaRunRight[3] = bruddaSpriteSheet.crop(154,304,37,36);
@@ -392,12 +420,12 @@ public class Images {
 			redBruddaRunRight[12] = bruddaSpriteSheet.crop(474,308,38,34);
 
 			//WALK
-			redBruddaWalkLeft[0] = bruddaSpriteSheet.crop(987,343,37,39); //DONE
+			redBruddaWalkLeft[0] = bruddaSpriteSheet.crop(987,343,37,39); 
 			redBruddaWalkLeft[1] = bruddaSpriteSheet.crop(955,342,33,40);
 			redBruddaWalkLeft[2] = bruddaSpriteSheet.crop(924,342,31,40);
 			redBruddaWalkLeft[3] = bruddaSpriteSheet.crop(824,341,32,40);
 
-			redBruddaWalkRight[0] = bruddaSpriteSheet.crop(0,347,37,39); //DONE
+			redBruddaWalkRight[0] = bruddaSpriteSheet.crop(0,347,37,39); 
 			redBruddaWalkRight[1] = bruddaSpriteSheet.crop(38,347,32,40);
 			redBruddaWalkRight[2] = bruddaSpriteSheet.crop(69,346,34,41);
 			redBruddaWalkRight[3] = bruddaSpriteSheet.crop(169,346,33,40);
