@@ -247,12 +247,12 @@ public class Images {
 			luigiSmallJumpLeft[0] = player2SpriteSheet.crop(198,30,17,22);
 			luigiSmallJumpLeft[1] = player2SpriteSheet.crop(167,30,18,22);
 			luigiSmallJumpLeft[2] = player2SpriteSheet.crop(89,30,17,23);//up
-			luigiSmallJumpLeft[3] = player2SpriteSheet.crop(112,33,16,16);//down
+			luigiSmallJumpLeft[3] = player2SpriteSheet.crop(111,33,16,16);//down
 
 			luigiSmallJumpRight[0] = player2SpriteSheet.crop(233,30,17,22);
 			luigiSmallJumpRight[1] = player2SpriteSheet.crop(264,29,17,24);
 			luigiSmallJumpRight[2] = player2SpriteSheet.crop(347,29,17,24);//up
-			luigiSmallJumpLeft[3] = player2SpriteSheet.crop(321,34,16,16);//down
+			luigiSmallJumpRight[3] = player2SpriteSheet.crop(321,34,16,16);//down
 
 			// Luigi Big
 			luigiBigWalkLeft[0] = player2SpriteSheet.crop(199,116,17,31);
