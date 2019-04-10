@@ -143,9 +143,24 @@ public class Player extends BaseDynamicEntity {
 				if (marioTopBounds.intersects(brickBottomBounds)) {
 					for (BaseStaticEntity otherbrick : bricks) {
 						if(otherbrick instanceof TeleportationBlock && !(otherbrick.getX() == mario.getX()) && !(otherbrick.getY() + otherbrick.height == mario.getY())) {
+
 							mario.setX(otherbrick.getX());
 							mario.setY(otherbrick.getY() - otherbrick.height);
-							velY=0;
+
+							if(mario instanceof Luigi) {
+								
+								handler.getLuigiCamera().setX(mario.getX()-350);
+								handler.getLuigiCamera().setY(mario.getY()-300);
+								velY = 0;
+							}
+							if(mario instanceof Mario) {
+								
+								handler.getCamera().setX(mario.getX()-350);
+								handler.getCamera().setY(mario.getY()-300);
+								velY=0;
+							}
+
+							
 						}
 					}
 				}
@@ -212,7 +227,7 @@ public class Player extends BaseDynamicEntity {
 	public double getVelY() {
 		return velY;
 	}
-	
+
 	public boolean getHit() {
 		return this.hit;
 	}
