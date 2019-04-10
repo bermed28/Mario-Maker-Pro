@@ -9,6 +9,7 @@ import Game.Entities.StaticEntities.BaseStaticEntity;
 import Game.Entities.StaticEntities.BoundBlock;
 import Game.Entities.StaticEntities.BreakBlock;
 import Game.Entities.StaticEntities.MisteryBlock;
+import Game.Entities.StaticEntities.SuperPowerBlock;
 import Game.Entities.StaticEntities.TeleportationBlock;
 import Main.Handler;
 import Resources.Animation;
@@ -166,14 +167,26 @@ public class Player extends BaseDynamicEntity {
 				}
 			}
 
-			else if (marioTopBounds.intersects(brickBottomBounds)) {
-				velY=0;
-				mario.setY(brick.getY() + brick.height);
-			}
-			if(brick instanceof MisteryBlock) {
+			
+			else if(brick instanceof MisteryBlock) {
 				if (marioTopBounds.intersects(brickBottomBounds)) {
 					mario.isBig = true;
 				}
+			}
+			
+			else if(brick instanceof SuperPowerBlock) {
+				if(mario instanceof Luigi) {
+					
+				}
+				
+				if(mario instanceof Mario) {
+					
+				}
+			}
+			
+			else if (marioTopBounds.intersects(brickBottomBounds)) {
+				velY=0;
+				mario.setY(brick.getY() + brick.height);
 			}
 		}
 	}
