@@ -82,6 +82,8 @@ public class Images {
 	public static BufferedImage piranhaPlantDies;
 
 	public static BufferedImage gameover;
+	public static BufferedImage marioWinState;
+	public static BufferedImage luigiWinState;
 
 	private SpriteSheet mainmenuSpriteSheet;
 	private SpriteSheet backgroundSpriteSheet;
@@ -147,7 +149,9 @@ public class Images {
 			backgroundSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/backgroundSheet.png")));
 
 			gameover = ImageIO.read(getClass().getResourceAsStream("/Sheets/Gameover2.png"));
-
+			marioWinState = ImageIO.read(getClass().getResourceAsStream("/Sheets/marioWin.png"));
+			luigiWinState = ImageIO.read(getClass().getResourceAsStream("/Sheets/luigiWin.png"));
+			
 			interactableSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/interactablesSheet.png")));
 			player1SpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/marioSNESSheet.png")));
 			player2SpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/player2Sheet.png")));

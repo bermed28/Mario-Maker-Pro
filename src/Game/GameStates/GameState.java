@@ -35,6 +35,12 @@ public class GameState extends State {
 		if(handler.getMario().hit){
 			State.setState(handler.getGame().gameoverState);
 		}
+		
+		if(Player_Selection.MultiPlayer) {
+			if((handler.getMario().getHit() && !(handler.getMario().isBig)) || (handler.getLuigi().getHit() && !(handler.getLuigi().isBig))){
+				State.setState(handler.getGame().winState);
+			}
+		}
 
 		handler.getMario().tick();
 		if(Player_Selection.MultiPlayer) {
