@@ -1,18 +1,13 @@
 package Game.GameStates;
 
-import Display.UI.UIPointer;
-import Game.Entities.DynamicEntities.BaseDynamicEntity;
-import Game.Entities.DynamicEntities.Mario;
-import Game.Entities.StaticEntities.BaseStaticEntity;
-import Game.Entities.StaticEntities.TeleportationBlock;
-import Game.World.Map;
-import Game.World.MapBuilder;
-import Main.Handler;
-
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
-import Display.UI.UIListener;
+import Display.UI.UIPointer;
+import Game.Entities.DynamicEntities.BaseDynamicEntity;
+import Game.World.MapBuilder;
+import Main.Handler;
 
 /**
  * Created by AlexVR on 7/1/2018.

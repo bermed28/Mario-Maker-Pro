@@ -10,8 +10,7 @@ import java.awt.event.KeyEvent;
 
 import Game.Entities.StaticEntities.BaseStaticEntity;
 import Game.Entities.StaticEntities.TeleportationBlock;
-
-
+import Game.GameStates.State;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -199,6 +198,9 @@ public class Luigi extends Player {
 					}
 				}
 			}
+		}
+		if(handler.getMario().hit && !(handler.getMario().isBig)) {
+			State.setState(handler.getGame().winState);
 		}
 	}
 	public boolean getHit() {

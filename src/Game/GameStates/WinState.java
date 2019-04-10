@@ -15,19 +15,14 @@ import Resources.Images;
 public class WinState extends State {
 
 	private UIManager uiManager;
-
+	public static boolean luigiWon = false;
+	public static boolean marioWon = false;
 	public WinState(Handler handler) {
 		super(handler);
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUimanager(uiManager);
-		uiManager.addObjects(new UIStringButton(256, 546, 128, 64, "Title", () -> {
-			handler.getMouseManager().setUimanager(null);
-			handler.setIsInMap(false);
-			State.setState(handler.getGame().menuState);
-		},handler,Color.WHITE));
-
-
-		uiManager.addObjects(new UIStringButton(400, 546, 128, 64, "Quit", () -> {
+	
+		uiManager.addObjects(new UIStringButton(308, 330, 128, 64, "Quit", () -> {
 			handler.getMouseManager().setUimanager(null);
 			handler.setIsInMap(false);
 			System.exit(0);
@@ -45,9 +40,11 @@ public class WinState extends State {
 	@Override
 	public void render(Graphics g) {
 		if(handler.getMario().hit && !(handler.getMario().isBig)){
+			marioWon = true;
 			g.drawImage(Images.luigiWinState,-20,0,handler.getWidth()+20,handler.getHeight(),null);
 		}
 		else if(handler.getLuigi().hit && !(handler.getLuigi().isBig)){
+			luigiWon = true;
 			g.drawImage(Images.marioWinState,-20,0,handler.getWidth()+20,handler.getHeight(),null);
 		}
 		uiManager.Render(g);

@@ -33,6 +33,7 @@ import java.awt.image.BufferStrategy;
 public class GameSetUp implements Runnable {
 	public DisplayScreen display;
 	public DisplayScreen luigi_display;
+	public static boolean isMarioDED;
 	public String title;
 
 	private boolean running = false;
@@ -62,7 +63,7 @@ public class GameSetUp implements Runnable {
 	public State gameoverState;
 	public State multiPlayerState;
 	public State winState;
-	
+
 	//Res.music
 	private MusicHandler musicHandler;
 
@@ -277,10 +278,20 @@ public class GameSetUp implements Runnable {
 					handler.getMap().drawMap2(luigig2);
 
 				}
+
 			}
 			if (State.getState() instanceof MenuState) {
 				gluigi.drawImage(Images.luigiLoading, 0, 0, luigi_display.getCanvas().getWidth(), luigi_display.getCanvas().getHeight(), null);
 			}
+			if(WinState.luigiWon) {
+				gluigi.drawImage(Images.marioWinState, 0, 0, luigi_display.getCanvas().getWidth(), luigi_display.getCanvas().getHeight(), null);
+			
+			}
+			if(WinState.marioWon) {
+				gluigi.drawImage(Images.luigiWinState, 0, 0, luigi_display.getCanvas().getWidth(), luigi_display.getCanvas().getHeight(), null);
+			
+			}
+
 
 
 
