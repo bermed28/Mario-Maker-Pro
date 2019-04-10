@@ -46,6 +46,26 @@ public class Images {
 	public static BufferedImage[] luigiBigJumpLeft;//also store ide sprites like looking up or down and left<->right transition
 	public static BufferedImage[] luigiBigJumpRight;
 
+
+
+
+	public static BufferedImage[] blueBruddaWalkLeft;
+	public static BufferedImage[] blueBruddaWalkRight;
+	public static BufferedImage[] blueBruddaRunLeft;
+	public static BufferedImage[] blueBruddaRunRight;
+	public static BufferedImage[] blueBruddaJumpLeft;//also store ide sprites like looking up or down and left<->right transition
+	public static BufferedImage[] blueBruddaJumpRight;
+
+
+
+	public static BufferedImage[] redBruddaWalkLeft;
+	public static BufferedImage[] redBruddaWalkRight;
+	public static BufferedImage[] redBruddaRunLeft;
+	public static BufferedImage[] redBruddaRunRight;
+	public static BufferedImage[] redBruddaJumpLeft;//also store ide sprites like looking up or down and left<->right transition
+	public static BufferedImage[] redBruddaJumpRight;
+
+
 	public static BufferedImage[] item;
 	public static BufferedImage[] enemy;
 	public static BufferedImage[] hitWall;
@@ -96,6 +116,7 @@ public class Images {
 	private SpriteSheet SSpriteSheet;
 	private SpriteSheet SAttackSpriteSheet;
 	private SpriteSheet player2SpriteSheet;
+	private SpriteSheet bruddaSpriteSheet;
 
 	public Images() {
 
@@ -113,6 +134,7 @@ public class Images {
 		luigiSmallWalkRight = new BufferedImage[2];
 		luigiSmallJumpLeft = new BufferedImage[4];
 		luigiSmallJumpRight = new BufferedImage[4];
+
 
 		item = new BufferedImage[19];
 		enemy = new BufferedImage[9];
@@ -136,6 +158,21 @@ public class Images {
 		luigiBigRunRight = new BufferedImage[2];
 		luigiBigJumpLeft = new BufferedImage[5];
 		luigiBigJumpRight = new BufferedImage[5];
+
+		blueBruddaWalkLeft = new BufferedImage[4];
+		blueBruddaWalkRight = new BufferedImage[4];
+		blueBruddaRunLeft = new BufferedImage[13];
+		blueBruddaRunRight = new BufferedImage[13];
+		blueBruddaJumpLeft = new BufferedImage[5];
+		blueBruddaJumpRight = new BufferedImage[5];
+
+		redBruddaWalkLeft = new BufferedImage[4];
+		redBruddaWalkRight = new BufferedImage[4];
+		redBruddaRunLeft = new BufferedImage[13];
+		redBruddaRunRight = new BufferedImage[13];
+		redBruddaJumpLeft = new BufferedImage[5];
+		redBruddaJumpRight = new BufferedImage[5];
+
 		goomba = new BufferedImage[2];
 		piranhaPlant = new BufferedImage[12];
 
@@ -151,10 +188,11 @@ public class Images {
 			gameover = ImageIO.read(getClass().getResourceAsStream("/Sheets/Gameover2.png"));
 			marioWinState = ImageIO.read(getClass().getResourceAsStream("/Sheets/marioWin.png"));
 			luigiWinState = ImageIO.read(getClass().getResourceAsStream("/Sheets/luigiWin.png"));
-			
+
 			interactableSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/interactablesSheet.png")));
 			player1SpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/marioSNESSheet.png")));
 			player2SpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/player2Sheet.png")));
+			bruddaSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/knucklesSprite.png")));
 			blockSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/blocksSheet.png")));
 			newblockSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/New_Blocks.png")));
 			goombaSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/goombaSprite.png")));
@@ -240,7 +278,7 @@ public class Images {
 
 			luigiSmallWalkLeft[0] = player2SpriteSheet.crop(199,0,16,23);
 			luigiSmallWalkLeft[1] = player2SpriteSheet.crop(169,0,16,22);
-			
+
 			luigiSmallWalkRight[0] = player2SpriteSheet.crop(234, 0, 16, 24);
 			luigiSmallWalkRight[1] = player2SpriteSheet.crop(263,0,17,22);
 
@@ -278,6 +316,92 @@ public class Images {
 			luigiBigJumpRight[2] = player2SpriteSheet.crop(348,155,16,31);//up
 			luigiBigJumpRight[3] = player2SpriteSheet.crop(321,162, 16,16);//down
 			luigiBigJumpRight[4] = player2SpriteSheet.crop(378,154,18,33);//Change
+
+			//Blue Brudda Animations
+
+			//JUMP
+			blueBruddaJumpLeft[0] = bruddaSpriteSheet.crop(197,156,18,30);
+			blueBruddaJumpLeft[1] = bruddaSpriteSheet.crop(167,156,18,30);
+			blueBruddaJumpLeft[2] = bruddaSpriteSheet.crop(85,155,16,31);//up
+			blueBruddaJumpLeft[3] = bruddaSpriteSheet.crop(110,162,18,17);//down
+			blueBruddaJumpLeft[4] = bruddaSpriteSheet.crop(53,155,18,32);//change
+
+			blueBruddaJumpRight[0] = bruddaSpriteSheet.crop(233,155,17,31);
+			blueBruddaJumpRight[1] = bruddaSpriteSheet.crop(263,157,19,30);
+			blueBruddaJumpRight[2] = bruddaSpriteSheet.crop(348,155,16,31);//up
+			blueBruddaJumpRight[3] = bruddaSpriteSheet.crop(321,162, 16,16);//down
+			blueBruddaJumpRight[4] = bruddaSpriteSheet.crop(378,154,18,33);//Change
+
+			//RUN
+			blueBruddaRunLeft[0] = bruddaSpriteSheet.crop(197,156,18,30);
+			blueBruddaRunLeft[1] = bruddaSpriteSheet.crop(167,156,18,30);
+
+			blueBruddaRunRight[0] = bruddaSpriteSheet.crop(197,156,18,30);
+			blueBruddaRunRight[1] = bruddaSpriteSheet.crop(167,156,18,30);
+
+			//WALK
+			blueBruddaWalkLeft[0] = bruddaSpriteSheet.crop(197,156,18,30);
+			blueBruddaWalkLeft[1] = bruddaSpriteSheet.crop(167,156,18,30);
+
+			blueBruddaWalkRight[0] = bruddaSpriteSheet.crop(197,156,18,30);
+			blueBruddaWalkRight[1] = bruddaSpriteSheet.crop(167,156,18,30);
+
+			//Red Brudda Animations //DONE
+
+			//JUMP
+			redBruddaJumpLeft[0] = bruddaSpriteSheet.crop(677,382,44,42);
+			redBruddaJumpLeft[1] = bruddaSpriteSheet.crop(787,382,44,37);//DONE
+			redBruddaJumpLeft[2] = bruddaSpriteSheet.crop(946,296,40,39);//up
+			redBruddaJumpLeft[3] = bruddaSpriteSheet.crop(759,437,39,29);//down
+			redBruddaJumpLeft[4] = bruddaSpriteSheet.crop(947,425,35,41);//change
+
+			redBruddaJumpRight[0] = bruddaSpriteSheet.crop(307,386,42,43);
+			redBruddaJumpRight[1] = bruddaSpriteSheet.crop(197,386,44,38); //DONE
+			redBruddaJumpRight[2] = bruddaSpriteSheet.crop(42,301,40,40); //up
+			redBruddaJumpRight[3] = bruddaSpriteSheet.crop(230,443, 40,28);//down
+			redBruddaJumpRight[4] = bruddaSpriteSheet.crop(46,430,32,42);//Change
+
+			//RUN
+			redBruddaRunLeft[0] = bruddaSpriteSheet.crop(946,296,40,39); //DONE
+			redBruddaRunLeft[1] = bruddaSpriteSheet.crop(910,298,37,38);
+			redBruddaRunLeft[2] = bruddaSpriteSheet.crop(873,299,37,36);
+			redBruddaRunLeft[3] = bruddaSpriteSheet.crop(837,298,38,38);
+			redBruddaRunLeft[4] = bruddaSpriteSheet.crop(802,298,36,38);
+			redBruddaRunLeft[5] = bruddaSpriteSheet.crop(768,298,34,38);
+			redBruddaRunLeft[6] = bruddaSpriteSheet.crop(733,300,36,37);
+			redBruddaRunLeft[7] = bruddaSpriteSheet.crop(696,300,38,36);
+			redBruddaRunLeft[8] = bruddaSpriteSheet.crop(659,302,38,35);
+			redBruddaRunLeft[9] = bruddaSpriteSheet.crop(623,304,38,33);
+			redBruddaRunLeft[10] = bruddaSpriteSheet.crop(588,303,36,34);
+			redBruddaRunLeft[11] = bruddaSpriteSheet.crop(555,303,34,34);
+			redBruddaRunLeft[12] = bruddaSpriteSheet.crop(516,302,39,34);
+			
+
+			redBruddaRunRight[0] = bruddaSpriteSheet.crop(42,301,40,40); //DONE
+			redBruddaRunRight[1] = bruddaSpriteSheet.crop(83,304,35,38);
+			redBruddaRunRight[2] = bruddaSpriteSheet.crop(119,303,35,38);
+			redBruddaRunRight[3] = bruddaSpriteSheet.crop(154,304,37,36);
+			redBruddaRunRight[4] = bruddaSpriteSheet.crop(192,303,34,37);
+			redBruddaRunRight[5] = bruddaSpriteSheet.crop(227,304,33,36);
+			redBruddaRunRight[6] = bruddaSpriteSheet.crop(260,304,35,37);
+			redBruddaRunRight[7] = bruddaSpriteSheet.crop(295,305,37,37);
+			redBruddaRunRight[8] = bruddaSpriteSheet.crop(331,308,37,34);
+			redBruddaRunRight[9] = bruddaSpriteSheet.crop(368,309,36,32);
+			redBruddaRunRight[10] = bruddaSpriteSheet.crop(405,308,35,34);
+			redBruddaRunRight[11] = bruddaSpriteSheet.crop(440,307,33,35);
+			redBruddaRunRight[12] = bruddaSpriteSheet.crop(474,308,38,34);
+
+			//WALK
+			redBruddaWalkLeft[0] = bruddaSpriteSheet.crop(987,343,37,39); //DONE
+			redBruddaWalkLeft[1] = bruddaSpriteSheet.crop(955,342,33,40);
+			redBruddaWalkLeft[2] = bruddaSpriteSheet.crop(924,342,31,40);
+			redBruddaWalkLeft[3] = bruddaSpriteSheet.crop(824,341,32,40);
+
+			redBruddaWalkRight[0] = bruddaSpriteSheet.crop(0,347,37,39); //DONE
+			redBruddaWalkRight[1] = bruddaSpriteSheet.crop(38,347,32,40);
+			redBruddaWalkRight[2] = bruddaSpriteSheet.crop(69,346,34,41);
+			redBruddaWalkRight[3] = bruddaSpriteSheet.crop(169,346,33,40);
+
 
 
 			item[0] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL1.png"));
