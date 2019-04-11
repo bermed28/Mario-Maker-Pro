@@ -317,7 +317,7 @@ public class Images {
 			luigiBigJumpRight[3] = player2SpriteSheet.crop(321,162, 16,16);//down
 			luigiBigJumpRight[4] = player2SpriteSheet.crop(378,154,18,33);//Change
 
-			//Blue Brudda Animations //DONE
+			//Blue Brudda Animations //DONE ALL
 
 			//JUMP
 			blueBruddaJumpRight[0] = bruddaSpriteSheet.crop(235,171,44,44); 
