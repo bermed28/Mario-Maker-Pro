@@ -20,14 +20,15 @@ public class Player extends BaseDynamicEntity {
 
 	public String facing = "Left";
 	public boolean moving = false;
-	public Animation playerSmallLeftAnimation,playerSmallRightAnimation,playerBigLeftWalkAnimation,playerBigRightWalkAnimation,playerBigLeftRunAnimation,playerBigRightRunAnimation;
+	public Animation playerSmallLeftAnimation,playerSmallRightAnimation,playerBigLeftWalkAnimation,playerBigRightWalkAnimation,playerBigLeftRunAnimation,playerBigRightRunAnimation,
+	playerKnucklesLeftRunAnimation,playerKnucklesLeftWalkAnimation,playerKnucklesRightRunAnimation,playerKnucklesRightWalkAnimation,playerKnucklesLeftAnimation,playerKnucklesRightAnimation;
 	public boolean falling = true, jumping = false,isBig=false,running = false,changeDirrection=false;
 	public double gravityAcc = 0.38;
 	int changeDirectionCounter=0;
 	public boolean hit = false;
 	public boolean grabbed =false;
 
-	public Player(int x, int y, int width, int height, Handler handler, BufferedImage sprite,Animation PSLA,Animation PSRA,Animation PBLWA,Animation PBRWA,Animation PBLRA,Animation PBRRA) {
+	public Player(int x, int y, int width, int height, Handler handler, BufferedImage sprite,Animation PSLA,Animation PSRA,Animation PBLWA,Animation PBRWA,Animation PBLRA,Animation PBRRA,Animation PKLRA, Animation PKLWA,Animation PKRRA,Animation PKRWA, Animation PKLA, Animation PKRA) {
 		super(x, y, width, height, handler, sprite);
 		playerBigLeftRunAnimation=PBLRA;
 		playerBigLeftWalkAnimation=PBLWA;
@@ -35,6 +36,13 @@ public class Player extends BaseDynamicEntity {
 		playerBigRightWalkAnimation=PBRWA;
 		playerSmallLeftAnimation=PSLA;
 		playerSmallRightAnimation=PSRA;
+		playerKnucklesLeftRunAnimation=PKLRA;
+		playerKnucklesLeftWalkAnimation=PKLWA;
+		playerKnucklesRightRunAnimation=PKRRA;
+		playerKnucklesRightWalkAnimation=PKRWA;
+		playerKnucklesLeftAnimation=PKLA;
+		playerKnucklesRightAnimation=PKRA;
+
 	}
 
 	@Override
@@ -149,41 +157,54 @@ public class Player extends BaseDynamicEntity {
 							mario.setY(otherbrick.getY() - otherbrick.height);
 
 							if(mario instanceof Luigi) {
-								
+
 								handler.getLuigiCamera().setX(mario.getX()-350);
 								handler.getLuigiCamera().setY(mario.getY()-300);
 								velY = 0;
 							}
 							if(mario instanceof Mario) {
-								
+
 								handler.getCamera().setX(mario.getX()-350);
 								handler.getCamera().setY(mario.getY()-300);
 								velY=0;
 							}
 
-							
+
 						}
 					}
 				}
 			}
 
-			
+
 			else if(brick instanceof MisteryBlock) {
 				if (marioTopBounds.intersects(brickBottomBounds)) {
 					mario.isBig = true;
 				}
 			}
-			
+
 			else if(brick instanceof SuperPowerBlock) {
+
+
 				if(mario instanceof Luigi) {
-					Luigi.blueKnuckles = true;
+					if (marioTopBounds.intersects(brickBottomBounds)) {
+						mario.isBig = true;
+						Luigi.blueKnuckles = true;
+						velY=0;
+						mario.setY(brick.getY() + brick.height);
+					}
 				}
-				
 				if(mario instanceof Mario) {
-					Mario.redKnuckles = true;
+					if (marioTopBounds.intersects(brickBottomBounds)) {
+						mario.isBig = true;
+						Mario.redKnuckles = true;
+						velY=0;
+						mario.setY(brick.getY() + brick.height);
+					}
+
 				}
+
 			}
-			
+
 			else if (marioTopBounds.intersects(brickBottomBounds)) {
 				velY=0;
 				mario.setY(brick.getY() + brick.height);
