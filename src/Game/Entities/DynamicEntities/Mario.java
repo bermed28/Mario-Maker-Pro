@@ -23,7 +23,13 @@ public class Mario extends Player{
 				, new Animation(150,Images.marioBigWalkLeft)
 				, new Animation(150,Images.marioBigWalkRight)
 				, new Animation(115,Images.marioBigRunLeft)
-				, new Animation(115,Images.marioBigRunRight));
+				, new Animation(115,Images.marioBigRunRight)
+				, new Animation(175,Images.redBruddaWalkLeft)
+				, new Animation(175,Images.redBruddaWalkRight)
+				, new Animation(150,Images.redBruddaJumpLeft)
+				, new Animation(150,Images.redBruddaJumpRight)
+				, new Animation(115,Images.redBruddaRunLeft)
+				, new Animation(115,Images.redBruddaRunRight));
 		if(isBig){
 			this.y-=8;
 			this.height+=8;
@@ -93,48 +99,63 @@ public class Mario extends Player{
 	}
 
 	public void drawMario(Graphics2D g2) {
-		if(this.redKnuckles) {
-			// Change these animations
-			if (handler.getKeyManager().up_mario) {
-				if (facing.equals("Left")) {
-					g2.drawImage(Images.marioSmallJumpLeft[2], x, y, width, height, null);
-				} else {
-					g2.drawImage(Images.marioSmallJumpRight[2], x, y, width, height, null);
-				}
-			} else if (handler.getKeyManager().down_mario) {
-				if (facing.equals("Left")) {
-					g2.drawImage(Images.marioSmallJumpLeft[3], x, y, width, height, null);
-				} else {
-					g2.drawImage(Images.marioSmallJumpRight[3], x, y, width, height, null);
-				}
-			} else if (!jumping && !falling) {
-				if (facing.equals("Left") && moving) {
-					g2.drawImage(playerSmallLeftAnimation.getCurrentFrame(), x, y, width, height, null);
-				} else if (facing.equals("Right") && moving) {
-					g2.drawImage(playerSmallRightAnimation.getCurrentFrame(), x, y, width, height, null);
-				}
-				if (facing.equals("Left") && !moving) {
-					g2.drawImage(Images.marioSmallWalkLeft[0], x, y, width, height, null);
-				} else if (facing.equals("Right") && !moving) {
-					g2.drawImage(Images.marioSmallWalkRight[0], x, y, width, height, null);
-				}
-			} else {
-				if (jumping) {
+		if(Mario.redKnuckles) {
+			if (!changeDirrection) {
+				if (handler.getKeyManager().up_mario) {
 					if (facing.equals("Left")) {
-						g2.drawImage(Images.marioSmallJumpLeft[0], x, y, width, height, null);
+						g2.drawImage(Images.redBruddaJumpLeft[2], x, y, width, height, null);
 					} else {
-						g2.drawImage(Images.marioSmallJumpRight[0], x, y, width, height, null);
+						g2.drawImage(Images.redBruddaJumpRight[2], x, y, width, height, null);
 					}
-
-				} else {
+				} else if (handler.getKeyManager().down_mario){
 					if (facing.equals("Left")) {
-						g2.drawImage(Images.marioSmallJumpLeft[1], x, y, width, height, null);
+						g2.drawImage(Images.redBruddaJumpLeft[3], x, y, width, height, null);
 					} else {
-						g2.drawImage(Images.marioSmallJumpRight[1], x, y, width, height, null);
+						g2.drawImage(Images.redBruddaJumpRight[3], x, y, width, height, null);
+					}
+				} else if (!jumping && !falling) {
+					if (facing.equals("Left") && moving && running) {
+						g2.drawImage(playerKnucklesLeftRunAnimation.getCurrentFrame(), x, y, width, height, null);
+					} else if (facing.equals("Left") && moving && !running) {
+						g2.drawImage(playerKnucklesLeftWalkAnimation.getCurrentFrame(), x, y, width, height, null);
+					} else if (facing.equals("Left") && !moving) {
+						g2.drawImage(Images.redBruddaWalkLeft[0], x, y, width, height, null);
+					} else if (facing.equals("Right") && moving && running) {
+						g2.drawImage(playerKnucklesRightRunAnimation.getCurrentFrame(), x, y, width, height, null);
+					} else if (facing.equals("Right") && moving && !running) {
+						g2.drawImage(playerKnucklesRightWalkAnimation.getCurrentFrame(), x, y, width, height, null);
+					} else if (facing.equals("Right") && !moving) {
+						g2.drawImage(Images.redBruddaWalkRight[0], x, y, width, height, null);
+					}
+				} else {
+					if (jumping) {
+						if (facing.equals("Left")) {
+							g2.drawImage(Images.redBruddaJumpLeft[0], x, y, width, height, null);
+						} else {
+							g2.drawImage(Images.redBruddaJumpRight[0], x, y, width, height, null);
+						}
+
+					} else {
+						if (facing.equals("Left")) {
+							g2.drawImage(Images.redBruddaJumpLeft[1], x, y, width, height, null);
+						} else {
+							g2.drawImage(Images.redBruddaJumpLeft[1], x, y, width, height, null);
+						}
 					}
 				}
 			}
-
+			 else {
+					if (!running) {
+						changeDirrection = false;
+						changeDirectionCounter = 0;
+						drawMario(g2);
+					}
+					if (facing.equals("Right")) {
+						g2.drawImage(Images.redBruddaJumpRight[4], x, y, width, height, null);
+					} else {
+						g2.drawImage(Images.redBruddaJumpLeft[4], x, y, width, height, null);
+					}
+				}
 		}
 		else {
 			if(!grabbed) {
@@ -178,7 +199,9 @@ public class Mario extends Player{
 							}
 						}
 					}
-				} else {
+				}
+				
+				else {
 					if (!changeDirrection) {
 						if (handler.getKeyManager().up_mario) {
 							if (facing.equals("Left")) {
