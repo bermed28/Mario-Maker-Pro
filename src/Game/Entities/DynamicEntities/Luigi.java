@@ -34,12 +34,12 @@ public class Luigi extends Player {
 				, new Animation(150,Images.luigiBigWalkRight)
 				, new Animation(115,Images.luigiBigRunLeft)
 				, new Animation(115,Images.luigiBigRunRight)
+				, new Animation(175,Images.blueBruddaRunLeft)
 				, new Animation(175,Images.blueBruddaWalkLeft)
-				, new Animation(175,Images.blueBruddaWalkRight)
-				, new Animation(150,Images.blueBruddaJumpLeft)
-				, new Animation(150,Images.blueBruddaJumpRight)
-				, new Animation(115,Images.blueBruddaRunLeft)
-				, new Animation(115,Images.blueBruddaRunRight));
+				, new Animation(150,Images.blueBruddaRunRight)
+				, new Animation(150,Images.blueBruddaWalkRight)
+				, new Animation(115,Images.blueBruddaWalkLeft)
+				, new Animation(115,Images.blueBruddaWalkRight));
 		if(isBig){
 			this.y-=8;
 			this.height+=8;
@@ -148,7 +148,7 @@ public class Luigi extends Player {
 						if (facing.equals("Left")) {
 							g2.drawImage(Images.blueBruddaJumpLeft[1], x, y, width, height, null);
 						} else {
-							g2.drawImage(Images.blueBruddaJumpLeft[1], x, y, width, height, null);
+							g2.drawImage(Images.blueBruddaJumpRight[1], x, y, width, height, null);
 						}
 					}
 					

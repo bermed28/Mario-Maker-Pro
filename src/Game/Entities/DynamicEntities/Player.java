@@ -60,21 +60,34 @@ public class Player extends BaseDynamicEntity {
 		checkMarioHorizontalCollision();
 		checkTopCollisions();
 		checkItemCollision();
-		if(!isBig) {
-			if (facing.equals("Left") && moving) {
-				playerSmallLeftAnimation.tick();
-			} else if (facing.equals("Right") && moving) {
-				playerSmallRightAnimation.tick();
-			}
-		}else{
+		
+		if(Mario.redKnuckles || Luigi.blueKnuckles) {
 			if (facing.equals("Left") && moving && !running) {
-				playerBigLeftWalkAnimation.tick();
+				playerKnucklesLeftWalkAnimation.tick();
 			} else if (facing.equals("Left") && moving && running) {
-				playerBigLeftRunAnimation.tick();
+				playerKnucklesLeftRunAnimation.tick();
 			} else if (facing.equals("Right") && moving && !running) {
-				playerBigRightWalkAnimation.tick();
+				playerKnucklesRightWalkAnimation.tick();
 			} else if (facing.equals("Right") && moving && running) {
-				playerBigRightRunAnimation.tick();
+				playerKnucklesRightRunAnimation.tick();
+			}
+		} else {
+			if(!isBig) {
+				if (facing.equals("Left") && moving) {
+					playerSmallLeftAnimation.tick();
+				} else if (facing.equals("Right") && moving) {
+					playerSmallRightAnimation.tick();
+				}
+			}else{
+				if (facing.equals("Left") && moving && !running) {
+					playerBigLeftWalkAnimation.tick();
+				} else if (facing.equals("Left") && moving && running) {
+					playerBigLeftRunAnimation.tick();
+				} else if (facing.equals("Right") && moving && !running) {
+					playerBigRightWalkAnimation.tick();
+				} else if (facing.equals("Right") && moving && running) {
+					playerBigRightRunAnimation.tick();
+				}
 			}
 		}
 	}

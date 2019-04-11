@@ -24,12 +24,14 @@ public class Mario extends Player{
 				, new Animation(150,Images.marioBigWalkRight)
 				, new Animation(115,Images.marioBigRunLeft)
 				, new Animation(115,Images.marioBigRunRight)
-				, new Animation(175,Images.redBruddaWalkLeft)
-				, new Animation(175,Images.redBruddaWalkRight)
-				, new Animation(150,Images.redBruddaJumpLeft)
-				, new Animation(150,Images.redBruddaJumpRight)
 				, new Animation(115,Images.redBruddaRunLeft)
-				, new Animation(115,Images.redBruddaRunRight));
+				, new Animation(175,Images.redBruddaWalkLeft)
+				, new Animation(115,Images.redBruddaRunRight)
+				, new Animation(175,Images.redBruddaWalkRight)
+				, new Animation(150,Images.redBruddaWalkLeft)
+				, new Animation(150,Images.redBruddaWalkRight));
+				
+				
 		if(isBig){
 			this.y-=8;
 			this.height+=8;
@@ -139,7 +141,7 @@ public class Mario extends Player{
 						if (facing.equals("Left")) {
 							g2.drawImage(Images.redBruddaJumpLeft[1], x, y, width, height, null);
 						} else {
-							g2.drawImage(Images.redBruddaJumpLeft[1], x, y, width, height, null);
+							g2.drawImage(Images.redBruddaJumpRight[1], x, y, width, height, null);
 						}
 					}
 				}
