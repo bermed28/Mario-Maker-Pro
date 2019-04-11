@@ -334,7 +334,7 @@ public class Images {
 
 			//RUN
 			blueBruddaRunLeft[0] = bruddaSpriteSheet.crop(604,90,41,38);
-			blueBruddaRunLeft[1] = bruddaSpriteSheet.crop(986,130,88,37); 
+			blueBruddaRunLeft[1] = bruddaSpriteSheet.crop(986,130,38,37); 
 			blueBruddaRunLeft[2] = bruddaSpriteSheet.crop(950,129,38,37);
 			blueBruddaRunLeft[3] = bruddaSpriteSheet.crop(913,129,39,38);
 			blueBruddaRunLeft[4] = bruddaSpriteSheet.crop(879,130,36,36);

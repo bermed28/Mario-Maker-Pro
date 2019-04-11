@@ -176,11 +176,11 @@ public class Player extends BaseDynamicEntity {
 			
 			else if(brick instanceof SuperPowerBlock) {
 				if(mario instanceof Luigi) {
-					
+					Luigi.blueKnuckles = true;
 				}
 				
 				if(mario instanceof Mario) {
-					
+					Mario.redKnuckles = true;
 				}
 			}
 			
