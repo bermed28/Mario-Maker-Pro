@@ -3,6 +3,7 @@ package Game.Entities.DynamicEntities;
 
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -12,6 +13,8 @@ import Game.Entities.StaticEntities.BreakBlock;
 import Game.Entities.StaticEntities.MisteryBlock;
 import Game.Entities.StaticEntities.SuperPowerBlock;
 import Game.Entities.StaticEntities.TeleportationBlock;
+import Game.GameStates.Player_Selection;
+import Game.GameStates.WinState;
 import Main.Handler;
 import Resources.Animation;
 
@@ -28,6 +31,7 @@ public class Player extends BaseDynamicEntity {
 	int changeDirectionCounter=0;
 	public boolean hit = false;
 	public boolean grabbed =false;
+	private int jump_counter = 0;
 
 	public Player(int x, int y, int width, int height, Handler handler, BufferedImage sprite,Animation PSLA,Animation PSRA,Animation PBLWA,Animation PBRWA,Animation PBLRA,Animation PBRRA,Animation PKLRA, Animation PKLWA,Animation PKRRA,Animation PKRWA, Animation PKLA, Animation PKRA) {
 		super(x, y, width, height, handler, sprite);
@@ -43,6 +47,8 @@ public class Player extends BaseDynamicEntity {
 		playerKnucklesRightWalkAnimation=PKRWA;
 		playerKnucklesLeftAnimation=PKLA;
 		playerKnucklesRightAnimation=PKRA;
+		
+		
 
 	}
 
@@ -122,12 +128,23 @@ public class Player extends BaseDynamicEntity {
 		for (BaseStaticEntity brick : bricks) {
 			Rectangle brickTopBounds = brick.getTopBounds();
 			if( brick instanceof BoundBlock && mario.getBottomBounds().intersects(brick.getTopBounds())) {
+				if(Player_Selection.MultiPlayer) {
+					if(this instanceof Mario) {
+						WinState.marioWon = true;
+					}
+					else if(this instanceof Luigi) {
+						WinState.luigiWon = true;
+					}
+				}
+				else {
 				mario.setHit(true);
+				}
 			}
 			if (marioBottomBounds.intersects(brickTopBounds)) {
 				mario.setY(brick.getY() - mario.getDimension().height + 1);
 				falling = false;
 				velY=0;
+				jump_counter = 0;
 			}
 		}
 
@@ -266,6 +283,17 @@ public class Player extends BaseDynamicEntity {
 			jumping=true;
 			velY=10;
 			handler.getGame().getMusicHandler().playJump();
+		}
+		if(this instanceof Mario) {
+			if(Mario.redKnuckles) {
+				
+				if(jumping && handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE) && jump_counter < 2) {
+					jumping=true;
+					velY=10;
+					handler.getGame().getMusicHandler().playJump();
+					jump_counter++;
+				}
+			}
 		}
 	}
 
