@@ -75,7 +75,6 @@ public class MusicHandler {
 
 	public void pauseBackground(){
 		clipTime = background.getMicrosecondPosition();
-		System.out.println("I need to stop... but...");
 		background.stop();
 	}
 
