@@ -324,6 +324,7 @@ public class GameSetUp implements Runnable {
 		running = false;
 		try {
 			thread.join();
+			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

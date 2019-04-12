@@ -210,7 +210,7 @@ public class Images {
 			//Images
 			title = mainmenuSpriteSheet.crop(16,16,256,224);
 			luigiLoading = ImageIO.read(getClass().getResourceAsStream("/Sheets/luigi-wallpapers.jpg"));
-			Pause = ImageIO.read(getClass().getResourceAsStream("/Sheets/Pause.png"));
+			Pause = ImageIO.read(getClass().getResourceAsStream("/Sheets/SuperPause.jpg"));
 			Cursor = ImageIO.read(getClass().getResourceAsStream("/Sheets/cursor.png"));
 			butstart[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/NormBut.png"));//normbut
 			butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
