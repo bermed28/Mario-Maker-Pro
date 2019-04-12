@@ -67,6 +67,8 @@ public class Images {
 
 
 	public static BufferedImage[] item;
+	public static BufferedImage[] coinitem;
+	public static BufferedImage[] coinitemcollected;
 	public static BufferedImage[] enemy;
 	public static BufferedImage[] hitWall;
 	public static BufferedImage[] enemyFG;
@@ -106,6 +108,7 @@ public class Images {
 	public static BufferedImage luigiWinState;
 
 	private SpriteSheet mainmenuSpriteSheet;
+	private SpriteSheet coinitemSheet;
 	private SpriteSheet backgroundSpriteSheet;
 	private SpriteSheet interactableSpriteSheet;
 	private SpriteSheet player1SpriteSheet;
@@ -137,6 +140,8 @@ public class Images {
 
 
 		item = new BufferedImage[19];
+		coinitem = new BufferedImage[5];
+		coinitemcollected = new BufferedImage[1];
 		enemy = new BufferedImage[9];
 		hitWall = new BufferedImage[44];
 		enemyFG = new BufferedImage[9];
@@ -190,6 +195,7 @@ public class Images {
 			luigiWinState = ImageIO.read(getClass().getResourceAsStream("/Sheets/luigiWin.png"));
 
 			interactableSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/interactablesSheet.png")));
+			coinitemSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/interactablesSheet.png")));
 			player1SpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/marioSNESSheet.png")));
 			player2SpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/player2Sheet.png")));
 			bruddaSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/knucklesSprite.png")));
@@ -401,7 +407,16 @@ public class Images {
 			item[16] =  item[3];
 			item[17] =  item[2];
 			item[18] =  item[1];
-
+			
+			coinitem[0] = coinitemSheet.crop(13, 13, 14, 17);
+			coinitem[1] = coinitemSheet.crop(29, 13, 12, 18);
+			coinitem[2] = coinitemSheet.crop(40, 13, 10, 18);
+			coinitem[3] = coinitemSheet.crop(28, 13, 13, 18);
+			coinitem[4] = coinitemSheet.crop(50, 13, 10, 18);
+			
+			
+			coinitemcollected[0] = coinitemSheet.crop(59, 14, 13, 18);
+			
 			hitWall[0] = ImageIO.read(getClass().getResourceAsStream("/Sheets/KO/KO1.png"));
 			hitWall[1] = ImageIO.read(getClass().getResourceAsStream("/Sheets/KO/KO2.png"));
 			hitWall[2] = ImageIO.read(getClass().getResourceAsStream("/Sheets/KO/KO3.png"));

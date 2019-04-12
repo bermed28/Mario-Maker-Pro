@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 
 import Display.UI.UIPointer;
 import Game.Entities.DynamicEntities.BaseDynamicEntity;
+import Game.Entities.DynamicEntities.Coin;
 import Game.World.MapBuilder;
 import Main.Handler;
 
@@ -48,6 +49,14 @@ public class GameState extends State {
 		}
 		for (BaseDynamicEntity entity:handler.getMap().getEnemiesOnMap()) {
 			entity.tick();
+			if(entity instanceof Coin) {
+				if(entity.getBottomBounds().intersects(handler.getMario().getTopBounds()) || 
+						entity.getLeftBounds().intersects(handler.getMario().getRightBounds()) || 
+						entity.getRightBounds().intersects(handler.getMario().getLeftBounds())|| 
+						entity.getTopBounds().intersects(handler.getMario().getBottomBounds())){
+					entity.x = -10000;
+				}
+			}
 		}
 	}
 

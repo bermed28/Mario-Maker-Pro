@@ -1,6 +1,7 @@
 package Game.World;
 
 import Game.Entities.DynamicEntities.BaseDynamicEntity;
+import Game.Entities.DynamicEntities.Coin;
 import Game.Entities.DynamicEntities.Goomba;
 import Game.Entities.DynamicEntities.Luigi;
 import Game.Entities.DynamicEntities.Mario;
@@ -20,6 +21,7 @@ public class MapBuilder {
 	public static int boundBlock = new Color(0,0,0).getRGB();
 	public static int mario = new Color(255,0,0).getRGB();
 	public static int luigi = new Color(32,148,16).getRGB();	
+	public static int coinitem = new Color(205,183,46).getRGB();
 	public static int surfaceBlock = new Color(255,106,0).getRGB();
 	public static int breakBlock = new Color(0,38,255).getRGB();
 	public static int misteryBlock = new Color(255,216,0).getRGB();
@@ -66,6 +68,9 @@ public class MapBuilder {
 				}else if(currentPixel == piranhaPlant){
 					BaseDynamicEntity piranhaPlant = new PiranhaPlant(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
 					mapInCreation.addEnemy(piranhaPlant);
+				}else if(currentPixel == coinitem){
+					BaseDynamicEntity coinitem = new Coin(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
+					mapInCreation.addEnemy(coinitem);
 				}else if(currentPixel == teleportationB){
 					BaseStaticEntity TeleportationBlock = new TeleportationBlock(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
 					if(limitOfOtherBlocks > 0) {

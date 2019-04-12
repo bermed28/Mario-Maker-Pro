@@ -232,6 +232,13 @@ public class MenuState extends State {
 			display.getCanvas().setCursor(c);
 			colorSelected = MapBuilder.teleportationB;
 		}
+		if(!Player_Selection.MultiPlayer){
+			if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)){
+				Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,0.803921f,0.717647f,0.180392f), new Point(0, 0), "cursor1");
+				display.getCanvas().setCursor(c);
+				colorSelected = MapBuilder.coinitem;
+			}
+		}
 		if(Player_Selection.MultiPlayer) {
 			if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_L)){
 				Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,0.12549f,0.58039f,0.062745f), new Point(0, 0), "cursor1");
@@ -278,7 +285,6 @@ public class MenuState extends State {
 						"8 -> Super Power Block \n" +
 						"9 -> Piranha Plant (Neon Green) \n" +
 						"T -> Teleportation Block \n" +
-						"\t (Place Block in the air) \n" + 
 						"L -> Luigi (Kelly Green)");
 			}
 
@@ -295,7 +301,7 @@ public class MenuState extends State {
 						"8 -> Super Power Block \n" +
 						"9 -> Piranha Plant (Neon Green) \n" +
 						"T -> Teleportation Block \n" +
-						"\t (Place Block in the air) \n"); 
+						"C -> Coin"); 
 
 			}
 		}
