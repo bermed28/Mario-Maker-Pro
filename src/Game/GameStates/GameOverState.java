@@ -19,7 +19,6 @@ public class GameOverState extends State {
     public GameOverState(Handler handler) {
         super(handler);
         uiManager = new UIManager(handler);
-        handler.getMouseManager().setUimanager(uiManager);
         uiManager.addObjects(new UIStringButton(256, 546, 128, 64, "Title", () -> {
             handler.getMouseManager().setUimanager(null);
             handler.setIsInMap(false);
@@ -39,7 +38,8 @@ public class GameOverState extends State {
     public void tick() {
         handler.getMouseManager().setUimanager(uiManager);
         uiManager.tick();
-       
+        
+      
     }
 
     @Override
