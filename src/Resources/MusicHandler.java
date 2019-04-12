@@ -4,6 +4,10 @@ package Resources;
 import Main.Handler;
 
 import javax.sound.sampled.*;
+
+import Game.GameStates.GameOverState;
+import Game.GameStates.State;
+
 import java.io.File;
 
 public class MusicHandler {
@@ -24,7 +28,7 @@ public class MusicHandler {
 
 	public MusicHandler(Handler handler){
 		this.handler = handler;
-		background = getClip(loadAudio("background"));
+		background = getClip(loadAudio("background"));	
 	}
 
 	private AudioInputStream loadAudio(String url) {
@@ -55,6 +59,7 @@ public class MusicHandler {
 		try {
 			Clip clip = AudioSystem.getClip();
 			clip.open(stream);
+			
 			return clip;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,6 +75,7 @@ public class MusicHandler {
 
 	public void pauseBackground(){
 		clipTime = background.getMicrosecondPosition();
+		System.out.println("I need to stop... but...");
 		background.stop();
 	}
 
@@ -96,4 +102,15 @@ public class MusicHandler {
 		Clip clip = getClip(loadAudio("stomp"));
 		clip.start();
 	}
+	public void playCoin() {
+		Clip clip = getClip(loadAudio("coin"));
+		clip.start();
+	}
+	public void playDead() {
+		background.stop();
+		background = getClip(loadAudio("marioDies"));
+		background.start();
+	}
+	
+	
 }

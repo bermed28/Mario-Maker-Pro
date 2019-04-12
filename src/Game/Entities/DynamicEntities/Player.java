@@ -1,5 +1,6 @@
 package Game.Entities.DynamicEntities;
 
+
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -60,7 +61,7 @@ public class Player extends BaseDynamicEntity {
 		checkMarioHorizontalCollision();
 		checkTopCollisions();
 		checkItemCollision();
-
+		
 		if(Mario.redKnuckles || Luigi.blueKnuckles) {
 			if (facing.equals("Left") && moving && !running) {
 				playerKnucklesLeftWalkAnimation.tick();
@@ -132,29 +133,24 @@ public class Player extends BaseDynamicEntity {
 
 		for (BaseDynamicEntity enemy : enemies) {
 			Rectangle enemyTopBounds = enemy.getTopBounds();
-			if(enemy instanceof Coin) {
-				Coin.collected = true;
-			}
-			else {
-				if (marioBottomBounds.intersects(enemyTopBounds) && !(enemy instanceof Item)) {
+			if (marioBottomBounds.intersects(enemyTopBounds) && !(enemy instanceof Item)) {
 
-					if(!enemy.ded) {
-						if(!mario.isBig) {
-							if(enemy.getLeftBounds().intersects(mario.getRightBounds()) || enemy.getRightBounds().intersects(mario.getLeftBounds()) ) {
-								mario.setHit(true);
-							}
+				if(!enemy.ded) {
+					if(!mario.isBig) {
+						if(enemy.getLeftBounds().intersects(mario.getRightBounds()) || enemy.getRightBounds().intersects(mario.getLeftBounds()) ) {
+							mario.setHit(true);
 						}
-						else if (mario.isBig)
-							mario.isBig = false;
-
-						handler.getGame().getMusicHandler().playStomp();
-						enemy.kill();
-						falling=false;
-						velY=0;
-
 					}
+					else if (mario.isBig)
+						mario.isBig = false;
+
+					handler.getGame().getMusicHandler().playStomp();
+					enemy.kill();
+					falling=false;
+					velY=0;
 
 				}
+
 			}
 		}
 	}
@@ -162,7 +158,6 @@ public class Player extends BaseDynamicEntity {
 	public void checkTopCollisions() {
 		Player mario = this;
 		ArrayList<BaseStaticEntity> bricks = handler.getMap().getBlocksOnMap();
-		ArrayList<BaseDynamicEntity> enemy = handler.getMap().getEnemiesOnMap();
 
 		Rectangle marioTopBounds = mario.getTopBounds();
 		for (BaseStaticEntity brick : bricks) {
@@ -229,15 +224,6 @@ public class Player extends BaseDynamicEntity {
 				mario.setY(brick.getY() + brick.height);
 			}
 		}
-
-		for(BaseDynamicEntity entity: enemy) {
-			Rectangle entityBottomBounds = entity.getBottomBounds();
-			if(entity instanceof Coin) {
-				if(entityBottomBounds.intersects(handler.getMario().getTopBounds())) {
-					Coin.collected = true;
-				}
-			}
-		}
 	}
 
 	public void checkMarioHorizontalCollision(){
@@ -262,15 +248,10 @@ public class Player extends BaseDynamicEntity {
 		}
 
 		for(BaseDynamicEntity enemy : enemies){
-			if(enemy instanceof Coin) {
-				Coin.collected = true;
-			}
-			else {
-				Rectangle enemyBounds = !toRight ? enemy.getRightBounds() : enemy.getLeftBounds();
-				if (marioBounds.intersects(enemyBounds)) {
-					marioDies = true;
-					break;
-				}
+			Rectangle enemyBounds = !toRight ? enemy.getRightBounds() : enemy.getLeftBounds();
+			if (marioBounds.intersects(enemyBounds)) {
+				marioDies = true;
+				break;
 			}
 
 		}

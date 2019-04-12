@@ -39,8 +39,10 @@ public class Goomba extends BaseDynamicEntity {
 				y=-10000;
 			}
 		}
+		
 
 	}
+	
 
 	@Override
 	public void kill() {

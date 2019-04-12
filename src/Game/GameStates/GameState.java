@@ -25,13 +25,17 @@ public class GameState extends State {
 
 	@Override
 	public void tick() {
+
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
+			handler.getGame().getMusicHandler().pauseBackground();
 			State.setState(handler.getGame().pauseState);
 		}
 		if(handler.getMario().hit){
+			handler.getGame().getMusicHandler().play("marioDies");
 			State.setState(handler.getGame().gameoverState);
+
 		}
-		
+
 		if(Player_Selection.MultiPlayer) {
 			if((handler.getMario().getHit() && !(handler.getMario().isBig)) || (handler.getLuigi().getHit() && !(handler.getLuigi().isBig))){
 				State.setState(handler.getGame().winState);
@@ -55,6 +59,8 @@ public class GameState extends State {
 						entity.getRightBounds().intersects(handler.getMario().getLeftBounds())|| 
 						entity.getTopBounds().intersects(handler.getMario().getBottomBounds())){
 					entity.x = -10000;
+					handler.getGame().getMusicHandler().playCoin();
+
 				}
 			}
 		}

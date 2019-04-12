@@ -67,7 +67,6 @@ public class MenuState extends State {
 		for (int i:str) { str2+=(char)i;}
 		this.but = new UIAnimationButton(handler.getWidth() - (handler.getWidth()/ 8),(handler.getHeight()/0b1100),32, 32 , Images.item, () -> {
 			if(but.getdraw() && !handler.isInMap()) {handler.setMap(handler.getGame().getMap());
-			handler.getGame().getMusicHandler().pauseBackground();
 			handler.getGame().getMusicHandler().play("Megalovania");
 			State.setState(handler.getGame().gameState);}}, this.handler);
 
