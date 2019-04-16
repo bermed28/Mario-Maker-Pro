@@ -290,7 +290,7 @@ public class Images {
 
 			luigiSmallJumpLeft[0] = player2SpriteSheet.crop(198,30,17,22);
 			luigiSmallJumpLeft[1] = player2SpriteSheet.crop(167,30,18,22);
-			luigiSmallJumpLeft[2] = player2SpriteSheet.crop(89,30,17,23);//up
+			luigiSmallJumpLeft[2] = player2SpriteSheet.crop(85,30,20,23);//up
 			luigiSmallJumpLeft[3] = player2SpriteSheet.crop(111,33,16,16);//down
 
 			luigiSmallJumpRight[0] = player2SpriteSheet.crop(233,30,17,22);
