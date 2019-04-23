@@ -39,13 +39,13 @@ public class WinState extends State {
 
 	@Override
 	public void render(Graphics g) {
-		if(handler.getMario().hit && !(handler.getMario().isBig)){
-			marioWon = true;
+		if(marioWon){
+			
 			g.drawImage(Images.luigiWinState,-20,0,handler.getWidth()+20,handler.getHeight(),null);
 		}
-		else if(handler.getLuigi().hit && !(handler.getLuigi().isBig)){
-			luigiWon = true;
-			g.drawImage(Images.marioWinState,-20,0,handler.getWidth()+20,handler.getHeight(),null);
+		else if(luigiWon){g.drawImage(
+				Images.marioWinState,-20,0,handler.getWidth()+20,handler.getHeight(),null);
+		
 		}
 		uiManager.Render(g);
 	}
