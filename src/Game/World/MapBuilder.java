@@ -7,6 +7,7 @@ import Game.Entities.DynamicEntities.Luigi;
 import Game.Entities.DynamicEntities.Mario;
 import Game.Entities.DynamicEntities.Mushroom;
 import Game.Entities.DynamicEntities.PiranhaPlant;
+import Game.Entities.DynamicEntities.SpitBall;
 import Game.Entities.StaticEntities.*;
 import Main.Handler;
 import Resources.Images;

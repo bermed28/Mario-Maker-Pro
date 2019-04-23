@@ -83,6 +83,17 @@ public class BaseDynamicEntity extends EntityBase {
         }
         falling=true;
     }
+    
+    protected void fireSpit(){
+
+        if(direction.equals("Right")){
+            x+=velX + 10;
+        }else{
+            x-=velX - 10;
+        }
+     
+    }
+    
 
     public void kill(){
 

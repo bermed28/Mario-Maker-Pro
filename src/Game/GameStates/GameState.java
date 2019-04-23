@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import Display.UI.UIPointer;
 import Game.Entities.DynamicEntities.BaseDynamicEntity;
 import Game.Entities.DynamicEntities.Coin;
+import Game.Entities.DynamicEntities.SpitBall;
 import Game.World.MapBuilder;
 import Main.Handler;
 
@@ -25,7 +26,7 @@ public class GameState extends State {
 
 	@Override
 	public void tick() {
-
+		
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
 			handler.getGame().getMusicHandler().pauseBackground();
 			State.setState(handler.getGame().pauseState);

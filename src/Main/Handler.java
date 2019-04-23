@@ -2,6 +2,7 @@ package Main;
 
 import Game.Entities.DynamicEntities.Luigi;
 import Game.Entities.DynamicEntities.Mario;
+import Game.Entities.DynamicEntities.SpitBall;
 import Game.World.Map;
 import Input.Camera;
 import Input.KeyManager;
@@ -25,6 +26,7 @@ public class Handler {
 	private GameSetUp game;
 	private Mario mario;
 	private Luigi luigi;
+	
 	private Map map;
 	private boolean marioInMap =false;
 

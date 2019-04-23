@@ -27,7 +27,7 @@ public class Luigi extends Player {
 	public boolean grabbed = false;
 	public static boolean blueKnuckles = false;
 	public Luigi(int x, int y, int width, int height, Handler handler) { 
-		super(x, y, width, height, handler, Images.luigiSmallWalkRight[0]
+		super(x, y, width+10, height, handler, Images.luigiSmallWalkRight[0]
 				,new Animation(175,Images.luigiSmallWalkLeft)
 				, new Animation(175,Images.luigiSmallWalkRight)
 				, new Animation(150,Images.luigiBigWalkLeft)
@@ -54,6 +54,10 @@ public class Luigi extends Player {
 			if (!this.hit) {
 				if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_CONTROL) && !handler.getKeyManager().up_luigi && !handler.getKeyManager().down_luigi) {
 					this.jump();
+				}
+				
+				if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_M) && !handler.getKeyManager().up_luigi && !handler.getKeyManager().down_luigi) {
+					this.spit();
 				}
 
 				if (handler.getKeyManager().right_luigi && !handler.getKeyManager().up_luigi && !handler.getKeyManager().down_luigi) {

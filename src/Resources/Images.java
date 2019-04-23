@@ -102,6 +102,7 @@ public class Images {
 	public static BufferedImage mushroom;
 	public static BufferedImage goombaDies;
 	public static BufferedImage piranhaPlantDies;
+	public static BufferedImage spitBall;
 
 	public static BufferedImage gameover;
 	public static BufferedImage marioWinState;
@@ -196,6 +197,7 @@ public class Images {
 
 			interactableSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/interactablesSheet.png")));
 			coinitemSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/interactablesSheet.png")));
+			spitBall = ImageIO.read(getClass().getResourceAsStream("/Sheets/spitBall.png"));
 			player1SpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/marioSNESSheet.png")));
 			player2SpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/player2Sheet.png")));
 			bruddaSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/knucklesSprite.png")));

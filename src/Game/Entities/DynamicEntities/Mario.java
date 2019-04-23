@@ -50,6 +50,13 @@ public class Mario extends Player{
 					this.jump();
 				}
 
+
+				if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_F) && !handler.getKeyManager().up_mario && !handler.getKeyManager().down_mario) {
+					SpitBall.fired = true;
+					handler.getGame().getMap().addEnemy(new SpitBall(handler.getMario().getX(), handler.getMario().getY(), 5, 5, handler));
+				}
+
+				
 				if (handler.getKeyManager().right_mario && !handler.getKeyManager().up_mario && !handler.getKeyManager().down_mario) {
 					if (handler.getKeyManager().runbutt) {
 						velX = 6;

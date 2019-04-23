@@ -296,6 +296,10 @@ public class Player extends BaseDynamicEntity {
 			}
 		}
 	}
+	
+	public void spit() {
+		SpitBall.fired = true;
+	}
 
 	public double getVelX() {
 		return velX;
