@@ -284,16 +284,13 @@ public class GameSetUp implements Runnable {
 				gluigi.drawImage(Images.luigiLoading, 0, 0, luigi_display.getCanvas().getWidth(), luigi_display.getCanvas().getHeight(), null);
 			}
 			if(WinState.luigiWon) {
-				gluigi.drawImage(Images.marioWinState, 0, 0, luigi_display.getCanvas().getWidth(), luigi_display.getCanvas().getHeight(), null);
-			
+				gluigi.drawImage(Images.luigiWinState, 0, 0, luigi_display.getCanvas().getWidth(), luigi_display.getCanvas().getHeight(), null);
+				State.setState(handler.getGame().winState);
 			}
 			if(WinState.marioWon) {
-				gluigi.drawImage(Images.luigiWinState, 0, 0, luigi_display.getCanvas().getWidth(), luigi_display.getCanvas().getHeight(), null);
-			
+				gluigi.drawImage(Images.marioWinState, 0, 0, luigi_display.getCanvas().getWidth(), luigi_display.getCanvas().getHeight(), null);
+				State.setState(handler.getGame().winState);
 			}
-
-
-
 
 			//End Drawing!
 			bs.show();
@@ -324,7 +321,7 @@ public class GameSetUp implements Runnable {
 		running = false;
 		try {
 			thread.join();
-			
+
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
