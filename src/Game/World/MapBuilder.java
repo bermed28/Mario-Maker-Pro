@@ -1,19 +1,26 @@
 package Game.World;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+
 import Game.Entities.DynamicEntities.BaseDynamicEntity;
 import Game.Entities.DynamicEntities.Coin;
 import Game.Entities.DynamicEntities.Goomba;
 import Game.Entities.DynamicEntities.Luigi;
+import Game.Entities.DynamicEntities.LuigiFlag;
 import Game.Entities.DynamicEntities.Mario;
+import Game.Entities.DynamicEntities.MarioFlag;
 import Game.Entities.DynamicEntities.Mushroom;
 import Game.Entities.DynamicEntities.PiranhaPlant;
-import Game.Entities.DynamicEntities.SpitBall;
-import Game.Entities.StaticEntities.*;
+import Game.Entities.StaticEntities.BaseStaticEntity;
+import Game.Entities.StaticEntities.BoundBlock;
+import Game.Entities.StaticEntities.BreakBlock;
+import Game.Entities.StaticEntities.MisteryBlock;
+import Game.Entities.StaticEntities.SuperPowerBlock;
+import Game.Entities.StaticEntities.SurfaceBlock;
+import Game.Entities.StaticEntities.TeleportationBlock;
 import Main.Handler;
 import Resources.Images;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class MapBuilder {
 
@@ -21,7 +28,9 @@ public class MapBuilder {
 	public static int pixelMultiplier = 48;
 	public static int boundBlock = new Color(0,0,0).getRGB();
 	public static int mario = new Color(255,0,0).getRGB();
-	public static int luigi = new Color(32,148,16).getRGB();	
+	public static int luigi = new Color(32,148,16).getRGB();
+	public static int marioFlag = new Color(244,66,92).getRGB();
+	public static int luigiFlag = new Color(66,244,146).getRGB();
 	public static int coinitem = new Color(205,183,46).getRGB();
 	public static int surfaceBlock = new Color(255,106,0).getRGB();
 	public static int breakBlock = new Color(0,38,255).getRGB();
@@ -51,6 +60,12 @@ public class MapBuilder {
 				}else if(currentPixel == surfaceBlock){
 					BaseStaticEntity SurfaceBlock = new SurfaceBlock(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
 					mapInCreation.addBlock(SurfaceBlock);
+				}else if(currentPixel == marioFlag){
+					BaseDynamicEntity marioFlag = new MarioFlag(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
+					mapInCreation.addEnemy(marioFlag);
+				}else if(currentPixel == luigiFlag){
+					BaseDynamicEntity luigiFlag = new LuigiFlag(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
+					mapInCreation.addEnemy(luigiFlag);
 				}else if(currentPixel == breakBlock){
 					BaseStaticEntity BreakBlock = new BreakBlock(xPos,yPos,pixelMultiplier,pixelMultiplier,handler);
 					mapInCreation.addBlock(BreakBlock);

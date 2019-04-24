@@ -75,11 +75,13 @@ public class Map {
                 g2.drawImage(((Goomba)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
             }else if(entity instanceof Coin){
                 g2.drawImage(((Coin)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
-            }
-            else if(entity instanceof PiranhaPlant && !entity.ded){
+            }else if(entity instanceof MarioFlag){
+                g2.drawImage(((MarioFlag)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
+            }else if(entity instanceof LuigiFlag){
+                g2.drawImage(((LuigiFlag)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
+            }else if(entity instanceof PiranhaPlant && !entity.ded){
                 g2.drawImage(((PiranhaPlant)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
-            }
-            else if(entity instanceof UIPointer ){
+            }else if(entity instanceof UIPointer ){
                 ((UIPointer) entity).render(g2);
             }else {
                 g2.drawImage(entity.sprite, entity.x, entity.y, entity.width, entity.height, null);
@@ -112,6 +114,10 @@ public class Map {
                 }
             }else if(entity instanceof Goomba && !entity.ded){
                 g2.drawImage(((Goomba)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
+            }else if(entity instanceof MarioFlag){
+                g2.drawImage(((MarioFlag)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
+            }else if(entity instanceof LuigiFlag){
+                g2.drawImage(((LuigiFlag)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);
             }
             else if(entity instanceof PiranhaPlant && !entity.ded){
                 g2.drawImage(((PiranhaPlant)entity).anim.getCurrentFrame(), entity.x, entity.y, entity.width, entity.height, null);

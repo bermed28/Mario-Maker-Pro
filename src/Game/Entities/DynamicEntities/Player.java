@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import Game.Entities.StaticEntities.BaseStaticEntity;
 import Game.Entities.StaticEntities.BoundBlock;
-import Game.Entities.StaticEntities.BreakBlock;
 import Game.Entities.StaticEntities.MisteryBlock;
 import Game.Entities.StaticEntities.SuperPowerBlock;
 import Game.Entities.StaticEntities.TeleportationBlock;
@@ -47,8 +46,8 @@ public class Player extends BaseDynamicEntity {
 		playerKnucklesRightWalkAnimation=PKRWA;
 		playerKnucklesLeftAnimation=PKLA;
 		playerKnucklesRightAnimation=PKRA;
-		
-		
+
+
 
 	}
 
@@ -63,11 +62,12 @@ public class Player extends BaseDynamicEntity {
 			changeDirectionCounter=0;
 		}
 
+
 		checkBottomCollisions();
 		checkMarioHorizontalCollision();
 		checkTopCollisions();
 		checkItemCollision();
-		
+
 		if(Mario.redKnuckles || Luigi.blueKnuckles) {
 			if (facing.equals("Left") && moving && !running) {
 				playerKnucklesLeftWalkAnimation.tick();
@@ -137,9 +137,10 @@ public class Player extends BaseDynamicEntity {
 					}
 				}
 				else {
-				mario.setHit(true);
+					mario.setHit(true);
 				}
 			}
+		
 			if (marioBottomBounds.intersects(brickTopBounds)) {
 				mario.setY(brick.getY() - mario.getDimension().height + 1);
 				falling = false;
@@ -151,8 +152,13 @@ public class Player extends BaseDynamicEntity {
 		for (BaseDynamicEntity enemy : enemies) {
 			Rectangle enemyTopBounds = enemy.getTopBounds();
 			if (marioBottomBounds.intersects(enemyTopBounds) && !(enemy instanceof Item)) {
-
-				if(!enemy.ded) {
+				if (mario instanceof Luigi && enemy instanceof MarioFlag) {
+					velY = 10;
+				}
+				else if (mario instanceof Mario && enemy instanceof LuigiFlag) {
+					velY = 10;
+				}
+				else if(!enemy.ded) {
 					if(!mario.isBig) {
 						if(enemy.getLeftBounds().intersects(mario.getRightBounds()) || enemy.getRightBounds().intersects(mario.getLeftBounds()) ) {
 							mario.setHit(true);
@@ -286,7 +292,7 @@ public class Player extends BaseDynamicEntity {
 		}
 		if(this instanceof Mario) {
 			if(Mario.redKnuckles) {
-				
+
 				if(jumping && handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE) && jump_counter < 2) {
 					jumping=true;
 					velY=10;
@@ -295,10 +301,6 @@ public class Player extends BaseDynamicEntity {
 				}
 			}
 		}
-	}
-	
-	public void spit() {
-		SpitBall.fired = true;
 	}
 
 	public double getVelX() {
@@ -313,6 +315,10 @@ public class Player extends BaseDynamicEntity {
 	}
 	public void setHit(Boolean hit) {
 		this.hit = hit;
+	}
+
+	public Player getPlayer() {
+		return this;
 	}
 
 

@@ -87,9 +87,9 @@ public class BaseDynamicEntity extends EntityBase {
     protected void fireSpit(){
 
         if(direction.equals("Right")){
-            x+=velX + 10;
+            x+=velX + 20;
         }else{
-            x-=velX - 10;
+            x-=velX - 20;
         }
      
     }

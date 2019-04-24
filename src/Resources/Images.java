@@ -83,6 +83,9 @@ public class Images {
 
 	public static BufferedImage[] goomba;
 	public static BufferedImage[] piranhaPlant;
+	public static BufferedImage[] marioFlag;
+	public static BufferedImage[] luigiFlag;
+	
 
 
 	public static BufferedImage title;
@@ -109,6 +112,7 @@ public class Images {
 	public static BufferedImage luigiWinState;
 
 	private SpriteSheet mainmenuSpriteSheet;
+	private SpriteSheet flagSheet;
 	private SpriteSheet coinitemSheet;
 	private SpriteSheet backgroundSpriteSheet;
 	private SpriteSheet interactableSpriteSheet;
@@ -149,6 +153,9 @@ public class Images {
 		enemyGB1 = new BufferedImage[3];
 		enemyGB2 = new BufferedImage[2];
 		enemyGB3 = new BufferedImage[3];
+		
+		marioFlag = new BufferedImage[3];
+		luigiFlag = new BufferedImage[3];
 
 
 		marioBigWalkLeft = new BufferedImage[2];
@@ -207,6 +214,7 @@ public class Images {
 			piranhaPlantSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/pihrannaPlantSheet.png")));
 			SSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/Sheets.png")));
 			SAttackSpriteSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/enemySheet2.png")));
+			flagSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/flagSprite.png")));
 
 
 			//Images
@@ -389,7 +397,17 @@ public class Images {
 			redBruddaWalkRight[1] = bruddaSpriteSheet.crop(38,347,32,40);
 
 
-
+			
+			marioFlag[0] = flagSheet.crop(58, 211, 30, 39);
+			marioFlag[1] = flagSheet.crop(91, 211, 31, 39);
+			marioFlag[2] = flagSheet.crop(125, 212, 30, 36);
+			
+			luigiFlag[0] = flagSheet.crop(207, 211, 30, 41);
+			luigiFlag[1] = flagSheet.crop(237,213,28,36);
+			luigiFlag[2] = flagSheet.crop(267,214,29,36);
+			
+			
+			
 			item[0] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL1.png"));
 			item[1] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL2.png"));
 			item[2] =  ImageIO.read(getClass().getResourceAsStream("/Sheets/item/SL3.png"));

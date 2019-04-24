@@ -1,14 +1,14 @@
 package Main;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+
 import Game.Entities.DynamicEntities.Luigi;
 import Game.Entities.DynamicEntities.Mario;
-import Game.Entities.DynamicEntities.SpitBall;
 import Game.World.Map;
 import Input.Camera;
 import Input.KeyManager;
 import Input.MouseManager;
-
-import java.awt.*;
 
 
 /**

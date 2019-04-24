@@ -6,7 +6,7 @@ import Resources.Images;
 
 public class Coin extends BaseDynamicEntity {
 	
-	public static boolean collected = false;
+	
 	public Animation anim;
 
 	public Coin(int x, int y, int width, int height, Handler handler) {

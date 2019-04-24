@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import Game.Entities.StaticEntities.BaseStaticEntity;
 import Game.Entities.StaticEntities.TeleportationBlock;
 import Game.GameStates.State;
+import Game.GameStates.WinState;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -49,17 +50,32 @@ public class Luigi extends Player {
 
 	@Override
 	public void tick(){
+		
+for (BaseDynamicEntity entity:handler.getMap().getEnemiesOnMap()) {
+			
+			if(entity instanceof LuigiFlag) {
+				if(entity.getBottomBounds().intersects(handler.getLuigi().getTopBounds()) || 
+						entity.getLeftBounds().intersects(handler.getLuigi().getRightBounds()) || 
+						entity.getRightBounds().intersects(handler.getLuigi().getLeftBounds())|| 
+						entity.getTopBounds().intersects(handler.getLuigi().getBottomBounds())){
+					WinState.marioWon = true;
+					LuigiFlag.touched = true;
+					State.setState(handler.getGame().winState);
+
+				}
+			}
+			
+			
+		
+		}
+		
 		if(!grabbed) {
 			super.tick();
 			if (!this.hit) {
 				if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_CONTROL) && !handler.getKeyManager().up_luigi && !handler.getKeyManager().down_luigi) {
 					this.jump();
 				}
-				
-				if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_M) && !handler.getKeyManager().up_luigi && !handler.getKeyManager().down_luigi) {
-					this.spit();
-				}
-
+			
 				if (handler.getKeyManager().right_luigi && !handler.getKeyManager().up_luigi && !handler.getKeyManager().down_luigi) {
 					if (handler.getKeyManager().luigiRun) {
 						velX = 6;

@@ -10,6 +10,8 @@ import java.awt.event.KeyEvent;
 
 import Game.Entities.StaticEntities.BaseStaticEntity;
 import Game.Entities.StaticEntities.TeleportationBlock;
+import Game.GameStates.State;
+import Game.GameStates.WinState;
 
 public class Mario extends Player{
 
@@ -42,21 +44,32 @@ public class Mario extends Player{
 
 	@Override
 	public void tick(){
+		
+		for (BaseDynamicEntity entity:handler.getMap().getEnemiesOnMap()) {
+			
+			if(entity instanceof MarioFlag) {
+				if(entity.getBottomBounds().intersects(handler.getMario().getTopBounds()) || 
+						entity.getLeftBounds().intersects(handler.getMario().getRightBounds()) || 
+						entity.getRightBounds().intersects(handler.getMario().getLeftBounds())|| 
+						entity.getTopBounds().intersects(handler.getMario().getBottomBounds())){
+					WinState.luigiWon = true;
+					MarioFlag.touched = true;
+					State.setState(handler.getGame().winState);
 
+				}
+			}
+			
+		
+		}
+		
+		
 		if(!grabbed) {
 			super.tick();
 			if (!this.hit) {
 				if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE) && !handler.getKeyManager().up_mario && !handler.getKeyManager().down_mario){
 					this.jump();
 				}
-
-
-				if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_F) && !handler.getKeyManager().up_mario && !handler.getKeyManager().down_mario) {
-					SpitBall.fired = true;
-					handler.getGame().getMap().addEnemy(new SpitBall(handler.getMario().getX(), handler.getMario().getY(), 5, 5, handler));
-				}
-
-				
+		
 				if (handler.getKeyManager().right_mario && !handler.getKeyManager().up_mario && !handler.getKeyManager().down_mario) {
 					if (handler.getKeyManager().runbutt) {
 						velX = 6;

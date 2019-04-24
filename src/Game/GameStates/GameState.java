@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import Display.UI.UIPointer;
 import Game.Entities.DynamicEntities.BaseDynamicEntity;
 import Game.Entities.DynamicEntities.Coin;
-import Game.Entities.DynamicEntities.SpitBall;
 import Game.World.MapBuilder;
 import Main.Handler;
 
@@ -69,6 +68,8 @@ public class GameState extends State {
 
 				}
 			}
+			
+		
 		}
 	}
 

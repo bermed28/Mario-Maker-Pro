@@ -244,6 +244,16 @@ public class MenuState extends State {
 				display.getCanvas().setCursor(c);
 				colorSelected = MapBuilder.luigi;
 			}
+			if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Z)){
+				Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,0.12549f,0.58039f,0.062745f), new Point(0, 0), "cursor1");
+				display.getCanvas().setCursor(c);
+				colorSelected = MapBuilder.marioFlag;
+			}
+			if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_X)){
+				Cursor c = Toolkit.getDefaultToolkit().createCustomCursor(Images.tint(Images.Cursor,0.12549f,0.58039f,0.062745f), new Point(0, 0), "cursor1");
+				display.getCanvas().setCursor(c);
+				colorSelected = MapBuilder.luigiFlag;
+			}
 		}
 
 		if(mouseManager.isLeftPressed() && !clicked){
@@ -284,7 +294,9 @@ public class MenuState extends State {
 						"8 -> Super Power Block \n" +
 						"9 -> Piranha Plant (Neon Green) \n" +
 						"T -> Teleportation Block \n" +
-						"L -> Luigi (Kelly Green)");
+						"L -> Luigi (Kelly Green) \n" +
+						"Z -> Mario Flag \n" +
+						"X -> Luigi Flag");
 			}
 
 			else {
@@ -299,7 +311,7 @@ public class MenuState extends State {
 						"7 -> Goomba (Brown)\n" +
 						"8 -> Super Power Block \n" +
 						"9 -> Piranha Plant (Neon Green) \n" +
-						"T -> Teleportation Block \n" +
+						"T -> Teleportation Block\n" +
 						"C -> Coin"); 
 
 			}
