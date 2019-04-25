@@ -23,7 +23,7 @@ import Main.Handler;
 import Resources.Images;
 
 public class MapBuilder {
-
+ 
 	public static int limitOfOtherBlocks = 2;
 	public static int pixelMultiplier = 48;
 	public static int boundBlock = new Color(0,0,0).getRGB();
