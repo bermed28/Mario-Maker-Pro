@@ -95,6 +95,7 @@ public class Images {
 
 	public static BufferedImage testMap;
 	public static BufferedImage mountainMap;
+	public static BufferedImage deathTrap;
 	public static BufferedImage testMaptwo;
 
 	public static BufferedImage breakBlock;
@@ -525,6 +526,7 @@ public class Images {
 			testMap = ImageIO.read(getClass().getResourceAsStream("/maps/testmap1.png"));
 			testMaptwo = ImageIO.read(getClass().getResourceAsStream("/maps/testmap2.png"));
 			mountainMap = ImageIO.read(getClass().getResourceAsStream("/maps/MountainMap.png"));
+			deathTrap = ImageIO.read(getClass().getResourceAsStream("/maps/DeathTrap.png"));
 			
 			//blocks
 			boundBlock = interactableSpriteSheet.crop(12,73,16,16);
