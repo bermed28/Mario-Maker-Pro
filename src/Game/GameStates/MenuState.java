@@ -92,7 +92,7 @@ public class MenuState extends State {
 				}, handler,Color.BLACK));
 
 
-				//testMap1
+				//Map 1
 				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, handler.getHeight() / 2 + (handler.getHeight() / 10), 128, 64, "Map 1", () -> {
 					if(!handler.isInMap()) {
 						mode = "Menu";
@@ -100,13 +100,13 @@ public class MenuState extends State {
 							handler.setMap(MapBuilder.createMap(Images.mountainMap, handler));
 						}
 						else {
-							handler.setMap(MapBuilder.createMap(Images.testMap, handler));
+							handler.setMap(MapBuilder.createMap(Images.singlePlayerMap1, handler)); 
 						}
 						State.setState(handler.getGame().gameState);
 					}
 				}, handler,Color.BLACK));
 
-				//testmap2
+				//Map 2
 				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) + (64), 128, 64, "Map 2", () -> {
 					if(!handler.isInMap()) {
 						mode = "Menu";
@@ -114,7 +114,7 @@ public class MenuState extends State {
 							// Other Map
 						}
 						else {
-							handler.setMap(MapBuilder.createMap(Images.testMaptwo, handler));
+							handler.setMap(MapBuilder.createMap(Images.singlePlayerMap2, handler));
 						}
 						State.setState(handler.getGame().gameState);
 					}

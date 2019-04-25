@@ -30,11 +30,7 @@ public class GameState extends State {
 			handler.getGame().getMusicHandler().pauseBackground();
 			State.setState(handler.getGame().pauseState);
 		}
-		if(handler.getMario().hit){
-			handler.getGame().getMusicHandler().play("marioDies");
-			State.setState(handler.getGame().gameoverState);
-
-		}
+		
 
 		if(Player_Selection.MultiPlayer) {
 			if((handler.getMario().getHit() && !(handler.getMario().isBig))){
