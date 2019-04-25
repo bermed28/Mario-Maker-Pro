@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import Game.Entities.StaticEntities.BaseStaticEntity;
 import Game.Entities.StaticEntities.BoundBlock;
+import Game.Entities.StaticEntities.BreakBlock;
 import Game.Entities.StaticEntities.MisteryBlock;
 import Game.Entities.StaticEntities.SuperPowerBlock;
 import Game.Entities.StaticEntities.TeleportationBlock;
@@ -30,8 +31,9 @@ public class Player extends BaseDynamicEntity {
 	int changeDirectionCounter=0;
 	public boolean hit = false;
 	public boolean grabbed =false;
-	private int jump_counter = 0;
-
+	private int jump_counter = 0; 
+	private int blue_knuckles_jump_counter = 0; 
+	
 	public Player(int x, int y, int width, int height, Handler handler, BufferedImage sprite,Animation PSLA,Animation PSRA,Animation PBLWA,Animation PBRWA,Animation PBLRA,Animation PBRRA,Animation PKLRA, Animation PKLWA,Animation PKRRA,Animation PKRWA, Animation PKLA, Animation PKRA) {
 		super(x, y, width, height, handler, sprite);
 		playerBigLeftRunAnimation=PBLRA;
@@ -125,6 +127,7 @@ public class Player extends BaseDynamicEntity {
 			falling = true;
 		}
 
+
 		for (BaseStaticEntity brick : bricks) {
 			Rectangle brickTopBounds = brick.getTopBounds();
 			if( brick instanceof BoundBlock && mario.getBottomBounds().intersects(brick.getTopBounds())) {
@@ -136,16 +139,20 @@ public class Player extends BaseDynamicEntity {
 						WinState.luigiWon = true;
 					}
 				}
+
 				else {
 					mario.setHit(true);
 				}
 			}
-		
+
 			if (marioBottomBounds.intersects(brickTopBounds)) {
 				mario.setY(brick.getY() - mario.getDimension().height + 1);
 				falling = false;
 				velY=0;
-				jump_counter = 0;
+				jump_counter = 0; 
+				blue_knuckles_jump_counter = 0;
+
+
 			}
 		}
 
@@ -261,13 +268,16 @@ public class Player extends BaseDynamicEntity {
 
 		for (BaseStaticEntity brick : bricks) {
 			Rectangle brickBounds = !toRight ? brick.getRightBounds() : brick.getLeftBounds();
-			if (marioBounds.intersects(brickBounds)) {
+
+			if (marioBounds.intersects(brickBounds)){
 				velX=0;
 				if(toRight)
 					mario.setX(brick.getX() - mario.getDimension().width);
 				else
 					mario.setX(brick.getX() + brick.getDimension().width);
+
 			}
+
 		}
 
 		for(BaseDynamicEntity enemy : enemies){
@@ -275,7 +285,7 @@ public class Player extends BaseDynamicEntity {
 			if (marioBounds.intersects(enemyBounds)) {
 				marioDies = true;
 				break;
-			}
+			} 
 
 		}
 
@@ -289,8 +299,21 @@ public class Player extends BaseDynamicEntity {
 			jumping=true;
 			velY=10;
 			handler.getGame().getMusicHandler().playJump();
+			
 		}
-		if(this instanceof Mario) {
+		if(this instanceof Luigi) {
+				if(Luigi.blueKnuckles) {
+					if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_CONTROL) && blue_knuckles_jump_counter < 1) {
+						jumping=true;
+						velY=10;
+						gravityAcc = .185;
+						handler.getGame().getMusicHandler().playJump();
+						blue_knuckles_jump_counter ++;
+
+					}
+				}
+			}
+		else if(this instanceof Mario) {
 			if(Mario.redKnuckles) {
 
 				if(jumping && handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE) && jump_counter < 2) {
@@ -300,12 +323,15 @@ public class Player extends BaseDynamicEntity {
 					jump_counter++;
 				}
 			}
+			
+
 		}
 	}
 
 	public double getVelX() {
 		return velX;
 	}
+
 	public double getVelY() {
 		return velY;
 	}

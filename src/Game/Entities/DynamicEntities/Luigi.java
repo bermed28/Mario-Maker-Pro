@@ -9,20 +9,21 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import Game.Entities.StaticEntities.BaseStaticEntity;
+import Game.Entities.StaticEntities.BreakBlock;
 import Game.Entities.StaticEntities.TeleportationBlock;
 import Game.GameStates.State;
 import Game.GameStates.WinState;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import Main.Handler;
 import Resources.Animation;
 import Resources.Images;
 
 public class Luigi extends Player {
+
 
 	public boolean hit = false;
 	public boolean grabbed = false;
@@ -50,9 +51,9 @@ public class Luigi extends Player {
 
 	@Override
 	public void tick(){
-		
-for (BaseDynamicEntity entity:handler.getMap().getEnemiesOnMap()) {
-			
+
+		for (BaseDynamicEntity entity:handler.getMap().getEnemiesOnMap()) {
+
 			if(entity instanceof LuigiFlag) {
 				if(entity.getBottomBounds().intersects(handler.getLuigi().getTopBounds()) || 
 						entity.getLeftBounds().intersects(handler.getLuigi().getRightBounds()) || 
@@ -64,18 +65,18 @@ for (BaseDynamicEntity entity:handler.getMap().getEnemiesOnMap()) {
 
 				}
 			}
-			
-			
-		
+
+
+
 		}
-		
+
 		if(!grabbed) {
 			super.tick();
 			if (!this.hit) {
 				if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_CONTROL) && !handler.getKeyManager().up_luigi && !handler.getKeyManager().down_luigi) {
 					this.jump();
 				}
-			
+
 				if (handler.getKeyManager().right_luigi && !handler.getKeyManager().up_luigi && !handler.getKeyManager().down_luigi) {
 					if (handler.getKeyManager().luigiRun) {
 						velX = 6;
@@ -124,7 +125,7 @@ for (BaseDynamicEntity entity:handler.getMap().getEnemiesOnMap()) {
 				this.setY(this.getY() - 30);
 			}
 		}
-		
+
 	}
 
 	public void drawLuigi(Graphics2D g2) {
@@ -171,7 +172,7 @@ for (BaseDynamicEntity entity:handler.getMap().getEnemiesOnMap()) {
 							g2.drawImage(Images.blueBruddaJumpRight[1], x, y, width, height, null);
 						}
 					}
-					
+
 				} 
 			}else {
 				if (!running) {
