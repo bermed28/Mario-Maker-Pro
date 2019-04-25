@@ -14,6 +14,7 @@ import Game.Entities.StaticEntities.MisteryBlock;
 import Game.Entities.StaticEntities.SuperPowerBlock;
 import Game.Entities.StaticEntities.TeleportationBlock;
 import Game.GameStates.Player_Selection;
+import Game.GameStates.State;
 import Game.GameStates.WinState;
 import Main.Handler;
 import Resources.Animation;
@@ -133,7 +134,7 @@ public class Player extends BaseDynamicEntity {
 				}
 			}
 		} 
-		
+
 		if(!isBig) {
 			if (facing.equals("Left") && moving) {
 				playerSmallLeftAnimation.tick();
@@ -222,11 +223,12 @@ public class Player extends BaseDynamicEntity {
 					if(!mario.isBig) {
 						if(enemy.getLeftBounds().intersects(mario.getRightBounds()) || enemy.getRightBounds().intersects(mario.getLeftBounds()) ) {
 							mario.setHit(true);
+
 						}
 					}
-					else if (mario.isBig)
+					else if (mario.isBig) {
 						mario.isBig = false;
-
+					}	
 					handler.getGame().getMusicHandler().playStomp();
 					enemy.kill();
 					falling=false;
