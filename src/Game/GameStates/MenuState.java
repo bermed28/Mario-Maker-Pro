@@ -110,7 +110,12 @@ public class MenuState extends State {
 				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) + (64), 128, 64, "Map 2", () -> {
 					if(!handler.isInMap()) {
 						mode = "Menu";
-						handler.setMap(MapBuilder.createMap(Images.testMaptwo, handler));
+						if(Player_Selection.MultiPlayer) {
+							// Other Map
+						}
+						else {
+							handler.setMap(MapBuilder.createMap(Images.testMaptwo, handler));
+						}
 						State.setState(handler.getGame().gameState);
 					}
 				}, handler,Color.BLACK));
