@@ -42,6 +42,7 @@ public class MapBuilder {
 	public static int teleportationB = new Color(186,6,213).getRGB();
 	public static boolean mapDone = false;
 
+
 	
 	// Codes Images that are passed as parameters. By going pixel by pixel.
 	public static Map createMap(BufferedImage mapImage, Handler handler){
