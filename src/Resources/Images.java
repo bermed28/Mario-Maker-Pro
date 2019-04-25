@@ -339,7 +339,7 @@ public class Images {
 			blueBruddaJumpRight[0] = bruddaSpriteSheet.crop(235,171,44,44); 
 			blueBruddaJumpRight[1] = bruddaSpriteSheet.crop(192,178,43,38);
 			blueBruddaJumpRight[2] = bruddaSpriteSheet.crop(381,94,39,38);//up
-			blueBruddaJumpRight[3] = bruddaSpriteSheet.crop(152,185,42,30);//down
+			blueBruddaJumpRight[3] = bruddaSpriteSheet.crop(152,185,40,30);//down
 			blueBruddaJumpRight[4] = bruddaSpriteSheet.crop(358,174,31,40);//change
 
 			blueBruddaJumpLeft[0] = bruddaSpriteSheet.crop(745,167,44,44);
@@ -349,8 +349,8 @@ public class Images {
 			blueBruddaJumpLeft[4] = bruddaSpriteSheet.crop(636,170,32,40);//Change
 
 			//RUN
-			blueBruddaRunLeft[0] = bruddaSpriteSheet.crop(986,130,38,37); 
-			blueBruddaRunLeft[1] = bruddaSpriteSheet.crop(950,129,38,37);
+			blueBruddaRunLeft[0] = bruddaSpriteSheet.crop(989,130,35,37); 
+			blueBruddaRunLeft[1] = bruddaSpriteSheet.crop(953,129,35,37);
 
 
 
@@ -375,9 +375,9 @@ public class Images {
 			redBruddaJumpLeft[3] = bruddaSpriteSheet.crop(759,437,39,29);//down
 			redBruddaJumpLeft[4] = bruddaSpriteSheet.crop(947,425,35,41);//change
 
-			redBruddaJumpRight[0] = bruddaSpriteSheet.crop(307,386,42,43);
-			redBruddaJumpRight[1] = bruddaSpriteSheet.crop(197,386,42,38); 
-			redBruddaJumpRight[2] = bruddaSpriteSheet.crop(42,301,37,40); //up
+			redBruddaJumpRight[0] = bruddaSpriteSheet.crop(304,386,45,43);
+			redBruddaJumpRight[1] = bruddaSpriteSheet.crop(194,386,45,38); 
+			redBruddaJumpRight[2] = bruddaSpriteSheet.crop(40,301,39,40); //up
 			redBruddaJumpRight[3] = bruddaSpriteSheet.crop(230,443, 37,28);//down
 			redBruddaJumpRight[4] = bruddaSpriteSheet.crop(46,430,32,42);//Change
 
@@ -385,8 +385,8 @@ public class Images {
 			redBruddaRunLeft[0] = bruddaSpriteSheet.crop(911,298,35,38);
 			redBruddaRunLeft[1] = bruddaSpriteSheet.crop(874,299,35,36);
 		 
-			redBruddaRunRight[0] = bruddaSpriteSheet.crop(83,304,32,38);
-			redBruddaRunRight[1] = bruddaSpriteSheet.crop(119,303,32,38);
+			redBruddaRunRight[0] = bruddaSpriteSheet.crop(80,304,35,38);
+			redBruddaRunRight[1] = bruddaSpriteSheet.crop(116,303,35,38);
 
 
 			//WALK

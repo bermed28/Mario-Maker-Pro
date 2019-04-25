@@ -33,7 +33,7 @@ public class Player extends BaseDynamicEntity {
 	public boolean grabbed =false;
 	private int jump_counter = 0; 
 	private int blue_knuckles_jump_counter = 0; 
-	
+
 	public Player(int x, int y, int width, int height, Handler handler, BufferedImage sprite,Animation PSLA,Animation PSRA,Animation PBLWA,Animation PBRWA,Animation PBLRA,Animation PBRRA,Animation PKLRA, Animation PKLWA,Animation PKRRA,Animation PKRWA, Animation PKLA, Animation PKRA) {
 		super(x, y, width, height, handler, sprite);
 		playerBigLeftRunAnimation=PBLRA;
@@ -70,35 +70,88 @@ public class Player extends BaseDynamicEntity {
 		checkTopCollisions();
 		checkItemCollision();
 
-		if(Mario.redKnuckles || Luigi.blueKnuckles) {
-			if (facing.equals("Left") && moving && !running) {
-				playerKnucklesLeftWalkAnimation.tick();
-			} else if (facing.equals("Left") && moving && running) {
-				playerKnucklesLeftRunAnimation.tick();
-			} else if (facing.equals("Right") && moving && !running) {
-				playerKnucklesRightWalkAnimation.tick();
-			} else if (facing.equals("Right") && moving && running) {
-				playerKnucklesRightRunAnimation.tick();
-			}
-		} else {
-			if(!isBig) {
-				if (facing.equals("Left") && moving) {
-					playerSmallLeftAnimation.tick();
-				} else if (facing.equals("Right") && moving) {
-					playerSmallRightAnimation.tick();
-				}
-			}else{
+		if(Mario.redKnuckles) {
+			if(this instanceof Mario) {
 				if (facing.equals("Left") && moving && !running) {
-					playerBigLeftWalkAnimation.tick();
+					playerKnucklesLeftWalkAnimation.tick();
 				} else if (facing.equals("Left") && moving && running) {
-					playerBigLeftRunAnimation.tick();
+					playerKnucklesLeftRunAnimation.tick();
 				} else if (facing.equals("Right") && moving && !running) {
-					playerBigRightWalkAnimation.tick();
+					playerKnucklesRightWalkAnimation.tick();
 				} else if (facing.equals("Right") && moving && running) {
-					playerBigRightRunAnimation.tick();
+					playerKnucklesRightRunAnimation.tick();
 				}
+			} else {
+				if(!isBig) {
+					if (facing.equals("Left") && moving) {
+						playerSmallLeftAnimation.tick();
+					} else if (facing.equals("Right") && moving) {
+						playerSmallRightAnimation.tick();
+					}
+				}else{
+					if (facing.equals("Left") && moving && !running) {
+						playerBigLeftWalkAnimation.tick();
+					} else if (facing.equals("Left") && moving && running) {
+						playerBigLeftRunAnimation.tick();
+					} else if (facing.equals("Right") && moving && !running) {
+						playerBigRightWalkAnimation.tick();
+					} else if (facing.equals("Right") && moving && running) {
+						playerBigRightRunAnimation.tick();
+					}
+				}
+			}
+
+		} 
+		if(Luigi.blueKnuckles) { 
+			if(this instanceof Luigi) {
+				if (facing.equals("Left") && moving && !running) {
+					playerKnucklesLeftWalkAnimation.tick();
+				} else if (facing.equals("Left") && moving && running) {
+					playerKnucklesLeftRunAnimation.tick();
+				} else if (facing.equals("Right") && moving && !running) {
+					playerKnucklesRightWalkAnimation.tick();
+				} else if (facing.equals("Right") && moving && running) {
+					playerKnucklesRightRunAnimation.tick();
+				}
+			} else {
+				if(!isBig) {
+					if (facing.equals("Left") && moving) {
+						playerSmallLeftAnimation.tick();
+					} else if (facing.equals("Right") && moving) {
+						playerSmallRightAnimation.tick();
+					}
+				}else{
+					if (facing.equals("Left") && moving && !running) {
+						playerBigLeftWalkAnimation.tick();
+					} else if (facing.equals("Left") && moving && running) {
+						playerBigLeftRunAnimation.tick();
+					} else if (facing.equals("Right") && moving && !running) {
+						playerBigRightWalkAnimation.tick();
+					} else if (facing.equals("Right") && moving && running) {
+						playerBigRightRunAnimation.tick();
+					}
+				}
+			}
+		} 
+		
+		if(!isBig) {
+			if (facing.equals("Left") && moving) {
+				playerSmallLeftAnimation.tick();
+			} else if (facing.equals("Right") && moving) {
+				playerSmallRightAnimation.tick();
+			}
+		}else{
+			if (facing.equals("Left") && moving && !running) {
+				playerBigLeftWalkAnimation.tick();
+			} else if (facing.equals("Left") && moving && running) {
+				playerBigLeftRunAnimation.tick();
+			} else if (facing.equals("Right") && moving && !running) {
+				playerBigRightWalkAnimation.tick();
+			} else if (facing.equals("Right") && moving && running) {
+				playerBigRightRunAnimation.tick();
 			}
 		}
+
 	}
 
 	private void checkItemCollision() {
@@ -299,20 +352,20 @@ public class Player extends BaseDynamicEntity {
 			jumping=true;
 			velY=10;
 			handler.getGame().getMusicHandler().playJump();
-			
+
 		}
 		if(this instanceof Luigi) {
-				if(Luigi.blueKnuckles) {
-					if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_CONTROL) && blue_knuckles_jump_counter < 1) {
-						jumping=true;
-						velY=10;
-						gravityAcc = .185;
-						handler.getGame().getMusicHandler().playJump();
-						blue_knuckles_jump_counter ++;
+			if(Luigi.blueKnuckles) {
+				if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_CONTROL) && blue_knuckles_jump_counter < 1) {
+					jumping=true;
+					velY=10;
+					gravityAcc = .185;
+					handler.getGame().getMusicHandler().playJump();
+					blue_knuckles_jump_counter ++;
 
-					}
 				}
 			}
+		}
 		else if(this instanceof Mario) {
 			if(Mario.redKnuckles) {
 
@@ -323,7 +376,7 @@ public class Player extends BaseDynamicEntity {
 					jump_counter++;
 				}
 			}
-			
+
 
 		}
 	}
