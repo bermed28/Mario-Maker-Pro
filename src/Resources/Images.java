@@ -529,7 +529,7 @@ public class Images {
 			testMap = ImageIO.read(getClass().getResourceAsStream("/maps/testmap1.png"));
 			testMaptwo = ImageIO.read(getClass().getResourceAsStream("/maps/testmap2.png"));
 			mountainMap = ImageIO.read(getClass().getResourceAsStream("/maps/MountainMap.png"));
-			deathTrap = ImageIO.read(getClass().getResourceAsStream("/maps/DeathTrap.png"));
+			deathTrap = ImageIO.read(getClass().getResourceAsStream("/maps/Hello_World_Map.png"));
 
 			singlePlayerMap1 = ImageIO.read(getClass().getResourceAsStream("/maps/introToDaWae.png"));
 			singlePlayerMap2 = ImageIO.read(getClass().getResourceAsStream("/maps/welcomeToMMP.png"));

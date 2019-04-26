@@ -83,42 +83,67 @@ public class MenuState extends State {
 				uiManager = new UIManager(handler);
 				handler.getMouseManager().setUimanager(uiManager);
 
-				//New Map
-				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) - (64), 128, 64, "New Map", () -> {
-					if(!handler.isInMap()) {
-						mode = "Menu";
-						initNew("New Map Creator", handler);
-					}
-				}, handler,Color.BLACK));
+				if(Player_Selection.MultiPlayer) {//New Map
+					uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) - (64), 128, 64, "New Race", () -> {
+						if(!handler.isInMap()) {
+							mode = "Menu";
+							initNew("New Map Creator", handler);
+						}
+					}, handler,Color.BLACK));
+					
+					uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, handler.getHeight() / 2 + (handler.getHeight() / 10), 128, 64, "Mountain Race", () -> {
+						if(!handler.isInMap()) {
+							mode = "Menu";
 
-
-				//Map 1
-				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, handler.getHeight() / 2 + (handler.getHeight() / 10), 128, 64, "Map 1", () -> {
-					if(!handler.isInMap()) {
-						mode = "Menu";
-						if(Player_Selection.MultiPlayer) {
 							handler.setMap(MapBuilder.createMap(Images.mountainMap, handler));
-						}
-						else {
-							handler.setMap(MapBuilder.createMap(Images.singlePlayerMap1, handler)); 
-						}
-						State.setState(handler.getGame().gameState);
-					}
-				}, handler,Color.BLACK));
 
-				//Map 2
-				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) + (64), 128, 64, "Map 2", () -> {
-					if(!handler.isInMap()) {
-						mode = "Menu";
-						if(Player_Selection.MultiPlayer) {
+							State.setState(handler.getGame().gameState);
+						}
+					}, handler,Color.BLACK));
+
+					//Map 2
+					uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) + (64), 128, 64, "HelloWorld Race", () -> {
+						if(!handler.isInMap()) {
+							mode = "Menu";
+
 							handler.setMap(MapBuilder.createMap(Images.deathTrap, handler));
+
+
+							State.setState(handler.getGame().gameState);
 						}
-						else {
-							handler.setMap(MapBuilder.createMap(Images.singlePlayerMap2, handler));
+					}, handler,Color.BLACK));
+				}
+				else {
+					//New Map
+					uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) - (64), 128, 64, "New Map", () -> {
+						if(!handler.isInMap()) {
+							mode = "Menu";
+							initNew("New Map Creator", handler);
 						}
-						State.setState(handler.getGame().gameState);
-					}
-				}, handler,Color.BLACK));
+					}, handler,Color.BLACK));
+					
+					
+					uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, handler.getHeight() / 2 + (handler.getHeight() / 10), 128, 64, "Map 1", () -> {
+						if(!handler.isInMap()) {
+							mode = "Menu";
+							
+								handler.setMap(MapBuilder.createMap(Images.singlePlayerMap1, handler)); 
+							
+							State.setState(handler.getGame().gameState);
+						}
+					}, handler,Color.BLACK));
+
+					//Map 2
+					uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) + (64), 128, 64, "Map 2", () -> {
+						if(!handler.isInMap()) {
+							mode = "Menu";
+							
+								handler.setMap(MapBuilder.createMap(Images.singlePlayerMap2, handler));
+							
+							State.setState(handler.getGame().gameState);
+						}
+					}, handler,Color.BLACK));
+				}
 				//other
 				uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) + (128), 128, 64, "Other", () -> {
 					if(!handler.isInMap()){
