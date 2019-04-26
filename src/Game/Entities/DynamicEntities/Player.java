@@ -195,7 +195,7 @@ public class Player extends BaseDynamicEntity {
 				}
 
 				else {
-					mario.setHit(true);
+					State.setState(handler.getGame().gameoverState);
 				}
 			}
 
@@ -221,21 +221,30 @@ public class Player extends BaseDynamicEntity {
 				}
 				else if(!enemy.ded) {
 					if(!mario.isBig) {
-						if(enemy.getLeftBounds().intersects(mario.getRightBounds()) || enemy.getRightBounds().intersects(mario.getLeftBounds()) ) {
-							mario.setHit(true);
 
+						if(enemy.getLeftBounds().intersects(mario.getRightBounds()) || enemy.getRightBounds().intersects(mario.getLeftBounds()) ) {
+							if(!Player_Selection.MultiPlayer) {
+								if(mario instanceof Mario){
+									State.setState(handler.getGame().gameoverState);
+								}
+							}
 						}
+
+						handler.getGame().getMusicHandler().playStomp();
+						enemy.kill();
+						falling=false;
+						velY=0;
+
 					}
-					else if (mario.isBig) {
+					
+					else {
 						mario.isBig = false;
-					}	
-					handler.getGame().getMusicHandler().playStomp();
-					enemy.kill();
-					falling=false;
-					velY=0;
+						enemy.kill();
+						falling=false;
+						velY=0;
+					}
 
 				}
-
 			}
 		}
 	}
@@ -360,8 +369,8 @@ public class Player extends BaseDynamicEntity {
 			if(Luigi.blueKnuckles) {
 				if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_CONTROL) && blue_knuckles_jump_counter < 1) {
 					jumping=true;
-					velY=10;
-					gravityAcc = .185;
+					velY=9;
+					gravityAcc = .175;
 					handler.getGame().getMusicHandler().playJump();
 					blue_knuckles_jump_counter ++;
 
@@ -373,7 +382,7 @@ public class Player extends BaseDynamicEntity {
 
 				if(jumping && handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE) && jump_counter < 2) {
 					jumping=true;
-					velY=10;
+					velY=11;
 					handler.getGame().getMusicHandler().playJump();
 					jump_counter++;
 				}

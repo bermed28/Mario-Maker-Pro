@@ -274,21 +274,50 @@ public class MenuState extends State {
 		}
 
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER)){
-			for (int i = 0; i < GridWidthPixelCount; i++) {
-				for (int j = 0; j < GridHeightPixelCount; j++) {
-					if(blocks[i][j]!=null && blocks[i][j].equals(new Color(MapBuilder.mario)) && blocks[i][j+1]!=null&& !blocks[i][j+1].equals(new Color(MapBuilder.mario))){
-						handler.setMap(MapBuilder.createMap(createImage(GridWidthPixelCount,GridHeightPixelCount,blocks,JOptionPane.showInputDialog("Enter file name: ","Mario Heaven")), handler));
-						State.setState(handler.getGame().gameState);
-						creatingMap=false;
-						display.getFrame().setVisible(false);
-						display.getFrame().dispose();
-						handler.getGame().mouseManager=handler.getGame().initialmouseManager;
-						return;
+
+			if(Player_Selection.MultiPlayer) {
+				for (int i = 0; i < GridWidthPixelCount; i++) {
+					for (int j = 0; j < GridHeightPixelCount; j++) {
+						if(blocks[i][j]!=null && blocks[i][j].equals(new Color(MapBuilder.luigi)) && blocks[i][j+1]!=null&& !blocks[i][j+1].equals(new Color(MapBuilder.luigi))){
+							for (int k = 0; k < GridWidthPixelCount; k++) {
+								for (int l = 0; l < GridHeightPixelCount; l++) {
+									if(blocks[k][l]!=null && blocks[k][l].equals(new Color(MapBuilder.mario)) && blocks[k][l+1]!=null&& !blocks[k][l+1].equals(new Color(MapBuilder.mario))){
+										handler.setMap(MapBuilder.createMap(createImage(GridWidthPixelCount,GridHeightPixelCount,blocks,JOptionPane.showInputDialog("Enter file name: ","Mario Heaven")), handler));
+										State.setState(handler.getGame().gameState);
+										creatingMap=false;
+										display.getFrame().setVisible(false);
+										display.getFrame().dispose();
+										handler.getGame().mouseManager=handler.getGame().initialmouseManager;
+										return;
+									}
+								}
+							}
+						}
 					}
 				}
+				JOptionPane.showMessageDialog(display.getFrame(), "You cant have a map without at least a Mario & Luigi and a floor right under both. (1 for Mario & Luigi)");
 			}
-			JOptionPane.showMessageDialog(display.getFrame(), "You cant have a map without at least a Mario and a floor right under him. (1 for Mario)");
+
+
+			else {
+				for (int i = 0; i < GridWidthPixelCount; i++) {
+					for (int j = 0; j < GridHeightPixelCount; j++) {
+						if(blocks[i][j]!=null && blocks[i][j].equals(new Color(MapBuilder.mario)) && blocks[i][j+1]!=null&& !blocks[i][j+1].equals(new Color(MapBuilder.mario))){
+							handler.setMap(MapBuilder.createMap(createImage(GridWidthPixelCount,GridHeightPixelCount,blocks,JOptionPane.showInputDialog("Enter file name: ","Mario Heaven")), handler));
+							State.setState(handler.getGame().gameState);
+							creatingMap=false;
+							display.getFrame().setVisible(false);
+							display.getFrame().dispose();
+							handler.getGame().mouseManager=handler.getGame().initialmouseManager;
+							return;
+						}
+					}
+				}
+				JOptionPane.showMessageDialog(display.getFrame(), "You cant have a map without at least a Mario and a floor right under him. (1 for Mario)");
+			}
 		}
+
+
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_H)){
 			if(Player_Selection.MultiPlayer) {
 				JOptionPane.showMessageDialog(display.getFrame(), "Number key <-> Color Mapping: \n" +
