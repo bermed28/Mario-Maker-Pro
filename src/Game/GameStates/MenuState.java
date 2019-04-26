@@ -123,7 +123,7 @@ public class MenuState extends State {
 					}, handler,Color.BLACK));
 					
 					
-					uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, handler.getHeight() / 2 + (handler.getHeight() / 10), 128, 64, "Map 1", () -> {
+					uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, handler.getHeight() / 2 + (handler.getHeight() / 10), 128, 64, "Intro to Da Wae", () -> {
 						if(!handler.isInMap()) {
 							mode = "Menu";
 							
@@ -134,7 +134,7 @@ public class MenuState extends State {
 					}, handler,Color.BLACK));
 
 					//Map 2
-					uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) + (64), 128, 64, "Map 2", () -> {
+					uiManager.addObjects(new UIStringButton(handler.getWidth() / 2 - 64, (handler.getHeight() / 2) + (handler.getHeight() / 10) + (64), 128, 64, "Welcome to Mario", () -> {
 						if(!handler.isInMap()) {
 							mode = "Menu";
 							

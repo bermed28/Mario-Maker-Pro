@@ -228,6 +228,16 @@ public class Player extends BaseDynamicEntity {
 									State.setState(handler.getGame().gameoverState);
 								}
 							}
+							else {
+								if(mario instanceof Mario){
+									WinState.marioWon = true;
+									State.setState(handler.getGame().winState);
+								}
+								if(mario instanceof Luigi){
+									WinState.luigiWon = true;
+									State.setState(handler.getGame().winState);
+								}
+							}
 						}
 
 						handler.getGame().getMusicHandler().playStomp();
